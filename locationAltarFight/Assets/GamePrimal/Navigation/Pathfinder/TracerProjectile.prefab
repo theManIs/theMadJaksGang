@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3758600627977911742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3571061547329597489}
+  - component: {fileID: 1545577986}
+  m_Layer: 0
+  m_Name: TracerProjectile
+  m_TagString: TraceProjectileCheckpoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3571061547329597489
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3758600627977911742}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 87.0607, y: 11.850096, z: 118.430756}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1545577986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3758600627977911742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b423304893e1fcf4687b5ae00f774de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StepLength: 2
+  _NavMeshAgentFollow: {fileID: 0}
+  _wayPoint: {fileID: 2542674016571299838, guid: 6faf1be776c14c74896eb3548c3cf741,
+    type: 3}
+  m_FinalDestination: {fileID: 5234797248822195033, guid: 7c63ea340d5d7c645ab56cee74c580d4,
+    type: 3}
+  m_CheckWayPoint: {fileID: 5340007529000986267, guid: fad133ac715a6f340935120271116bd6,
+    type: 3}

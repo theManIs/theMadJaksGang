@@ -8,6 +8,7 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
         public GameObject FrameHighlighterGameObject;
         public Transform GameObjectToHighlight;
 
+        public bool Engaged = true;
         private MeshRenderer m_FrameMeshRenderer;
         private GameObject m_LocalInstance;
         private SpriteRenderer m_LocalSpriteRenderer;
@@ -23,11 +24,15 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
 
         public void FixedUpdate()
         {
+            if (!Engaged) return;
+
             TraceMousePosition();
         }
 
         public void FixedUpdate(Transform objToHighlight)
         {
+            if (!Engaged) return;
+
             if (objToHighlight is null) {
                 RemoveHighlight();
             } else {
@@ -39,7 +44,7 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
             
         }
     
-        void HighlightTheTarget(GameObject targetGameObject)
+        private void HighlightTheTarget(GameObject targetGameObject)
         {
             m_FrameMeshRenderer = targetGameObject.GetComponent<MeshRenderer>();
             Vector3 pos = targetGameObject.transform.position;
@@ -52,7 +57,7 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
             m_LocalSpriteRenderer.enabled = true;
         }
 
-        void TraceMousePosition()
+        private void TraceMousePosition()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 

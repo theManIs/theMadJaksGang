@@ -5,17 +5,20 @@ using UnityEngine;
 
 namespace Assets.GamePrimal.Controllers
 {
+    public delegate void RoundHandler(Transform activeCharacter);
     public class ControllerDrumSpinner
     {
+        public event RoundHandler RoundHandlerEvent;
+        public float InstanceId;
+
         private static Queue<Transform> _theDrum = new Queue<Transform>();
         private bool _roundIsFilled = false;
         private int _frameCount = -1;
         private readonly int _frameThrottle = 25;
-        public float instanceId;
 
         public ControllerDrumSpinner()
         {
-            instanceId = Random.value;
+            InstanceId = Random.value;
         }
 
         public bool ReleaseRound()
@@ -38,6 +41,12 @@ namespace Assets.GamePrimal.Controllers
             bool doIMove = whoIsNext == applicantId;
 
             MarkThisRoundFilled(doIMove);
+
+            if (doIMove)
+            {
+                Debug.Log("Turn was found " + Time.time);
+                RoundHandlerEvent?.Invoke(applicant);
+            }
 
             return doIMove;
         }

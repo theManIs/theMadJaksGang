@@ -6,12 +6,12 @@ namespace Assets.GamePrimal.SeparateComponents.PauseMenu
 {
     public class PauseMenuBlock
     {
-        private ControllerSceneShift _sceneShift;
+        private SceneShift _sceneShift;
 
         public void Start()
         {
             ControllerEvent.UserInputBroadcaster += GetToMainMenu;
-            _sceneShift = Object.FindObjectOfType<ControllerSceneShift>();
+            _sceneShift = Object.FindObjectOfType<SceneShift>();
         }
 
         public void Destroy()

@@ -34,6 +34,7 @@ namespace UnityStandardAssets.Cameras
         private Camera localCamera;
         private int maxRaycastDistance = 100;
         private float _constantTiltInt = 35;
+        public int MagnitudeThreshold = 300;
 
         private float Scroll => CrossPlatformInputManager.GetAxis("Mouse ScrollWheel");
 
@@ -59,7 +60,7 @@ namespace UnityStandardAssets.Cameras
             if (Math.Abs(this.Scroll) > 0)
                 ZoomInOut();
 
-            if (Input.GetKey(KeyCode.Mouse2))
+            if (Input.GetKey(KeyCode.Mouse1))
                 HandleRotationMovement();
 
             if (m_LockCursor && Input.GetMouseButtonUp(0))
@@ -105,6 +106,13 @@ namespace UnityStandardAssets.Cameras
             transform.position = Vector3.Lerp(transform.position, m_Target.position, deltaTime * m_MoveSpeed);
         }
 
+        public bool HasReachedTarget()
+        {
+            if (!m_Target) return false;
+
+            return Math.Abs(transform.position.sqrMagnitude - m_Target.position.sqrMagnitude) < MagnitudeThreshold;
+        }
+
 
         private void HandleRotationMovement()
         {
@@ -121,7 +129,7 @@ namespace UnityStandardAssets.Cameras
             // Rotate the rig (the root object) around Y axis only:
             m_TransformTargetRot = Quaternion.Euler(0f, m_LookAngle, 0f);
 
-            Debug.Log(m_TiltAngle + " " + _constantTiltInt);
+
             if (m_VerticalAutoReturn)
             {
                 // For tilt input, we need to behave differently depending on whether we're using mouse or touch input:

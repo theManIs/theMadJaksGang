@@ -1,4 +1,5 @@
 ﻿using Assets.GamePrimal.CharacterOrtJoyPrafabs.Enemies.Skeleton;
+using Assets.TeamProjects.GamePrimal.MainScene;
 using UnityEngine;
 using static Assets.GamePrimal.Controllers.ControllerEvent;
 
@@ -11,11 +12,11 @@ namespace Assets.GamePrimal.Controllers
 
         public bool HitFixated { get; private set; }
 
-        private MainScene.MainScene _theMainScene;
+        private MainScene _theMainScene;
 
         public void Start()
         {
-            _theMainScene = Object.FindObjectOfType<MainScene.MainScene>();
+            _theMainScene = Object.FindObjectOfType<MainScene>();
         }
 
         public void Update()    

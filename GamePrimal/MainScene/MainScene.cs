@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Assets.GamePrimal.Controllers;
-using Assets.GamePrimal.Helpers;
+﻿using Assets.GamePrimal.Controllers;
 using Assets.GamePrimal.Navigation.HighlightFrame;
 using Assets.GamePrimal.Navigation.Pathfinder;
+using Assets.TeamProjects.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.Mono;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 
-
-namespace Assets.GamePrimal.MainScene
+namespace Assets.TeamProjects.GamePrimal.MainScene
 {
     public class MainScene : MonoBehaviour
     {
+        private bool _engaged = true;
         private GetRealHeight _getRealHeight;
         private SubjectFocus _subjectFocus;
         private MovableObjects _movableObjects;
@@ -21,16 +17,24 @@ namespace Assets.GamePrimal.MainScene
         private FetchMovablePoint _fetchMovablePoint;
         private ControllerAttackCapture _controllerAttackCapture;
         private ControllerInput _controllerInput;
+        private SceneBuilder _sceneBuilder;
 
         void Awake()
         {
+            if (!Camera.main)
+            {
+                _engaged = false;
+
+                return;
+            }
+
             _getRealHeight = new GetRealHeight();
             _subjectFocus = new SubjectFocus();
             _movableObjects = FindObjectOfType<MovableObjects>();
             _tracerProjectileScript = new TracerProjectileScript();
             _fetchMovablePoint = new FetchMovablePoint();
             _controllerAttackCapture = new ControllerAttackCapture();
-            _controllerInput = ControllerRouter.GetControllerInput();
+            _controllerInput = ControllerRouter.GetControllerInput().UserAwake();
         }
 
         public Transform GetFocus() => _subjectFocus.GetFocus();
@@ -39,7 +43,13 @@ namespace Assets.GamePrimal.MainScene
         // Start is called before the first frame update
         void Start()
         {
-            _getRealHeight.Start(_movableObjects.transform);
+            if (!_engaged) return;
+
+            if (_movableObjects)
+                _getRealHeight.Start(_movableObjects.transform);
+            else
+                _getRealHeight.Engaged = false;
+
             _subjectFocus.Start();
             _controllerAttackCapture.Start();
             _tracerProjectileScript.Start();
@@ -49,6 +59,8 @@ namespace Assets.GamePrimal.MainScene
         // FixedUpdate is called once per frame
         void Update()
         {
+            if (!_engaged) return;
+
             _controllerInput.Update();
             _subjectFocus.FixedUpdate();
             _controllerAttackCapture.Update();
@@ -60,7 +72,18 @@ namespace Assets.GamePrimal.MainScene
 
         void FixedUpdate()
         {
-            
+            if (!_engaged) return;
+
+        }
+
+        private void OnEnable()
+        {
+            _controllerInput.UserEnable();
+        }
+
+        private void OnDisable()
+        {
+            _controllerInput.UserDisable();
         }
     }
 }

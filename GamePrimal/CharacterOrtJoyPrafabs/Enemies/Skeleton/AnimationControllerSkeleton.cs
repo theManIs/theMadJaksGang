@@ -1,9 +1,9 @@
 ﻿using Assets.GamePrimal.Controllers;
 using UnityEngine;
 using UnityEngine.AI;
-using Assets.GamePrimal.MainScene;
 using Assets.GamePrimal.Mono;
 using Assets.GamePrimal.TextDamage;
+using Assets.TeamProjects.GamePrimal.MainScene;
 
 namespace Assets.GamePrimal.CharacterOrtJoyPrafabs.Enemies.Skeleton
 {
@@ -13,7 +13,7 @@ namespace Assets.GamePrimal.CharacterOrtJoyPrafabs.Enemies.Skeleton
         private NavMeshAgent _navMeshAgent;
         private Animator _animator;
         private bool _isBlip = false;
-        private MainScene.MainScene _manMainScene;
+        private MainScene _manMainScene;
         private ControllerEvent _ce;
         private Transform lastEnemy;
         private Transform lastAlly;
@@ -24,7 +24,7 @@ namespace Assets.GamePrimal.CharacterOrtJoyPrafabs.Enemies.Skeleton
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
-            _manMainScene = FindObjectOfType<MainScene.MainScene>();
+            _manMainScene = FindObjectOfType<MainScene>();
             _ce = ControllerRouter.GetControllerEvent();
             _amplifier = GetComponent<MonoAmplifierRpg>();
 

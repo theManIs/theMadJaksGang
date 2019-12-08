@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.TeamProjects.GamePrimal.MainScene;
+using UnityEngine;
 
 namespace Assets.GamePrimal.TextDamage
 {
@@ -19,7 +20,7 @@ namespace Assets.GamePrimal.TextDamage
 
         private static GameObject CreateCanvas()
         {
-            MainScene.MainScene ms = Object.FindObjectOfType<MainScene.MainScene>();
+            MainScene ms = Object.FindObjectOfType<MainScene>();
             GameObject canvasGm = new GameObject("FlatElementsCanvas");
             Canvas can = canvasGm.AddComponent<Canvas>();
             can.renderMode = RenderMode.ScreenSpaceOverlay;

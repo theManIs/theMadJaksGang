@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Assets.GamePrimal;
+using Assets.TeamProjects.GamePrimal.MainScene;
 
 namespace Assets.GamePrimal.Navigation.HighlightFrame
 {
@@ -10,7 +11,7 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
         private Transform _hardFocus;
         private bool _hasThisFrameFocused = true;
         private Transform _raycastCaptured;
-        private MainScene.MainScene _ms;
+        private MainScene _ms;
         private Texture2D _cursorTexture;
         private Texture2D _baseCursor;
         private Texture2D _pickCursor;
@@ -21,7 +22,7 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
             _cursorTexture = Resources.Load<Texture2D>("Cursor_Attack_-42768");
             _baseCursor = Resources.Load<Texture2D>("Cursor_Basic_-42304");
             _pickCursor = Resources.Load<Texture2D>("Cursor_Hand_-41952");
-            _ms = Object.FindObjectOfType<MainScene.MainScene>();
+            _ms = Object.FindObjectOfType<MainScene>();
         }
 
         public Transform RetrieveRaycastCapture()

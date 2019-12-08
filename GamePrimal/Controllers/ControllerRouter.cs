@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.TeamProjects.GamePrimal.Controllers;
+using UnityEngine;
 
 namespace Assets.GamePrimal.Controllers
 {
@@ -6,6 +7,7 @@ namespace Assets.GamePrimal.Controllers
     {
         private static ControllerInput _cInput;
         private static ControllerDrumSpinner _cDrum;
+        private static ControllerMainCamera _cMCam;
 
         public static ControllerEvent GetControllerEvent()
         {
@@ -14,5 +16,6 @@ namespace Assets.GamePrimal.Controllers
 
         public static ControllerInput GetControllerInput() => _cInput ?? (_cInput = new ControllerInput());
         public static ControllerDrumSpinner GetControllerDrumSpinner() => _cDrum ?? (_cDrum = new ControllerDrumSpinner());
+        public static ControllerMainCamera GetControllerMainCamera() => _cMCam ?? (_cMCam = new ControllerMainCamera());
     }
 }

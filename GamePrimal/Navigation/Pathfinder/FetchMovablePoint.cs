@@ -26,13 +26,13 @@ namespace Assets.GamePrimal.Navigation.Pathfinder
             return Vector3.zero;
         }
 
-        public void MoveAnyMesh(Transform navMeshAgentTransform, Vector3 moveToPoint)
+        private void MoveAnyMesh(Transform navMeshAgentTransform, Vector3 moveToPoint)
         {
             if (!navMeshAgentTransform) return;
 
             NavMeshAgent nvm = navMeshAgentTransform.GetComponent<NavMeshAgent>();
-
-            if (nvm && moveToPoint != Vector3.zero)
+            
+            if (nvm && nvm.isOnNavMesh && moveToPoint != Vector3.zero)
                 nvm.destination = moveToPoint;
         }
 

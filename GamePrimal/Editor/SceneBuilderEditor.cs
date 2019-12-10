@@ -54,25 +54,39 @@ namespace Assets.TeamProjects.GamePrimal.Editor
             GUILayout.EndHorizontal();
 
 
-            bool isAddDrakePressed = AddButton("Add Treacherous Drake", false);
+            bool isAddDrakePressed = AddButton("Treacherous Drake", false);
+            bool isPreposterousSkeletonPressed = AddButton("Preposterous Skeleton", false);
+            bool isHeartlessVampire = AddButton("HeartlessVampire", false);
+            bool isFemaleSwordsman = AddButton("FemaleSwordsman", false);
+            bool isFearsomeParasite = AddButton("FearsomeParasite", false);
+            bool isMeleeAxeFighter = AddButton("MeleeAxeFighter", false);
+            bool isAkaiArcher = AddButton("AkaiArcher", false);
 
             CameraRigPressed(_isPressedCameraRig, hasCameraRig);
             CreateAndAddPressed<SceneShift>("SceneShift", _isPressedSceneShift, hasSceneShift);
             CreateAndAddPressed<MainScene.MainScene>("MainScene", _isMainScenePressed, hasMainScene);
-            CreateAndAddCharacter("Treacherous Drake", isAddDrakePressed, false);
+            CreateAndAddCharacter("TreacherousDrake", isAddDrakePressed);
+            CreateAndAddCharacter("PreposterousSkeleton", isPreposterousSkeletonPressed);
+            CreateAndAddCharacter("HeartlessVampire", isHeartlessVampire);
+            CreateAndAddCharacter("FemaleSwordsman", isFemaleSwordsman);
+            CreateAndAddCharacter("FearsomeParasite", isFearsomeParasite);
+            CreateAndAddCharacter("MeleeAxeFighter", isMeleeAxeFighter);
+            CreateAndAddCharacter("AkaiArcher", isAkaiArcher);
         }
 
-        private void CreateAndAddCharacter(string gameObjectName, bool isPressed, bool hasTheSameInstance)
+        private void CreateAndAddCharacter(string gameObjectName, bool isPressed)
         {
             if (!isPressed) return;
 
-            GameObject drakePrefab = Resources.Load<GameObject>("TreacherousDrake");
+            GameObject drakePrefab = Resources.Load<GameObject>(gameObjectName);
 
             if (!drakePrefab) return;
 
             GameObject drake = Instantiate(drakePrefab, _target.transform.position, Quaternion.identity);
 
             drake.AddComponent<MonoMechanicus>();
+
+            Selection.activeGameObject = drake;
         }
 
         private bool AddButton(string buttonName, bool hasInstanceExists)

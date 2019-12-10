@@ -2,6 +2,7 @@
 
 namespace Assets.GamePrimal.Mono
 {
+    [RequireComponent(typeof(CapsuleCollider))]
     public class MonoAmplifierRpg : MonoBehaviour
     {
         [SerializeField] private int Health;

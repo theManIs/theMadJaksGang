@@ -74,33 +74,42 @@ namespace Assets.GamePrimal.Controllers
 
             _roundIsFilled = true;
         }
+
         protected Queue<Transform> SpinTheDrum()
         {
             List<MonoMechanicus> allParticipants = Object.FindObjectsOfType<MonoMechanicus>().ToList();
             Queue<Transform> toPutInDrum = new Queue<Transform>();
-            Dictionary<int, Transform> _initiativeList = new Dictionary<int, Transform>();
+            Dictionary<int, Transform> initiativeList = new Dictionary<int, Transform>();
 
             foreach (MonoMechanicus mech in allParticipants)
             {
                 MonoAmplifierRpg rpg = mech.GetComponent<MonoAmplifierRpg>();
 
                 if (rpg)
-                    _initiativeList.Add(rpg.GetInitiative(), rpg.transform);
+                    initiativeList.Add(RecursiveIncrement(rpg.GetInitiative(), initiativeList), rpg.transform);
             }
 
-            List<KeyValuePair<int, Transform>> _sortedList = _initiativeList.ToList();
+            List<KeyValuePair<int, Transform>> sortedList = initiativeList.ToList();
 
-            _sortedList.Sort((p1, p2) => p1.Key.CompareTo(p2.Key) * -1);
+            sortedList.Sort((p1, p2) => p1.Key.CompareTo(p2.Key) * -1);
 
-            foreach (var VARIABLE in _sortedList)
+            foreach (var VARIABLE in sortedList)
             {
                 Debug.Log(Time.time + " " + VARIABLE);
             }
 
-            foreach (KeyValuePair<int, Transform> mech in _sortedList)
+            foreach (KeyValuePair<int, Transform> mech in sortedList)
                 toPutInDrum.Enqueue(mech.Value);
 
             return toPutInDrum;
+        }
+
+        protected int RecursiveIncrement(int value, Dictionary<int, Transform> initiativeList)
+        {
+            if (initiativeList.ContainsKey(value))
+                return RecursiveIncrement(value + 1, initiativeList);
+            else
+                return value;
         }
     }
 }

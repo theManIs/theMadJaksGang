@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(MeshRenderer))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class ClickToMove : MonoBehaviour
 {
     public Animator Animator;

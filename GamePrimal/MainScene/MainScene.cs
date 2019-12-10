@@ -3,6 +3,7 @@ using Assets.GamePrimal.Navigation.HighlightFrame;
 using Assets.GamePrimal.Navigation.Pathfinder;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.Navigation.HighlightFrame;
 using UnityEngine;
 
 namespace Assets.TeamProjects.GamePrimal.MainScene
@@ -10,7 +11,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
     public class MainScene : MonoBehaviour
     {
         private bool _engaged = true;
-        private GetRealHeight _getRealHeight;
+        private HighlightFrame _highlightFrame;
         private SubjectFocus _subjectFocus;
         private MovableObjects _movableObjects;
         private TracerProjectileScript _tracerProjectileScript;
@@ -28,9 +29,9 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
                 return;
             }
 
-            _getRealHeight = new GetRealHeight();
+            _highlightFrame = new HighlightFrame();
             _subjectFocus = new SubjectFocus();
-            _movableObjects = FindObjectOfType<MovableObjects>();
+//            _movableObjects = FindObjectOfType<MovableObjects>();
             _tracerProjectileScript = new TracerProjectileScript();
             _fetchMovablePoint = new FetchMovablePoint();
             _controllerAttackCapture = new ControllerAttackCapture();
@@ -45,10 +46,10 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
         {
             if (!_engaged) return;
 
-            if (_movableObjects)
-                _getRealHeight.Start(_movableObjects.transform);
-            else
-                _getRealHeight.Engaged = false;
+//            if (_movableObjects)
+                _highlightFrame.Start();
+//            else
+//                _highlightFrame.Engaged = false;
 
             _subjectFocus.Start();
             _controllerAttackCapture.Start();
@@ -64,7 +65,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
             _controllerInput.Update();
             _subjectFocus.FixedUpdate();
             _controllerAttackCapture.Update();
-            _getRealHeight.FixedUpdate(_subjectFocus.GetFocus());
+            _highlightFrame.FixedUpdate(_subjectFocus.GetFocus());
             _tracerProjectileScript.SetNavAgent(_subjectFocus.GetFocus());
             _fetchMovablePoint.FixedUpdate(_subjectFocus.GetFocus(), _subjectFocus.HasFocused());
             _tracerProjectileScript.FixedUpdate();

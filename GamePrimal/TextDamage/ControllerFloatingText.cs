@@ -39,7 +39,7 @@ namespace Assets.GamePrimal.TextDamage
             Vector2 screenPosition = Camera.main.WorldToScreenPoint(location.position);
             Vector2 halfScreen = new Vector2(screenPosition.x - Screen.width / 2, screenPosition.y - Screen.height / 2 + mr.bounds.max.y);
 //            Debug.Log(screenPosition + " " + halfScreen);
-            Debug.Log(mr.bounds.max.y);
+//            Debug.Log(mr.bounds.max.y);
 
 //            instance.transform.position = screenPosition;
             instance.transform.position = halfScreen;

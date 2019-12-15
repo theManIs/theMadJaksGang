@@ -1,6 +1,8 @@
 ﻿using Assets.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.GamePrimal.Mono
 {
@@ -9,11 +11,24 @@ namespace Assets.GamePrimal.Mono
     {
         private ControllerDrumSpinner _cDrumSpinner;
         public bool _iAmMoving = false;
+        private CharacterAnimator _dl;
+        private DamageLogger _damageLogger;
+
+        private void Awake()
+        {
+            _cDrumSpinner = ControllerRouter.GetControllerDrumSpinner();
+            _dl = new CharacterAnimator();
+            _damageLogger = gameObject.AddComponent<DamageLogger>();
+
+            _dl.SetAnimatorComponent(GetComponent<Animator>());
+            _dl.SetDamageLogger(GetComponent<DamageLogger>());
+            _dl.SetNavAgent(GetComponent<NavMeshAgent>());
+
+        }
 
         // Start is called before the first frame update
         void Start()
         {
-            _cDrumSpinner = ControllerRouter.GetControllerDrumSpinner();
         }
 
         // Update is called once per frame
@@ -34,6 +49,19 @@ namespace Assets.GamePrimal.Mono
                 if (Input.GetKeyDown(KeyCode.Space))
                     if (_cDrumSpinner.ReleaseRound())
                         _iAmMoving = false;
+
+
+            _dl.UserUpdate();
+        }
+
+        private void OnEnable()
+        {
+            _dl.UserEnable();
+        }
+
+        private void OnDisable()
+        {
+            _dl.UserDisable();
         }
     }
 }

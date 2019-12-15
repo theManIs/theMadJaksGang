@@ -32,7 +32,7 @@ namespace Assets.GamePrimal.Controllers
         {
             if (_roundIsFilled) return false;
 
-            Debug.Log(_theDrum.Count + " " + Time.time);
+//            Debug.Log(_theDrum.Count + " " + Time.time);
 
             FillTheDrum();
 
@@ -44,7 +44,7 @@ namespace Assets.GamePrimal.Controllers
 
             if (doIMove)
             {
-                Debug.Log("Turn was found " + Time.time);
+//                Debug.Log("Turn was found " + Time.time);
                 RoundHandlerEvent?.Invoke(applicant);
             }
 
@@ -93,10 +93,10 @@ namespace Assets.GamePrimal.Controllers
 
             sortedList.Sort((p1, p2) => p1.Key.CompareTo(p2.Key) * -1);
 
-            foreach (var VARIABLE in sortedList)
-            {
-                Debug.Log(Time.time + " " + VARIABLE);
-            }
+//            foreach (var VARIABLE in sortedList)
+//            {
+//                Debug.Log(Time.time + " " + VARIABLE);
+//            }
 
             foreach (KeyValuePair<int, Transform> mech in sortedList)
                 toPutInDrum.Enqueue(mech.Value);

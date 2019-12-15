@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Assets.TeamProjects.GamePrimal.Controllers;
+using UnityEngine;
 
 namespace Assets.GamePrimal.Controllers
 {
     public class ControllerEvent
     {
-        public delegate void HitDetected(Transform captured, Transform broadcaster);
+        public delegate void HitDetected(AttackCaptureParams acp);
         public static event HitDetected HitDetectedHandler;
 
         public delegate void HitApplied(Transform captured, Transform broadcaster);
@@ -18,9 +19,9 @@ namespace Assets.GamePrimal.Controllers
             UserInputBroadcaster?.Invoke(pressedButtons);
         }
 
-        public void HitDetectedInvoke(Transform captured, Transform broadcaster)
+        public void HitDetectedInvoke(AttackCaptureParams acp)
         {
-            HitDetectedHandler?.Invoke(captured, broadcaster);
+            HitDetectedHandler?.Invoke(acp);
         }
 
         public void HitAppliedHandlerInvoke(Transform ally, Transform enemy)

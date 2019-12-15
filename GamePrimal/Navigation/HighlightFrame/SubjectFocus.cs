@@ -27,6 +27,7 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
 
         public Transform RetrieveRaycastCapture()
         {
+            _raycastCaptured = null;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if (Physics.Raycast(ray, out RaycastHit hit, _rayCastDistance))

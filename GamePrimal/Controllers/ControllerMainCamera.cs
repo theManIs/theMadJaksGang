@@ -42,7 +42,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
         public void UserUpdate()
         {
-            Debug.Log(_hardCodeCameraRig.Target);
+//            Debug.Log(_hardCodeCameraRig.Target);
             if (_hardCodeCameraRig.Target)
                 if (_hardCodeCameraRig.HasReachedTarget())
                     _hardCodeCameraRig.SetTarget(null);

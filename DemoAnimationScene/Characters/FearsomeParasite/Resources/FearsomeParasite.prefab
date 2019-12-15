@@ -1780,7 +1780,6 @@ GameObject:
   - component: {fileID: 4203734721009521400}
   - component: {fileID: 8710183998373662735}
   - component: {fileID: 2848726671545957225}
-  - component: {fileID: 8746695213961162047}
   - component: {fileID: 6919691228206196696}
   - component: {fileID: 6995695095934632151}
   - component: {fileID: 2526117174797271729}
@@ -1815,10 +1814,10 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7099907691035610513}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f0d7d9fd530a12e4cb6f8f11533a9788, type: 3}
-  m_Controller: {fileID: 9100000, guid: 57ce42a227ca4d140bd57a4a584d48a9, type: 2}
-  m_CullingMode: 1
+  m_Controller: {fileID: 9100000, guid: 9f445dbff98ad574da5110320f797ebe, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -1855,19 +1854,7 @@ MonoBehaviour:
   Health: 0
   Damage: 0
   Initiative: 0
---- !u!114 &8746695213961162047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7099907691035610513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 644f2c1740495ae46a38759b6404efb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _iAmMoving: 0
+  MeleeRange: 2
 --- !u!23 &6919691228206196696
 MeshRenderer:
   m_ObjectHideFlags: 0

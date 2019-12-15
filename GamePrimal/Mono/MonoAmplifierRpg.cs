@@ -5,10 +5,10 @@ namespace Assets.GamePrimal.Mono
     [RequireComponent(typeof(CapsuleCollider))]
     public class MonoAmplifierRpg : MonoBehaviour
     {
-        [SerializeField] private int Health;
-        [SerializeField] private int Damage;
-        [SerializeField] private int Initiative;
-        [SerializeField] private float MeleeRange = 2;
+        [SerializeField] private int Health = 0;
+        [SerializeField] private int Damage = 0;
+        [SerializeField] private int Initiative = 0;
+        [SerializeField] private float MeleeRange = 0;
 
         public void SubtractHealth(int amount) => Health -= amount;
         public int CalcDamage() => Damage;
@@ -20,7 +20,10 @@ namespace Assets.GamePrimal.Mono
         // Start is called before the first frame update
         void Start()
         {
-        
+            Initiative = (int)(Random.value * 10);
+            Health = Health != 0 ? Health : (int)(Random.value * 200);
+            Damage = Damage != 0 ? Damage : (int)(Random.value * 100);
+            MeleeRange = 4;
         }
 
         // Update is called once per frame

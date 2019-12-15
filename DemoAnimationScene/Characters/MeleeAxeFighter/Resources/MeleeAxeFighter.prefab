@@ -1178,7 +1178,6 @@ GameObject:
   - component: {fileID: 114094119361286325}
   - component: {fileID: -566884212896585297}
   - component: {fileID: 6189395161976932545}
-  - component: {fileID: 6495692381896717845}
   m_Layer: 0
   m_Name: MeleeAxeFighter
   m_TagString: Untagged
@@ -1210,10 +1209,10 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3971557286522304464}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b66a292a062823843b9d7f427d736602, type: 3}
-  m_Controller: {fileID: 9100000, guid: 57ce42a227ca4d140bd57a4a584d48a9, type: 2}
-  m_CullingMode: 1
+  m_Controller: {fileID: 9100000, guid: 9f445dbff98ad574da5110320f797ebe, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -1325,19 +1324,7 @@ MonoBehaviour:
   Health: 0
   Damage: 0
   Initiative: 0
---- !u!114 &6495692381896717845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3971557286522304464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 644f2c1740495ae46a38759b6404efb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _iAmMoving: 0
+  MeleeRange: 0
 --- !u!1 &4089596951873394531
 GameObject:
   m_ObjectHideFlags: 0

@@ -1978,7 +1978,6 @@ GameObject:
   - component: {fileID: 8153635368694797065}
   - component: {fileID: 4084203487728891857}
   - component: {fileID: 1285314412549949069}
-  - component: {fileID: 3483267703884982049}
   m_Layer: 0
   m_Name: TreacherousDrake
   m_TagString: Untagged
@@ -2010,10 +2009,10 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8205367341896543908}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: de2f8f7cd58f84949a85146ac4902820, type: 3}
-  m_Controller: {fileID: 9100000, guid: 57ce42a227ca4d140bd57a4a584d48a9, type: 2}
-  m_CullingMode: 1
+  m_Controller: {fileID: 9100000, guid: c17abc86b0ecbf742812fe435a5d2e6c, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -2125,19 +2124,7 @@ MonoBehaviour:
   Health: 0
   Damage: 0
   Initiative: 0
---- !u!114 &3483267703884982049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8205367341896543908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 644f2c1740495ae46a38759b6404efb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _iAmMoving: 0
+  MeleeRange: 0
 --- !u!1 &8207498989051615937
 GameObject:
   m_ObjectHideFlags: 0

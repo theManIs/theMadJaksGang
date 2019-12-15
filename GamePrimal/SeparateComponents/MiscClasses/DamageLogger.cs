@@ -26,11 +26,14 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         private Transform lastAlly;
         private MonoAmplifierRpg _amplifier;
         private ControllerAttackCapture _cAttackCapture;
+        private CapsuleCollider _capsuleCollider;
+        private NavMeshAgent _navMeshAgent;
 
         public void Start()
         {
-//            _navMeshAgent = GetComponent<NavMeshAgent>();
+            _navMeshAgent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
+            _capsuleCollider = GetComponent<CapsuleCollider>();
 //            _manMainScene = Object.FindObjectOfType<MainScene.MainScene>();
             _ce = ControllerRouter.GetControllerEvent();
             _amplifier = GetComponent<MonoAmplifierRpg>();
@@ -49,6 +52,9 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 //            _animator.SetTrigger(_amplifier.HasDied() ? "Died" : "Hit");
             ReactOnHit?.Invoke(enemy, ally, _amplifier.HasDied() ? "Died" : "Hit");
             ControllerFloatingText.CreateFloatingText(damageAmount.ToString(), transform);
+
+            if (_amplifier.HasDied())
+                _capsuleCollider.enabled = false;
         }
 
 //        public void ImpactStage()
@@ -70,29 +76,24 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 
         public void AttackTheEnemy(AttackCaptureParams acp)
         {
+            if (acp.Target != transform || acp.Target == acp.Source || acp.HasHit) return;
+            
             Transform enemy = acp.Source;
             Transform ally = acp.Target;
-            ClickToMove enemyClickToMove = enemy.GetComponent<ClickToMove>();
-            ClickToMove allyClickToMove = GetComponent<ClickToMove>();
 
+            if (!_navMeshAgent.hasPath)
+                if (Vector3.Distance(enemy.position, transform.position) < _amplifier.GetMeleeRange())
+                {
+                    _cAttackCapture.LockTarget();
+                    _animator.SetTrigger("Attacking");
+                    transform.LookAt(enemy);
 
-            if (!enemyClickToMove || !allyClickToMove || acp.HasHit)
-                return;
+                    lastAlly = ally;
+                    lastEnemy = enemy;
 
-            //            Debug.Log(enemyClickToMove.GetInstanceID() +  " " + allyClickToMove.GetInstanceID());
-
-            if (enemyClickToMove.GetInstanceID() != allyClickToMove.GetInstanceID() && Vector3.Distance(enemy.position, transform.position) < _amplifier.GetMeleeRange())
-            {
-                _cAttackCapture.LockTarget();
-                _animator.SetTrigger("Attacking");
-                transform.LookAt(enemy);
-
-                lastAlly = ally;
-                lastEnemy = enemy;
-
-                Invoke(nameof(HitApply), 1f);
-                Invoke(nameof(ReleaseHitLock), 2);
-            }
+                    Invoke(nameof(HitApply), 1f);
+                    Invoke(nameof(ReleaseHitLock), 2);
+                }
         }
 
         public void ReleaseHitLock()

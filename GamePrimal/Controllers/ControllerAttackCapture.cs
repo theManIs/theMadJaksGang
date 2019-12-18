@@ -11,12 +11,13 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         public Transform Source;
         public Transform Target;
         public bool HasHit;
+        public bool HasDied;
     }
 
     public class ControllerAttackCapture
     {
         public bool HitFixated { get; private set; } = false;
-        private bool HasHit = false;
+        public bool HasHit { get; private set; } = false;
 
         private MainScene.MainScene _theMainScene;
 

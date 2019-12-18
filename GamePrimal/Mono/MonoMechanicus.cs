@@ -1,4 +1,5 @@
 ﻿using Assets.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using UnityEngine;
@@ -9,20 +10,29 @@ namespace Assets.GamePrimal.Mono
     [RequireComponent(typeof(MonoAmplifierRpg))]
     public class MonoMechanicus : MonoBehaviour
     {
-        private ControllerDrumSpinner _cDrumSpinner;
         public bool _iAmMoving = false;
+
+        private ControllerDrumSpinner _cDrumSpinner;
         private CharacterAnimator _dl;
         private DamageLogger _damageLogger;
+        private Rigidbody _rb;
 
         private void Awake()
         {
             _cDrumSpinner = ControllerRouter.GetControllerDrumSpinner();
             _dl = new CharacterAnimator();
             _damageLogger = gameObject.AddComponent<DamageLogger>();
+            _rb = gameObject.AddComponent<Rigidbody>();
+            _rb.isKinematic = true;
+            _rb.constraints = RigidbodyConstraints.FreezePositionX;
 
-            _dl.SetAnimatorComponent(GetComponent<Animator>());
-            _dl.SetDamageLogger(GetComponent<DamageLogger>());
-            _dl.SetNavAgent(GetComponent<NavMeshAgent>());
+            _dl.UserAwake(new AwakeParams()
+            {
+                AnimatorComponent = GetComponent<Animator>(), 
+                DamageLoggerComponent = GetComponent<DamageLogger>(), 
+                NavMeshAgentComponent = GetComponent<NavMeshAgent>(),
+                MeshSpeed = GetComponent<MonoAmplifierRpg>().MeshSpeed
+            });
 
         }
 

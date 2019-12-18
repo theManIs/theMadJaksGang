@@ -9,13 +9,14 @@ using UnityEngine.UI;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 {
-    public delegate void HitReaction(Transform source, Transform target, string animName);
+    public delegate void HitReaction(AttackCaptureParams acp);
     public delegate void HitReactionFinished(AttackCaptureParams acp);
 
     public class DamageLogger : MonoBehaviour
     {
         public event HitReaction ReactOnHit;
-        public event HitReactionFinished ReachHitEnd;
+        public event HitReaction AttackStarted;
+        public event HitReactionFinished HitEndReached;
 
 //        private NavMeshAgent _navMeshAgent;
         private Animator _animator;
@@ -28,6 +29,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         private ControllerAttackCapture _cAttackCapture;
         private CapsuleCollider _capsuleCollider;
         private NavMeshAgent _navMeshAgent;
+        private bool _attacking = false;
 
         public void Start()
         {
@@ -50,7 +52,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 
             _amplifier.SubtractHealth(damageAmount);
 //            _animator.SetTrigger(_amplifier.HasDied() ? "Died" : "Hit");
-            ReactOnHit?.Invoke(enemy, ally, _amplifier.HasDied() ? "Died" : "Hit");
+            ReactOnHit?.Invoke(new AttackCaptureParams() { Source = enemy, Target = ally, HasDied = _amplifier.HasDied() });
             ControllerFloatingText.CreateFloatingText(damageAmount.ToString(), transform);
 
             if (_amplifier.HasDied())
@@ -81,25 +83,29 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             Transform enemy = acp.Source;
             Transform ally = acp.Target;
 
-            if (!_navMeshAgent.hasPath)
-                if (Vector3.Distance(enemy.position, transform.position) < _amplifier.GetMeleeRange())
-                {
-                    _cAttackCapture.LockTarget();
-                    _animator.SetTrigger("Attacking");
-                    transform.LookAt(enemy);
+            if (Vector3.Distance(enemy.position, transform.position) < _amplifier.GetMeleeRange())
+            {
+                _cAttackCapture.LockTarget();
+//                _animator.StopPlayback();
+//                _animator.SetTrigger("Attacking");
+//                transform.LookAt(enemy);
 
-                    lastAlly = ally;
-                    lastEnemy = enemy;
+                _attacking = true;
+                lastAlly = ally;
+                lastEnemy = enemy;
 
-                    Invoke(nameof(HitApply), 1f);
-                    Invoke(nameof(ReleaseHitLock), 2);
-                }
+                AttackStarted?.Invoke(acp);
+                Invoke(nameof(HitApply), 1f);
+                Invoke(nameof(ReleaseHitLock), 2);
+            }
         }
 
         public void ReleaseHitLock()
         {
             Debug.Log("Release lock" + Time.time);
             _cAttackCapture.ReleaseFixated();
+
+            _attacking = false;
         }
 
         public void HitApply()
@@ -110,6 +116,9 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         // Update is called once per frame
         public void Update()
         {
+            if (_attacking)
+                gameObject.transform.LookAt(lastEnemy);
+
 //            if (!_isBlip && _navMeshAgent.hasPath)
 //            {
 //                _isBlip = true;

@@ -16,14 +16,14 @@ namespace Assets.GamePrimal.Controllers
         private PressedButtons _pressedButtons;
         private PauseMenuBlock _pauseMenu;
         private ControllerMainCamera _controllerMainCamera;
-        private FetchMovablePoint _cMovementCharacter;
+        private ControllerCharacterMovement _cMovementCharacter;
         private SubjectFocus _subjectFocus;
 
         public ControllerInput UserAwake()
         {
             _controllerMainCamera = ControllerRouter.GetControllerMainCamera();
             _pauseMenu = new PauseMenuBlock();
-            _cMovementCharacter = new FetchMovablePoint();
+            _cMovementCharacter = ControllerRouter.GetControllerCharacterMovement();
             _subjectFocus = new SubjectFocus();
 
             return this;
@@ -32,11 +32,13 @@ namespace Assets.GamePrimal.Controllers
         public void UserEnable()
         {
             _controllerMainCamera.UserEnable();
+            _cMovementCharacter.UserEnable();
         }
 
         public void UserDisable()
         {
             _controllerMainCamera.UserDisable();
+            _cMovementCharacter.UserDisable();
         }
 
         public void Start()

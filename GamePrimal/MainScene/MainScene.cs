@@ -15,7 +15,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
         private SubjectFocus _subjectFocus;
         private MovableObjects _movableObjects;
         private TracerProjectileScript _tracerProjectileScript;
-        private FetchMovablePoint _fetchMovablePoint;
+        private ControllerCharacterMovement _controllerCharacterMovement;
         private ControllerAttackCapture _controllerAttackCapture;
         private ControllerInput _controllerInput;
         private SceneBuilder _sceneBuilder;
@@ -33,7 +33,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
             _subjectFocus = new SubjectFocus();
 //            _movableObjects = FindObjectOfType<MovableObjects>();
             _tracerProjectileScript = new TracerProjectileScript();
-//            _fetchMovablePoint = new FetchMovablePoint();
+//            _controllerCharacterMovement = new ControllerCharacterMovement();
             _controllerAttackCapture = ControllerRouter.GetControllerAttackCapture();
             _controllerInput = ControllerRouter.GetControllerInput().UserAwake();
         }
@@ -67,7 +67,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
             _controllerAttackCapture.Update();
             _highlightFrame.FixedUpdate(_subjectFocus.GetFocus());
             _tracerProjectileScript.SetNavAgent(_subjectFocus.GetFocus());
-//            _fetchMovablePoint.FixedUpdate(_subjectFocus.GetFocus(), _subjectFocus.HasFocused());
+//            _controllerCharacterMovement.FixedUpdate(_subjectFocus.GetFocus(), _subjectFocus.HasFocused());
             _tracerProjectileScript.FixedUpdate();
         }
 

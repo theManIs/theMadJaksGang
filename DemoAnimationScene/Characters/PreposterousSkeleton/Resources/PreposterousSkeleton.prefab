@@ -251,6 +251,7 @@ MonoBehaviour:
   Damage: 0
   Initiative: 1
   MeleeRange: 0
+  MeshSpeed: 3
 --- !u!114 &597288755
 MonoBehaviour:
   m_ObjectHideFlags: 0

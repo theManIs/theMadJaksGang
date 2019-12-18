@@ -1,0 +1,66 @@
+﻿using Assets.GamePrimal.Controllers;
+using UnityEngine;
+using UnityEngine.AI;
+
+namespace Assets.TeamProjects.GamePrimal.Controllers
+{
+    public class ControllerCharacterMovement
+    {
+        private ControllerAttackCapture _cAttackCapture;
+        private ControllerEvent _cEvent;
+        private NavMeshAgent _lastAgent;
+
+        public ControllerCharacterMovement UserAwake()
+        {
+            _cAttackCapture = ControllerRouter.GetControllerAttackCapture();
+            _cEvent = ControllerRouter.GetControllerEvent();
+
+            return this;
+        }
+
+        public void UserEnable() => ControllerEvent.HitDetectedHandler += ClearDestination;
+        public void UserDisable() => ControllerEvent.HitDetectedHandler -= ClearDestination;
+
+        private void ClearDestination(AttackCaptureParams acp)
+        {
+            if (_lastAgent && _lastAgent.isOnNavMesh)
+                _lastAgent.ResetPath();
+        }
+
+        public Vector3 GetClickPoint()
+        {
+//            Debug.Log("Contact click " + Time.deltaTime);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+//                Debug.Log("Contact before " + Time.deltaTime);
+
+                if (Physics.Raycast(ray, out RaycastHit hit, 1000))
+                {
+//                    Debug.Log("Contact " + hit.point + " " + Time.deltaTime);
+                    return hit.point;
+                }
+            }
+
+            return Vector3.zero;
+        }
+
+        private void MoveAnyMesh(Transform navMeshAgentTransform, Vector3 moveToPoint)
+        {
+            if (!navMeshAgentTransform) return;
+
+            _lastAgent = navMeshAgentTransform.GetComponent<NavMeshAgent>();
+
+            if (_lastAgent && _lastAgent.isOnNavMesh && moveToPoint != Vector3.zero)
+                _lastAgent.destination = moveToPoint;
+        }
+
+        public void FixedUpdate(Transform focusedObject, bool doMove)
+        {
+            if (doMove)
+                this.MoveAnyMesh(focusedObject, this.GetClickPoint());
+        }
+    }
+}

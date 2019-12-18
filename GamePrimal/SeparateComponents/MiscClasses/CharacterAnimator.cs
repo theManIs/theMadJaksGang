@@ -1,4 +1,6 @@
-﻿using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
+﻿using Assets.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -11,10 +13,15 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         private DamageLogger _dmLogger;
         private NavMeshAgent _navMeshAgent;
         private bool _isBlip = false;
+        private Transform _transform;
 
-        public void UserAwake()
+        public void UserAwake(AwakeParams ap)
         {
-
+            _animator = ap.AnimatorComponent;
+            _transform = _animator.transform;
+            _dmLogger = ap.DamageLoggerComponent;
+            _navMeshAgent = ap.NavMeshAgentComponent;
+            _navMeshAgent.speed = ap.MeshSpeed;
         }
 
         public CharacterAnimator SetAnimatorComponent(Animator anim)
@@ -39,11 +46,11 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         }
 
 
-        private void ReactOnHit(Transform source, Transform target, string animName)
+        private void ReactOnHit(AttackCaptureParams acp)
         {
             if (!Engaged) return;
 
-            _animator.SetTrigger(animName);
+            _animator.SetTrigger(acp.HasDied ? "Died" : "Hit");
         }
 
         public void UserEnable()
@@ -51,13 +58,23 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             if (Engaged)
                 Engaged = _animator && _navMeshAgent && _dmLogger;
 
-            if (Engaged)
+            if (Engaged && _dmLogger)
+            {
                 _dmLogger.ReactOnHit += ReactOnHit;
+                _dmLogger.AttackStarted += AttackStarted;
+            }
+                
+        }
+
+        private void AttackStarted(AttackCaptureParams acp)
+        {
+            _animator.SetTrigger("Attacking");
+            _transform.LookAt(acp.Source);
         }
 
         public void UserDisable()
         {
-            if (Engaged)
+            if (_dmLogger)
                 _dmLogger.ReactOnHit -= ReactOnHit;
         }
 
@@ -68,17 +85,17 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
                 {
                     _isBlip = true;
 
-//                    _animator.SetBool("IsStopped", false);
-                    _animator.StopPlayback();
-                    _animator.SetFloat("Blend", 1 );
-                    _navMeshAgent.speed = 4;
+                    _animator.SetBool("IsStopped", false);
+//                    _animator.StopPlayback();
+//                    _animator.SetFloat("Blend", 1 );
+//                    _navMeshAgent.speed = 1.5f;
                 }
                 else if (_isBlip && !_navMeshAgent.hasPath)
                 {
                     _isBlip = false;
 
-//                    _animator.SetBool("IsStopped", true);
-                    _animator.SetFloat("Blend", 0);
+                    _animator.SetBool("IsStopped", true);
+//                    _animator.SetFloat("Blend", 0);
                 }
         }
     }

@@ -10,6 +10,8 @@ namespace Assets.GamePrimal.Mono
         [SerializeField] private int Initiative = 0;
         [SerializeField] private float MeleeRange = 0;
 
+        public float MeshSpeed = 1.25f;
+
         public void SubtractHealth(int amount) => Health -= amount;
         public int CalcDamage() => Damage;
         public int ViewHealth() => Health;

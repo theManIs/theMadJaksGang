@@ -9,6 +9,7 @@ namespace Assets.GamePrimal.Controllers
         private static ControllerDrumSpinner _cDrum;
         private static ControllerMainCamera _cMCam;
         private static ControllerAttackCapture _cACap;
+        private static ControllerCharacterMovement _cCMov;
 
         public static ControllerEvent GetControllerEvent()
         {
@@ -19,5 +20,6 @@ namespace Assets.GamePrimal.Controllers
         public static ControllerDrumSpinner GetControllerDrumSpinner() => _cDrum ?? (_cDrum = new ControllerDrumSpinner());
         public static ControllerMainCamera GetControllerMainCamera() => _cMCam ?? (_cMCam = new ControllerMainCamera());
         public static ControllerAttackCapture GetControllerAttackCapture() => _cACap ?? (_cACap = new ControllerAttackCapture());
+        public static ControllerCharacterMovement GetControllerCharacterMovement() => _cCMov ?? (_cCMov = new ControllerCharacterMovement().UserAwake());
     }
 }

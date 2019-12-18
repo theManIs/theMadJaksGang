@@ -50,7 +50,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
         private void MoveCameraTo(Transform activeCharacter)
         {
-            Debug.Log(activeCharacter);
+//            Debug.Log(activeCharacter);
             _hardCodeCameraRig.SetTarget(activeCharacter);
         }
     }

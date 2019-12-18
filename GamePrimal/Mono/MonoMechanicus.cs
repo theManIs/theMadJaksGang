@@ -13,25 +13,29 @@ namespace Assets.GamePrimal.Mono
         public bool _iAmMoving = false;
 
         private ControllerDrumSpinner _cDrumSpinner;
-        private CharacterAnimator _dl;
+        private CharacterAnimator _characterAnimator;
         private DamageLogger _damageLogger;
         private Rigidbody _rb;
+        private MonoAmplifierRpg _monoAmplifierRpg;
 
         private void Awake()
         {
             _cDrumSpinner = ControllerRouter.GetControllerDrumSpinner();
-            _dl = new CharacterAnimator();
+            _characterAnimator = new CharacterAnimator();
             _damageLogger = gameObject.AddComponent<DamageLogger>();
             _rb = gameObject.AddComponent<Rigidbody>();
             _rb.isKinematic = true;
             _rb.constraints = RigidbodyConstraints.FreezePositionX;
+            _monoAmplifierRpg = GetComponent<MonoAmplifierRpg>();
 
-            _dl.UserAwake(new AwakeParams()
+            _characterAnimator.UserAwake(new AwakeParams()
             {
                 AnimatorComponent = GetComponent<Animator>(), 
                 DamageLoggerComponent = GetComponent<DamageLogger>(), 
                 NavMeshAgentComponent = GetComponent<NavMeshAgent>(),
-                MeshSpeed = GetComponent<MonoAmplifierRpg>().MeshSpeed
+                MeshSpeed = _monoAmplifierRpg.MeshSpeed,
+                WieldingWeapon = _monoAmplifierRpg.WieldingWeapon
+
             });
 
         }
@@ -39,6 +43,12 @@ namespace Assets.GamePrimal.Mono
         // Start is called before the first frame update
         void Start()
         {
+            if (_monoAmplifierRpg.WieldingWeapon)
+                _characterAnimator.UserStart(new StartParams()
+                {
+                    WeaponType = _monoAmplifierRpg.WieldingWeapon.WeaponType,
+                    NavMeshSpeed = _monoAmplifierRpg.MeshSpeed
+                });
         }
 
         // Update is called once per frame
@@ -50,7 +60,7 @@ namespace Assets.GamePrimal.Mono
 
             if (doIReallyMove)
             {
-                Debug.Log(Time.time + " " + gameObject.name + " " + GetComponent<MonoAmplifierRpg>().GetInitiative());
+//                Debug.Log(Time.time + " " + gameObject.name + " " + GetComponent<MonoAmplifierRpg>().GetInitiative());
 
                 _iAmMoving = true;
             }
@@ -61,17 +71,17 @@ namespace Assets.GamePrimal.Mono
                         _iAmMoving = false;
 
 
-            _dl.UserUpdate();
+            _characterAnimator.UserUpdate();
         }
 
         private void OnEnable()
         {
-            _dl.UserEnable();
+            _characterAnimator.UserEnable();
         }
 
         private void OnDisable()
         {
-            _dl.UserDisable();
+            _characterAnimator.UserDisable();
         }
     }
 }

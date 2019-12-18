@@ -1,4 +1,5 @@
 ﻿using Assets.GamePrimal.Controllers;
+using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using UnityEngine;
@@ -14,6 +15,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         private NavMeshAgent _navMeshAgent;
         private bool _isBlip = false;
         private Transform _transform;
+        private WeaponOperator _wieldingWeapon;
 
         public void UserAwake(AwakeParams ap)
         {
@@ -21,7 +23,13 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             _transform = _animator.transform;
             _dmLogger = ap.DamageLoggerComponent;
             _navMeshAgent = ap.NavMeshAgentComponent;
-            _navMeshAgent.speed = ap.MeshSpeed;
+            _wieldingWeapon = ap.WieldingWeapon;
+        }
+
+        public void  UserStart(StartParams sp)
+        {
+            _navMeshAgent.speed = sp.NavMeshSpeed;
+            _animator.SetInteger("WeaponType", (int)sp.WeaponType);
         }
 
         public CharacterAnimator SetAnimatorComponent(Animator anim)

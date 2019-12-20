@@ -11,18 +11,18 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
         private Transform _hardFocus;
         private bool _hasThisFrameFocused = true;
         private Transform _raycastCaptured;
-        private MainScene _ms;
-        private Texture2D _cursorTexture;
-        private Texture2D _baseCursor;
-        private Texture2D _pickCursor;
+//        private MainScene _ms;
+//        private Texture2D _cursorTexture;
+//        private Texture2D _baseCursor;
+//        private Texture2D _pickCursor;
 
         public void Start()
         {
             _currentFocus = null;
-            _cursorTexture = Resources.Load<Texture2D>("Cursor_Attack_-42768");
-            _baseCursor = Resources.Load<Texture2D>("Cursor_Basic_-42304");
-            _pickCursor = Resources.Load<Texture2D>("Cursor_Hand_-41952");
-            _ms = Object.FindObjectOfType<MainScene>();
+//            _cursorTexture = Resources.Load<Texture2D>("Cursor_Attack_-42768");
+//            _baseCursor = Resources.Load<Texture2D>("Cursor_Basic_-42304");
+//            _pickCursor = Resources.Load<Texture2D>("Cursor_Hand_-41952");
+//            _ms = Object.FindObjectOfType<MainScene>();
         }
 
         public Transform RetrieveRaycastCapture()
@@ -41,7 +41,7 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             _hasThisFrameFocused = true;
 
-            SetDefaultCursor();
+//            SetDefaultCursor();
 
             if (Physics.Raycast(ray, out RaycastHit hit, _rayCastDistance))
             {
@@ -49,10 +49,10 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
                 {
                     _currentFocus = hit.collider.transform;
 
-                    if (_hardFocus && _hardFocus != _currentFocus)
-                        SetAggressiveCursor();
-                    else
-                        SetPickCursor();
+//                    if (_hardFocus && _hardFocus != _currentFocus)
+//                        SetAggressiveCursor();
+//                    else
+//                        SetPickCursor();
 
                     if (Input.GetMouseButton(0))
                     {
@@ -81,18 +81,13 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
             }
         }
 
-        private void SetPickCursor() => Cursor.SetCursor(_pickCursor, Vector2.zero, CursorMode.Auto);
-        private void SetDefaultCursor() => Cursor.SetCursor(_baseCursor, Vector2.zero, CursorMode.Auto);
-        private void SetAggressiveCursor() => Cursor.SetCursor(_cursorTexture, Vector2.zero, CursorMode.Auto);
+//        private void SetPickCursor() => Cursor.SetCursor(_pickCursor, Vector2.zero, CursorMode.Auto);
+//        private void SetDefaultCursor() => Cursor.SetCursor(_baseCursor, Vector2.zero, CursorMode.Auto);
+//        private void SetAggressiveCursor() => Cursor.SetCursor(_cursorTexture, Vector2.zero, CursorMode.Auto);
 
-        public bool HasFocused()
-        {
-            return _hasThisFrameFocused;
-        }
-
-        public Transform GetFocus()
-        {
-            return _hardFocus != null ? _hardFocus : _currentFocus;
-        }
+        public bool HasFocused() => _hasThisFrameFocused;
+        public Transform GetFocus() => _hardFocus != null ? _hardFocus : _currentFocus;
+        public Transform GetHardFocus() => _hardFocus;
+        public Transform GetSoftFocus() => _currentFocus;
     }
 }

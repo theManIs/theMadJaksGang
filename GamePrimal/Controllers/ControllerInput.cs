@@ -3,6 +3,8 @@ using Assets.GamePrimal.Navigation.Pathfinder;
 using UnityEngine;
 using Assets.GamePrimal.SeparateComponents.PauseMenu;
 using Assets.TeamProjects.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 
 namespace Assets.GamePrimal.Controllers
 {
@@ -18,6 +20,7 @@ namespace Assets.GamePrimal.Controllers
         private ControllerMainCamera _controllerMainCamera;
         private ControllerCharacterMovement _cMovementCharacter;
         private SubjectFocus _subjectFocus;
+        private CursorChanger _cursorChanger;
 
         public ControllerInput UserAwake()
         {
@@ -25,6 +28,7 @@ namespace Assets.GamePrimal.Controllers
             _pauseMenu = new PauseMenuBlock();
             _cMovementCharacter = ControllerRouter.GetControllerCharacterMovement();
             _subjectFocus = new SubjectFocus();
+            _cursorChanger = new CursorChanger();
 
             return this;
         }
@@ -46,6 +50,7 @@ namespace Assets.GamePrimal.Controllers
             _subjectFocus.Start();
             _pauseMenu.Start();
             _controllerMainCamera.UserStart();
+            _cursorChanger.UserStart(new StartParams());
         }
 
         public void Update()
@@ -59,6 +64,7 @@ namespace Assets.GamePrimal.Controllers
             _pauseMenu.GetToMainMenu(_pressedButtons);
             _controllerMainCamera.UserUpdate();
             _cMovementCharacter.FixedUpdate(_subjectFocus.GetFocus(), _subjectFocus.HasFocused());
+            _cursorChanger.SetCursor(_subjectFocus.GetSoftFocus(), _subjectFocus.GetHardFocus());
         }
 
     }

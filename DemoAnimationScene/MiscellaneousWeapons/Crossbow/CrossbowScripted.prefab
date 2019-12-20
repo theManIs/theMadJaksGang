@@ -123,9 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4723798e66ee564e97a6c62e6e5076e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PositionShift: {x: 0.52, y: -0.05, z: -0.13}
-  RotationTilt: {x: 0, y: 90, z: 90}
   WeaponRange: 15
+  WeaponType: 2
+  isRanged: 1
 --- !u!1 &5282659608898979557
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,13 +5,16 @@ namespace Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScri
 {
     public enum WeaponTypes {
         Knife = 1,
-        Crossbow = 2
+        Crossbow = 2,
+        HeavyBladed = 3,
+        OneHandedBladed = 4
     }
 
     public class WeaponOperator : MonoBehaviour
     {
         public float WeaponRange;
         public WeaponTypes WeaponType = WeaponTypes.Crossbow;
+        public bool isRanged;
 
         private Transform _localTransform;
 

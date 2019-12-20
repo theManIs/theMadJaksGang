@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 8697812661152052248}
   - component: {fileID: 8697812661151931783}
   m_Layer: 0
-  m_Name: Knife00_prefab
+  m_Name: RustyKnife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,14 +116,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8697812661151931782}
-  m_LocalRotation: {x: 0.48508042, y: 0.5185101, z: 0.4658028, w: 0.5280833}
-  m_LocalPosition: {x: -0.0004, y: 0.0067, z: -0.0656}
+  m_LocalRotation: {x: 0.46854305, y: 0.5295917, z: -0.48674017, w: -0.51291716}
+  m_LocalPosition: {x: 0.04, y: 0.03, z: 0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8697812661152024600}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 178.322, y: -89.52399, z: -95.47998}
+  m_LocalEulerAnglesHint: {x: 178, y: 90, z: -95}
 --- !u!114 &8697812661151931783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +136,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4723798e66ee564e97a6c62e6e5076e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PositionShift: {x: 0, y: 0, z: 0}
-  RotationTilt: {x: 0, y: 0, z: 0}
-  WeaponRange: 2
+  WeaponRange: 1.5
   WeaponType: 1

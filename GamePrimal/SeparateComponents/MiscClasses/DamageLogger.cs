@@ -3,6 +3,8 @@ using Assets.GamePrimal.Controllers;
 using Assets.GamePrimal.Mono;
 using Assets.GamePrimal.TextDamage;
 using Assets.TeamProjects.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -12,13 +14,14 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
     public delegate void HitReaction(AttackCaptureParams acp);
     public delegate void HitReactionFinished(AttackCaptureParams acp);
 
-    public class DamageLogger : MonoBehaviour
+    public class DamageLogger : MonoBehaviour, IHitDetectedHandler, IHitEndedHandler
     {
         public event HitReaction ReactOnHit;
         public event HitReaction AttackStarted;
         public event HitReactionFinished HitEndReached;
+        public EventHitDetected EHitDetected = new EventHitDetected();
 
-//        private NavMeshAgent _navMeshAgent;
+        //        private NavMeshAgent _navMeshAgent;
         private Animator _animator;
 //        private bool _isBlip = false;
 //        private MainScene.MainScene _manMainScene;
@@ -76,6 +79,8 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             ControllerEvent.HitAppliedHandler -= ApplyDamage;
         }
 
+        public void HitDetectedHandler(AnimationEvent ae) => _ce.HitAppliedHandlerInvoke(lastEnemy, lastAlly);
+
         public void AttackTheEnemy(AttackCaptureParams acp)
         {
             if (acp.Target != transform || acp.Target == acp.Source || acp.HasHit) return;
@@ -95,23 +100,23 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
                 lastEnemy = enemy;
 
                 AttackStarted?.Invoke(acp);
-                Invoke(nameof(HitApply), 1f);
-                Invoke(nameof(ReleaseHitLock), 2);
+//                Invoke(nameof(HitApply), 1f);
+//                Invoke(nameof(HitEndedHandler), 2);
             }
         }
 
-        public void ReleaseHitLock()
+        public void HitEndedHandler(AnimationEvent ae)
         {
-            Debug.Log("Release lock" + Time.time);
+//            DebugInfo.Log("Release lock");
             _cAttackCapture.ReleaseFixated();
-
+            
             _attacking = false;
         }
 
-        public void HitApply()
-        {
-            _ce.HitAppliedHandlerInvoke(lastEnemy, lastAlly);
-        }
+//        public void HitApply()
+//        {
+//            _ce.HitAppliedHandlerInvoke(lastEnemy, lastAlly);
+//        }
 
         // Update is called once per frame
         public void Update()

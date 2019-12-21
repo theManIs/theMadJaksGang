@@ -1685,7 +1685,8 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: 0}
+  WieldingWeapon: {fileID: 8488152998251271998, guid: 3ce98cd8856ada542980da3471d6fe4b,
+    type: 3}
   MeshSpeed: 4
 --- !u!23 &6919691228206196696
 MeshRenderer:

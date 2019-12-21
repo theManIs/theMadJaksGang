@@ -1,7 +1,9 @@
-﻿using Assets.GamePrimal.Controllers;
+﻿using System;
+using Assets.GamePrimal.Controllers;
 using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,6 +18,10 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         private bool _isBlip = false;
         private Transform _transform;
         private WeaponOperator _wieldingWeapon;
+        private AttackCaptureParams _lastAttackCapture;
+        private float _baseMeshSpeed;
+        private readonly float _minNavMeshSpeed = 0.04f;
+        private readonly float _minNormalizedValue = 0.01f;
 
         public void UserAwake(AwakeParams ap)
         {
@@ -28,7 +34,9 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 
         public void  UserStart(StartParams sp)
         {
+            Engaged = _animator && _navMeshAgent && _dmLogger;
             _navMeshAgent.speed = sp.NavMeshSpeed;
+            _baseMeshSpeed = sp.NavMeshSpeed;
             _animator.SetInteger("WeaponType", (int)sp.WeaponType);
         }
 
@@ -63,48 +71,95 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 
         public void UserEnable()
         {
-            if (Engaged)
-                Engaged = _animator && _navMeshAgent && _dmLogger;
-
             if (Engaged && _dmLogger)
             {
                 _dmLogger.ReactOnHit += ReactOnHit;
                 _dmLogger.AttackStarted += AttackStarted;
+//                _dmLogger.EHitDetected.HitDetectedEvent += HitDetectedHandler;
             }
-                
-        }
 
-        private void AttackStarted(AttackCaptureParams acp)
-        {
-            _animator.SetTrigger("Attacking");
-            _transform.LookAt(acp.Source);
         }
 
         public void UserDisable()
         {
             if (_dmLogger)
+            {
                 _dmLogger.ReactOnHit -= ReactOnHit;
+                _dmLogger.AttackStarted -= AttackStarted;
+//                _dmLogger.EHitDetected.HitDetectedEvent -= HitDetectedHandler;
+            }
         }
+
+//        public void HitDetectedHandler(AnimationEvent ae)
+//        {
+//            Debug.Log(ae);
+//        }
+
+        private void AttackStarted(AttackCaptureParams acp)
+        {
+            _animator.SetTrigger("Attacking");
+            _transform.LookAt(acp.Source);
+            _lastAttackCapture = acp;
+
+//            Debug.Log(_animator.GetCurrentAnimatorClipInfoCount(0));
+//            Debug.Log(_animator.GetCurrentAnimatorClipInfo(0));
+        }
+
 
         public void UserUpdate()
         {
+//            if (_animator.GetCurrentAnimatorClipInfoCount(0)> 0)
+//                DebugInfo.Log(_animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
+//                DebugInfo.Log(_animator.GetCurrentAnimatorClipInfo(0)[0].clip.events);
+
             if (Engaged)
                 if (!_isBlip && _navMeshAgent.hasPath)
                 {
                     _isBlip = true;
 
                     _animator.SetBool("IsStopped", false);
-//                    _animator.StopPlayback();
-//                    _animator.SetFloat("Blend", 1 );
-//                    _navMeshAgent.speed = 1.5f;
+                    _animator.SetFloat("MovementBlend", _minNormalizedValue);
                 }
                 else if (_isBlip && !_navMeshAgent.hasPath)
                 {
                     _isBlip = false;
 
                     _animator.SetBool("IsStopped", true);
-//                    _animator.SetFloat("Blend", 0);
+                    _animator.SetFloat("MovementBlend", 0);
                 }
+
+            if (Engaged)
+                if (_isBlip)
+                {
+                    double towardAngle = GetYAngle(_navMeshAgent.steeringTarget, _transform.position);
+
+                    float turningBlend = (float) Math.Sin(towardAngle * Mathf.Deg2Rad);
+                    float movementBlend = (float) Math.Cos(towardAngle * Mathf.Deg2Rad);
+
+                    _animator.SetFloat("TurningBlend", GetClampedNormal(turningBlend));
+                    _animator.SetFloat("MovementBlend", towardAngle > 90 ? _minNormalizedValue : GetClampedNormal(movementBlend));
+                    
+                    _navMeshAgent.speed = towardAngle > 90 ? _minNavMeshSpeed : GetClampedNormal(movementBlend) * _baseMeshSpeed;
+//
+//                    DebugInfo.Log(GetClampedNormal(turningBlend) + "  " + GetClampedNormal(movementBlend));
+                }
+        }
+
+        private float GetClampedNormal(float value)
+        {
+            if (value > 0.99f)
+                return 1f;
+            else if (value < _minNormalizedValue)
+                return _minNormalizedValue;
+            else 
+                return value;
+        }
+
+        private float GetYAngle(Vector3 from, Vector3 to)
+        {
+            Vector3 differenceBetweenPositions = from - to;
+
+            return Vector3.Angle(differenceBetweenPositions, _transform.forward);
         }
     }
 }

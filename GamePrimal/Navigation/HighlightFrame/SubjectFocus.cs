@@ -89,5 +89,6 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
         public Transform GetFocus() => _hardFocus != null ? _hardFocus : _currentFocus;
         public Transform GetHardFocus() => _hardFocus;
         public Transform GetSoftFocus() => _currentFocus;
+        public void SetHardFocus(Transform hardFocus) => _hardFocus = hardFocus;
     }
 }

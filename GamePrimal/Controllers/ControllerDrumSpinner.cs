@@ -1,20 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using UnityEngine;
 
-namespace Assets.GamePrimal.Controllers
+namespace Assets.TeamProjects.GamePrimal.Controllers
 {
-    public delegate void RoundHandler(Transform activeCharacter);
+//    public delegate void RoundHandler(Transform activeCharacter);
     public class ControllerDrumSpinner
     {
-        public event RoundHandler RoundHandlerEvent;
+//        public event RoundHandler RoundHandlerEvent;
+        public EventTurnWasFound ETurnWasFound = new EventTurnWasFound();
+        public EventEndOfRound EEndOfRound = new EventEndOfRound();
         public float InstanceId;
 
         private static Queue<Transform> _theDrum = new Queue<Transform>();
         private bool _roundIsFilled = false;
         private int _frameCount = -1;
         private readonly int _frameThrottle = 25;
+        private Transform _whoseTurn;
+
+        public Queue<Transform> GetDrum() => new Queue<Transform>(_theDrum);
+        public Transform GetWhoseTurn() => _whoseTurn;
 
         public ControllerDrumSpinner()
         {
@@ -45,7 +52,10 @@ namespace Assets.GamePrimal.Controllers
             if (doIMove)
             {
 //                Debug.Log("Turn was found " + Time.time);
-                RoundHandlerEvent?.Invoke(applicant);
+//                RoundHandlerEvent?.Invoke(applicant);
+                ETurnWasFound.Invoke(new EventTurnWasFoundParams() { TurnApplicant = applicant });
+
+                _whoseTurn = applicant;
             }
 
             return doIMove;
@@ -59,10 +69,15 @@ namespace Assets.GamePrimal.Controllers
                 _frameCount = Time.frameCount;
             }
         }
+
         private void FillTheDrum()
         {
             if (_theDrum.Count <= 0)
+            {
                 _theDrum = SpinTheDrum();
+
+                ETurnWasFound.Invoke(new EventTurnWasFoundParams());
+            }
         }
         private void MarkThisRoundFilled(bool doIMove)
         {

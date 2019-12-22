@@ -20,10 +20,12 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         public bool HasHit { get; private set; } = false;
 
         private MainScene.MainScene _theMainScene;
+        private ControllerFocusSubject _cFocusSubject;
 
         public void Start()
         {
             _theMainScene = Object.FindObjectOfType<MainScene.MainScene>();
+            _cFocusSubject = ControllerRouter.GetControllerFocusSubject();
         }
 
         public void ReleaseFixated() => HasHit = false;
@@ -32,8 +34,8 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         public void Update()
         {
             HitFixated = false;
-            Transform focused = _theMainScene.GetFocus();
-            Transform captured = _theMainScene.GetCapture();
+            Transform focused = _cFocusSubject.GetHardFocus();
+            Transform captured = _cFocusSubject.GetSoftFocus();
 
             if (Input.GetKeyDown(KeyCode.Mouse0) && focused && captured && captured.GetComponent<MonoMechanicus>())
                 if (focused.GetInstanceID() != captured.GetInstanceID())

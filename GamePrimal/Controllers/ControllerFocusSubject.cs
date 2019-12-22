@@ -1,17 +1,22 @@
 ﻿using Assets.GamePrimal.Navigation.HighlightFrame;
+using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using UnityEngine;
+using static Assets.GamePrimal.Controllers.ControllerRouter;
 
 namespace Assets.TeamProjects.GamePrimal.Controllers
 {
     public class ControllerFocusSubject
     {
-        private SubjectFocus _subjectFocus;
+        private readonly SubjectFocus _subjectFocus = new SubjectFocus();
+
         private int _recentFrame;
 
-        public ControllerFocusSubject()
-        {
-            _subjectFocus = new SubjectFocus();
-        }
+        public ControllerFocusSubject() => GetControllerDrumSpinner().ETurnWasFound.Event += TurnFoundHandler;
+
+        ~ControllerFocusSubject() => GetControllerDrumSpinner().ETurnWasFound.Event -= TurnFoundHandler;
+
+        private void TurnFoundHandler(EventTurnWasFoundParams args) => SetHadFocus(args.TurnApplicant);
 
         public void UpdateOnce()
         {
@@ -26,5 +31,6 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         public Transform GetFocus() => _subjectFocus.GetFocus();
         public Transform GetHardFocus() => _subjectFocus.GetHardFocus();
         public Transform GetSoftFocus() => _subjectFocus.GetSoftFocus();
+        private void SetHadFocus(Transform hardFocus) => _subjectFocus.SetHardFocus(hardFocus);
     }
 }

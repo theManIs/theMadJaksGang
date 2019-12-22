@@ -12,7 +12,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
     {
         private bool _engaged = true;
         private HighlightFrame _highlightFrame;
-        private SubjectFocus _subjectFocus;
+        private ControllerFocusSubject _subjectFocus;
         private MovableObjects _movableObjects;
         private TracerProjectileScript _tracerProjectileScript;
         private ControllerCharacterMovement _controllerCharacterMovement;
@@ -30,7 +30,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
             }
 
             _highlightFrame = new HighlightFrame();
-            _subjectFocus = new SubjectFocus();
+            _subjectFocus = ControllerRouter.GetControllerFocusSubject();
 //            _movableObjects = FindObjectOfType<MovableObjects>();
             _tracerProjectileScript = new TracerProjectileScript();
 //            _controllerCharacterMovement = new ControllerCharacterMovement();
@@ -39,7 +39,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
         }
 
         public Transform GetFocus() => _subjectFocus.GetFocus();
-        public Transform GetCapture() => _subjectFocus.RetrieveRaycastCapture();
+//        public Transform GetCapture() => _subjectFocus.RetrieveRaycastCapture();
 
         // Start is called before the first frame update
         void Start()
@@ -51,7 +51,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
 //            else
 //                _highlightFrame.Engaged = false;
 
-            _subjectFocus.Start();
+//            _subjectFocus.Start();
             _controllerAttackCapture.Start();
             _tracerProjectileScript.Start();
             _controllerInput.Start();
@@ -63,7 +63,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
             if (!_engaged) return;
 
             _controllerInput.Update();
-            _subjectFocus.UserUpdate();
+            _subjectFocus.UpdateOnce();
             _controllerAttackCapture.Update();
             _highlightFrame.FixedUpdate(_subjectFocus.GetFocus());
             _tracerProjectileScript.SetNavAgent(_subjectFocus.GetFocus());

@@ -1,4 +1,5 @@
-﻿using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
+﻿using Assets.GamePrimal.Controllers;
+using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers;
 using Assets.TeamProjects.GamePrimal.Mono;
@@ -19,7 +20,10 @@ namespace Assets.GamePrimal.Mono
         [SerializeField] private CharacterFeatures CharacterFeatures;
         [SerializeField] private int MaxTurnPoints;
         [SerializeField] private int TurnPoints;
-        [SerializeField] private int MaxHealth;
+        [SerializeField] private int InitialTurnPoints;
+        [SerializeField] private Sprite CharacterPortrait;
+
+        public int MaxHealth { get; private set; }
         private DamageLogger _damageLogger;
 
         public float MeshSpeed { get; private set; } = 4f;
@@ -33,6 +37,7 @@ namespace Assets.GamePrimal.Mono
         public int GetInitiative() => Initiative;
         public float GetMeleeRange() => WeaponRange;
         public int GetTurnPoints() => TurnPoints;
+        public Sprite GetCharacterPortrait() => CharacterPortrait;
 
         private void Awake()
         {
@@ -44,11 +49,18 @@ namespace Assets.GamePrimal.Mono
         private void OnEnable()
         {
             _damageLogger.EHitDetected.HitDetectedEvent += HitCapturedHandler;
+            ControllerRouter.GetControllerDrumSpinner().ETurnWasFound.Event += TurnWasFoundHandler;
         }
 
         private void OnDisable()
         {
             _damageLogger.EHitDetected.HitDetectedEvent += HitCapturedHandler;
+            ControllerRouter.GetControllerDrumSpinner().ETurnWasFound.Event -= TurnWasFoundHandler;
+        }
+
+        private void TurnWasFoundHandler(EventTurnWasFoundParams acp)
+        {
+            TurnPoints = InitialTurnPoints;
         }
 
         private void HitCapturedHandler(AttackCaptureParams acp)
@@ -71,7 +83,9 @@ namespace Assets.GamePrimal.Mono
                 Initiative = af.Initiative;
                 Damage = af.Damage;
                 TurnPoints = af.TurnPoints;
+                InitialTurnPoints = af.TurnPoints;
                 MaxTurnPoints = af.MaxTurnPoints;
+                CharacterPortrait = af.CharacterPortrait;
             }
         }
 

@@ -225,7 +225,7 @@ AnimatorStateTransition:
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0.26404113
-  m_TransitionOffset: 0.09779404
+  m_TransitionOffset: 0
   m_ExitTime: 0.5901586
   m_HasExitTime: 0
   m_HasFixedDuration: 1
@@ -780,19 +780,10 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: a3bf8179345d1f548a35a7e6557b8e14,
+    m_Motion: {fileID: -203655887218126122, guid: 2c16223b08b42394fbeb474899c24b13,
       type: 3}
-    m_Threshold: 0
+    m_Threshold: 1
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
-    m_CycleOffset: 0
-    m_DirectBlendParameter: MovementBlend
-    m_Mirror: 0
-  - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 5496d615c9c13914cbb097a86a5fe91f,
-      type: 3}
-    m_Threshold: 0.25
-    m_Position: {x: 0, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: MovementBlend
@@ -800,16 +791,25 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: -203655887218126122, guid: bd30c60c7903a414f81df9adcd774bef,
       type: 3}
-    m_Threshold: 0.5
+    m_Threshold: 1
     m_Position: {x: 1, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: MovementBlend
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: -203655887218126122, guid: 5496d615c9c13914cbb097a86a5fe91f,
+      type: 3}
+    m_Threshold: 1
+    m_Position: {x: 0, y: 1}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: MovementBlend
     m_Mirror: 0
   m_BlendParameter: MovementBlend
   m_BlendParameterY: TurningBlend
-  m_MinThreshold: 0
-  m_MaxThreshold: 0.5
+  m_MinThreshold: 1
+  m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
   m_NormalizedBlendValues: 0
   m_BlendType: 1
@@ -1495,7 +1495,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 1cb59484d961eb64aa75e9a725f25e69,
+  m_Motion: {fileID: -203655887218126122, guid: f554450a70c3e2242abefa9d821b8bed,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 

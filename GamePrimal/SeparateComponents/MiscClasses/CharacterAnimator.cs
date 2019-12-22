@@ -4,6 +4,7 @@ using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -36,7 +37,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         {
             Engaged = _animator && _navMeshAgent && _dmLogger;
             _navMeshAgent.speed = sp.NavMeshSpeed;
-            Debug.Log(sp.NavMeshSpeed);
+//            Debug.Log(sp.NavMeshSpeed);
             _baseMeshSpeed = sp.NavMeshSpeed;
             _animator.SetInteger("WeaponType", (int)sp.WeaponType);
         }
@@ -76,7 +77,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             {
                 _dmLogger.ReactOnHit += ReactOnHit;
                 _dmLogger.AttackStarted += AttackStarted;
-//                _dmLogger.EHitDetected.HitDetectedEvent += HitDetectedHandler;
+//                _dmLogger.EHitDetected.EndOfRound += HitDetectedHandler;
             }
 
         }
@@ -87,7 +88,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             {
                 _dmLogger.ReactOnHit -= ReactOnHit;
                 _dmLogger.AttackStarted -= AttackStarted;
-//                _dmLogger.EHitDetected.HitDetectedEvent -= HitDetectedHandler;
+//                _dmLogger.EHitDetected.EndOfRound -= HitDetectedHandler;
             }
         }
 
@@ -107,7 +108,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         }
 
 
-        public void UserUpdate()
+        public void UserUpdate(UpdateParams up)
         {
 //            if (_animator.GetCurrentAnimatorClipInfoCount(0)> 0)
 //                DebugInfo.Log(_animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);

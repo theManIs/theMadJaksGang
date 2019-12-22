@@ -5,6 +5,7 @@ using Assets.GamePrimal.SeparateComponents.PauseMenu;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
+using static Assets.GamePrimal.Controllers.ControllerRouter;
 
 namespace Assets.GamePrimal.Controllers
 {
@@ -19,15 +20,15 @@ namespace Assets.GamePrimal.Controllers
         private PauseMenuBlock _pauseMenu;
         private ControllerMainCamera _controllerMainCamera;
         private ControllerCharacterMovement _cMovementCharacter;
-        private SubjectFocus _subjectFocus;
+        private ControllerFocusSubject _subjectFocus;
         private CursorChanger _cursorChanger;
 
         public ControllerInput UserAwake()
         {
-            _controllerMainCamera = ControllerRouter.GetControllerMainCamera();
+            _controllerMainCamera = GetControllerMainCamera();
             _pauseMenu = new PauseMenuBlock();
-            _cMovementCharacter = ControllerRouter.GetControllerCharacterMovement();
-            _subjectFocus = new SubjectFocus();
+            _cMovementCharacter = GetControllerCharacterMovement();
+            _subjectFocus = GetControllerFocusSubject();
             _cursorChanger = new CursorChanger();
 
             return this;
@@ -47,7 +48,6 @@ namespace Assets.GamePrimal.Controllers
 
         public void Start()
         {
-            _subjectFocus.Start();
             _pauseMenu.Start();
             _controllerMainCamera.UserStart();
             _cursorChanger.UserStart(new StartParams());
@@ -60,7 +60,7 @@ namespace Assets.GamePrimal.Controllers
             if (Input.GetKeyDown(KeyCode.Escape))
                 _pressedButtons.EscapeButton = true;
 
-            _subjectFocus.UserUpdate();
+            _subjectFocus.UpdateOnce();
             _pauseMenu.GetToMainMenu(_pressedButtons);
             _controllerMainCamera.UserUpdate();
             _cMovementCharacter.FixedUpdate(_subjectFocus.GetFocus(), _subjectFocus.HasFocused());

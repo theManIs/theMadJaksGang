@@ -16,5 +16,6 @@ namespace Assets.TeamProjects.GamePrimal.Helpers
         public int TurnPoints;
         public int MaxTurnPoints;
         public WeaponOperator StartWeapon;
+        public Sprite CharacterPortrait;
     }
 }

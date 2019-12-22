@@ -1,5 +1,6 @@
 ﻿
 using Assets.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using UnityEngine;
 using UnityStandardAssets.Cameras;
 
@@ -32,12 +33,12 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
         public void UserEnable()
         {
-            ControllerRouter.GetControllerDrumSpinner().RoundHandlerEvent += MoveCameraTo;
+            ControllerRouter.GetControllerDrumSpinner().ETurnWasFound.Event += MoveCameraTo;
         }
 
         public void UserDisable()
         {
-            ControllerRouter.GetControllerDrumSpinner().RoundHandlerEvent -= MoveCameraTo;
+            ControllerRouter.GetControllerDrumSpinner().ETurnWasFound.Event -= MoveCameraTo;
         }
 
         public void UserUpdate()
@@ -48,10 +49,10 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
                     _hardCodeCameraRig.SetTarget(null);
         }
 
-        private void MoveCameraTo(Transform activeCharacter)
+        private void MoveCameraTo(EventTurnWasFoundParams args)
         {
 //            Debug.Log(activeCharacter);
-            _hardCodeCameraRig.SetTarget(activeCharacter);
+            _hardCodeCameraRig.SetTarget(args.TurnApplicant);
         }
     }
 }

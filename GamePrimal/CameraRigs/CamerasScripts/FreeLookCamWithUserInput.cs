@@ -1,4 +1,5 @@
 using System;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using UnityEditor;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
@@ -35,6 +36,7 @@ namespace UnityStandardAssets.Cameras
         private int maxRaycastDistance = 100;
         private float _constantTiltInt = 35;
         public int MagnitudeThreshold = 300;
+        private Transform _rootCameraHaystack;
 
         private float Scroll => CrossPlatformInputManager.GetAxis("Mouse ScrollWheel");
 
@@ -50,6 +52,8 @@ namespace UnityStandardAssets.Cameras
             m_PivotTargetRot = m_Pivot.transform.localRotation;
             m_TransformTargetRot = transform.localRotation;
             localCamera = GetComponentInChildren<Camera>();
+
+            _rootCameraHaystack = m_Pivot.transform.parent;
         }
 
 
@@ -103,13 +107,16 @@ namespace UnityStandardAssets.Cameras
         {
             if (m_Target == null) return;
             // Move the rig towards target position.
+//            Quaternion rotToward = Quaternion.FromToRotation(transform.forward, m_Target.position.normalized);
             transform.position = Vector3.Lerp(transform.position, m_Target.position, deltaTime * m_MoveSpeed);
+//            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotToward, Time.deltaTime);
+//            transform.rotation = Quaternion.LookRotation(m_Target.transform.position.normalized, Vector3.up);
         }
 
         public bool HasReachedTarget()
         {
             if (!m_Target) return false;
-
+            //            DebugInfo.Log(Math.Abs(transform.position.sqrMagnitude - m_Target.position.sqrMagnitude) + " " + MagnitudeThreshold);
             return Math.Abs(transform.position.sqrMagnitude - m_Target.position.sqrMagnitude) < MagnitudeThreshold;
         }
 

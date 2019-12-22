@@ -1,9 +1,16 @@
-﻿using UnityEditor;
+﻿using Assets.GamePrimal.Mono;
+using UnityEngine;
 
-namespace Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold
+namespace Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold
 {
+    public class UpdateParams
+    {
+        public MonoAmplifierRpg AmplifierRpg;
+        public Transform ActualInvoker;
+    }
+
     public interface IUpdate
     {
-        void UserUpdate();
+        void UserUpdate(UpdateParams up);
     }
 }

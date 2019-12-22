@@ -3,6 +3,7 @@ using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using UnityEngine;
 using UnityEngine.AI;
@@ -76,10 +77,9 @@ namespace Assets.GamePrimal.Mono
                         _iAmMoving = false;
 
 
-            _characterAnimator.UserUpdate();
+            _characterAnimator.UserUpdate(new UpdateParams());
 
-            _hudViwer.UserUpdate();
-            _hudViwer.ShowTurnPoints(_monoAmplifierRpg.GetTurnPoints(), transform);
+            _hudViwer.UserUpdate(new UpdateParams() {ActualInvoker = transform, AmplifierRpg = _monoAmplifierRpg});
         }
 
         private void OnEnable()

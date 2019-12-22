@@ -207,13 +207,13 @@ ModelImporter:
     serializedVersion: 3
     human: []
     skeleton:
-    - name: Standing Melee Attack Downward(Clone)
+    - name: MeleeAxeFighter(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: MaleBruteA_Meshes
-      parentName: Standing Melee Attack Downward(Clone)
+      parentName: MeleeAxeFighter(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -263,7 +263,7 @@ ModelImporter:
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Hips
-      parentName: Standing Melee Attack Downward(Clone)
+      parentName: MeleeAxeFighter(Clone)
       position: {x: 0.00000021576881, y: 1.2524301, z: -0.000000074505806}
       rotation: {x: -0.000000002910383, y: 4.2351647e-18, z: -0.0000000014551915,
         w: 1}

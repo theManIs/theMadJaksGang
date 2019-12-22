@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8304583203782956517}
   - component: {fileID: 8304583203782186437}
   - component: {fileID: 8304583203781187333}
-  - component: {fileID: 8304583203783348068}
+  - component: {fileID: 870105330075113774}
   m_Layer: 0
   m_Name: DoubleAxe
   m_TagString: Untagged
@@ -79,7 +79,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &8304583203783348068
+--- !u!114 &870105330075113774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8304583203783379397}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4723798e66ee564e97a6c62e6e5076e, type: 3}
+  m_Script: {fileID: 11500000, guid: b8ff2ce519f3ebd42accf235cdc2484a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponRange: 2

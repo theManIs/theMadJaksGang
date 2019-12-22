@@ -439,7 +439,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1445163787114614816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1da555adebcf2e4799ac3f4ab691b09, type: 3}
+  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1477679778625120934
@@ -1254,7 +1254,7 @@ Animator:
   m_GameObject: {fileID: 3971557286522304464}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b66a292a062823843b9d7f427d736602, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4a5e8cf67334f1147b1a5367d52f9438, type: 2}
+  m_Controller: {fileID: 9100000, guid: fef5da03570d66e47bab663906f393e4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1368,7 +1368,7 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: 5281868987032111156, guid: 109f33edf0b5bef4ba5d271bae56c1cc,
+  WieldingWeapon: {fileID: 870105330075113774, guid: 4c936d998cef8594eaaf49b031a42c6e,
     type: 3}
   MeshSpeed: 4
 --- !u!1 &4089596951873394531

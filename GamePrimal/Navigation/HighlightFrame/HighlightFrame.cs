@@ -23,7 +23,7 @@ namespace Assets.TeamProjects.GamePrimal.Navigation.HighlightFrame
             m_LocalSpriteRenderer = m_LocalInstance.GetComponent<SpriteRenderer>();
         }
 
-//        public void FixedUpdate()
+//        public void UserUpdate()
 //        {
 //            if (!Engaged) return;
 //

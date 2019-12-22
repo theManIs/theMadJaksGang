@@ -60,7 +60,7 @@ namespace Assets.GamePrimal.Controllers
             if (Input.GetKeyDown(KeyCode.Escape))
                 _pressedButtons.EscapeButton = true;
 
-            _subjectFocus.FixedUpdate();
+            _subjectFocus.UserUpdate();
             _pauseMenu.GetToMainMenu(_pressedButtons);
             _controllerMainCamera.UserUpdate();
             _cMovementCharacter.FixedUpdate(_subjectFocus.GetFocus(), _subjectFocus.HasFocused());

@@ -57,17 +57,17 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
             _controllerInput.Start();
         }
 
-        // FixedUpdate is called once per frame
+        // UserUpdate is called once per frame
         void Update()
         {
             if (!_engaged) return;
 
             _controllerInput.Update();
-            _subjectFocus.FixedUpdate();
+            _subjectFocus.UserUpdate();
             _controllerAttackCapture.Update();
             _highlightFrame.FixedUpdate(_subjectFocus.GetFocus());
             _tracerProjectileScript.SetNavAgent(_subjectFocus.GetFocus());
-//            _controllerCharacterMovement.FixedUpdate(_subjectFocus.GetFocus(), _subjectFocus.HasFocused());
+//            _controllerCharacterMovement.UserUpdate(_subjectFocus.GetFocus(), _subjectFocus.HasFocused());
             _tracerProjectileScript.FixedUpdate();
         }
 

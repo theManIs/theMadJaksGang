@@ -1370,6 +1370,7 @@ MonoBehaviour:
   WeaponRange: 4
   WieldingWeapon: {fileID: 870105330075113774, guid: 4c936d998cef8594eaaf49b031a42c6e,
     type: 3}
+  CharacterFeatures: {fileID: 11400000, guid: 90a80a41a0e258747b4b7cd971be0ca5, type: 2}
   MeshSpeed: 4
 --- !u!1 &4089596951873394531
 GameObject:

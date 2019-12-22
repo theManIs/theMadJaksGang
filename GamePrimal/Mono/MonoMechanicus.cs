@@ -1,6 +1,8 @@
 ﻿using Assets.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using UnityEngine;
 using UnityEngine.AI;
@@ -17,6 +19,7 @@ namespace Assets.GamePrimal.Mono
         private DamageLogger _damageLogger;
         private Rigidbody _rb;
         private MonoAmplifierRpg _monoAmplifierRpg;
+        private HudViewer _hudViwer;
 
         private void Awake()
         {
@@ -27,17 +30,19 @@ namespace Assets.GamePrimal.Mono
             _rb.isKinematic = true;
             _rb.constraints = RigidbodyConstraints.FreezePositionX;
             _monoAmplifierRpg = GetComponent<MonoAmplifierRpg>();
-
+            _hudViwer = new HudViewer();
+//            Debug.Log(_monoAmplifierRpg.MeshSpeed);
             _characterAnimator.UserAwake(new AwakeParams()
             {
                 AnimatorComponent = GetComponent<Animator>(), 
                 DamageLoggerComponent = GetComponent<DamageLogger>(), 
                 NavMeshAgentComponent = GetComponent<NavMeshAgent>(),
-                MeshSpeed = _monoAmplifierRpg.MeshSpeed,
+//                MeshSpeed = _monoAmplifierRpg.MeshSpeed,
                 WieldingWeapon = _monoAmplifierRpg.WieldingWeapon
 
             });
 
+            _hudViwer.UserAwake(new AwakeParams());
         }
 
         // Start is called before the first frame update
@@ -72,6 +77,9 @@ namespace Assets.GamePrimal.Mono
 
 
             _characterAnimator.UserUpdate();
+
+            _hudViwer.UserUpdate();
+            _hudViwer.ShowTurnPoints(_monoAmplifierRpg.GetTurnPoints(), transform);
         }
 
         private void OnEnable()

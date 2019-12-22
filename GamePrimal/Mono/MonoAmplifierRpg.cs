@@ -1,21 +1,30 @@
 ﻿using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
+using Assets.TeamProjects.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.Helpers;
 using Assets.TeamProjects.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using UnityEngine;
+using UnityScript.Steps;
 
 namespace Assets.GamePrimal.Mono
 {
     [RequireComponent(typeof(CapsuleCollider))]
     public class MonoAmplifierRpg : MonoBehaviourBaseClass
     {
-        [SerializeField] private int Health = 0;
-        [SerializeField] private int Damage = 0;
-        [SerializeField] private int Initiative = 0;
-        [SerializeField] private float WeaponRange = 4;
+        [SerializeField] private int Health;
+        [SerializeField] private int Damage;
+        [SerializeField] private int Initiative;
+        [SerializeField] private float WeaponRange;
+        [SerializeField] private CharacterFeatures CharacterFeatures;
+        [SerializeField] private int MaxTurnPoints;
+        [SerializeField] private int TurnPoints;
+        [SerializeField] private int MaxHealth;
+        private DamageLogger _damageLogger;
 
-        public WeaponOperator WieldingWeapon;
-        public float MeshSpeed = 1.5f;
-
-        private WeaponPosition _weaponPoint;
+        public float MeshSpeed { get; private set; } = 4f;
+        public WeaponOperator WieldingWeapon { get; private set; }
+        public WeaponPosition _weaponPoint { get; private set; }
 
         public void SubtractHealth(int amount) => Health -= amount;
         public int CalcDamage() => Damage;
@@ -23,6 +32,48 @@ namespace Assets.GamePrimal.Mono
         public bool HasDied() => Health <= 0;
         public int GetInitiative() => Initiative;
         public float GetMeleeRange() => WeaponRange;
+        public int GetTurnPoints() => TurnPoints;
+
+        private void Awake()
+        {
+            _damageLogger = GetComponent<DamageLogger>();
+
+            Unpack(CharacterFeatures);
+        }
+
+        private void OnEnable()
+        {
+            _damageLogger.EHitDetected.HitDetectedEvent += HitCapturedHandler;
+        }
+
+        private void OnDisable()
+        {
+            _damageLogger.EHitDetected.HitDetectedEvent += HitCapturedHandler;
+        }
+
+        private void HitCapturedHandler(AttackCaptureParams acp)
+        {
+            TurnPoints -= 2;
+        }
+
+        public bool CanAct(int actionCost)
+        {
+            return TurnPoints - actionCost >= 0;
+        }
+
+        private void Unpack(CharacterFeatures af)
+        {
+            if (CharacterFeatures)
+            {
+                WieldingWeapon = af.StartWeapon;
+                Health = af.StartHealth;
+                MaxHealth = af.MaxHealth;
+                Initiative = af.Initiative;
+                Damage = af.Damage;
+                TurnPoints = af.TurnPoints;
+                MaxTurnPoints = af.MaxTurnPoints;
+            }
+        }
 
         // Start is called before the first frame update
         void Start()

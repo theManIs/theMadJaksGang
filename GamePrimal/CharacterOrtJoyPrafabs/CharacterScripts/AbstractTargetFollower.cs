@@ -6,8 +6,8 @@ namespace Assets.GamePrimal.CharacterOrtJoyPrafabs.CharacterScripts
     {
         public enum UpdateType // The available methods of updating are:
         {
-            FixedUpdate, // FixedUpdate in FixedUpdate (for tracking rigidbodies).
-            LateUpdate, // FixedUpdate in LateUpdate. (for tracking objects that are moved in FixedUpdate)
+            FixedUpdate, // UserUpdate in UserUpdate (for tracking rigidbodies).
+            LateUpdate, // UserUpdate in LateUpdate. (for tracking objects that are moved in UserUpdate)
             ManualUpdate, // user must call to update camera
         }
 

@@ -33,6 +33,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         private CapsuleCollider _capsuleCollider;
         private NavMeshAgent _navMeshAgent;
         private bool _attacking = false;
+        private readonly int _autoAttackCost = 2;
 
         public void Start()
         {
@@ -88,7 +89,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             Transform enemy = acp.Source;
             Transform ally = acp.Target;
 
-            if (Vector3.Distance(enemy.position, transform.position) < _amplifier.GetMeleeRange())
+            if (Vector3.Distance(enemy.position, transform.position) < _amplifier.GetMeleeRange() && _amplifier.CanAct(_autoAttackCost))
             {
                 _cAttackCapture.LockTarget();
 //                _animator.StopPlayback();
@@ -102,6 +103,8 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
                 AttackStarted?.Invoke(acp);
 //                Invoke(nameof(HitApply), 1f);
 //                Invoke(nameof(HitEndedHandler), 2);
+
+                EHitDetected.Invoke(acp);
             }
         }
 

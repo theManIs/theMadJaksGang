@@ -26,7 +26,7 @@ public class ClickToMove : MonoBehaviour
     void FixedUpdate()
     {
     }
-//    // FixedUpdate is called once per frame
+//    // UserUpdate is called once per frame
 //    void Update()
 //    {
 //        if (IsActive)

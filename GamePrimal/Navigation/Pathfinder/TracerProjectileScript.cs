@@ -54,7 +54,7 @@ namespace Assets.GamePrimal.Navigation.Pathfinder
             }
         }
 
-        // FixedUpdate is called once per frame
+        // UserUpdate is called once per frame
         public void FixedUpdate()
         {
             if (!_NavMeshAgentFollow) return;

@@ -36,6 +36,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         {
             Engaged = _animator && _navMeshAgent && _dmLogger;
             _navMeshAgent.speed = sp.NavMeshSpeed;
+            Debug.Log(sp.NavMeshSpeed);
             _baseMeshSpeed = sp.NavMeshSpeed;
             _animator.SetInteger("WeaponType", (int)sp.WeaponType);
         }
@@ -142,6 +143,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
                     _navMeshAgent.speed = towardAngle > 90 ? _minNavMeshSpeed : GetClampedNormal(movementBlend) * _baseMeshSpeed;
 //
 //                    DebugInfo.Log(GetClampedNormal(turningBlend) + "  " + GetClampedNormal(movementBlend));
+//                    DebugInfo.Log(_baseMeshSpeed);
                 }
         }
 

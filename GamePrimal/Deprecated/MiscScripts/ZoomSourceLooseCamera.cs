@@ -13,7 +13,7 @@ public class LooseCameraScript : MonoBehaviour
         
     }
 
-    // FixedUpdate is called once per frame
+    // UserUpdate is called once per frame
     void Update()
     {
         VectorZoom();

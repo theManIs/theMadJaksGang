@@ -10,6 +10,7 @@ namespace Assets.GamePrimal.Controllers
         private static ControllerMainCamera _cMCam;
         private static ControllerAttackCapture _cACap;
         private static ControllerCharacterMovement _cCMov;
+        private static ControllerFocusSubject _cFs;
 
         public static ControllerEvent GetControllerEvent()
         {
@@ -21,5 +22,6 @@ namespace Assets.GamePrimal.Controllers
         public static ControllerMainCamera GetControllerMainCamera() => _cMCam ?? (_cMCam = new ControllerMainCamera());
         public static ControllerAttackCapture GetControllerAttackCapture() => _cACap ?? (_cACap = new ControllerAttackCapture());
         public static ControllerCharacterMovement GetControllerCharacterMovement() => _cCMov ?? (_cCMov = new ControllerCharacterMovement().UserAwake());
+        public static ControllerFocusSubject GetControllerFocusSubject() => _cFs ?? (_cFs = new ControllerFocusSubject());
     }
 }

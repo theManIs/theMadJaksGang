@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b67513fd840619842b2b4e66851d5c3a, type: 3}
+  m_Name: CharacterFeatures_MeleeAxeFighter
+  m_EditorClassIdentifier: 
+  ObjectName: MeleeAxeFighter
+  StartHealth: 150
+  MaxHealth: 150
+  Damage: 56
+  Initiative: 6
+  NavMeshSpeed: 4
+  TurnPoints: 4
+  MaxTurnPoints: 7
+  StartWeapon: {fileID: 870105330075113774, guid: 4c936d998cef8594eaaf49b031a42c6e,
+    type: 3}

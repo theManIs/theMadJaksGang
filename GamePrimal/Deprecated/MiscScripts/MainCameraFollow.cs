@@ -25,7 +25,7 @@ public class MainCameraFollow : MonoBehaviour
         //myCamera = GetComponent<Camera>();
     }
 
-    // FixedUpdate is called once per frame
+    // UserUpdate is called once per frame
     void Update()
     {
          HandleMovement();

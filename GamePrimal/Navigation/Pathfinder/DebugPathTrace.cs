@@ -14,7 +14,7 @@ public class DebugPathTrace : MonoBehaviour
         _LineRenderer = GetComponent<LineRenderer>();
     }
 
-    // FixedUpdate is called once per frame
+    // UserUpdate is called once per frame
     void Update()
     {
         if (_NavMeshAgentPath.hasPath)

@@ -10,7 +10,7 @@ public class MovableObjects : MonoBehaviour
         
     }
 
-    // FixedUpdate is called once per frame
+    // UserUpdate is called once per frame
     void Update()
     {
         

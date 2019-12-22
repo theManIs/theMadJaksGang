@@ -7,7 +7,7 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
     public class SubjectFocus
     {
         private readonly int _rayCastDistance = 100;
-        private Transform _currentFocus;
+        private Transform _currentFocus = null;
         private Transform _hardFocus;
         private bool _hasThisFrameFocused = true;
         private Transform _raycastCaptured;
@@ -18,7 +18,7 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
 
         public void Start()
         {
-            _currentFocus = null;
+//            _currentFocus = null;
 //            _cursorTexture = Resources.Load<Texture2D>("Cursor_Attack_-42768");
 //            _baseCursor = Resources.Load<Texture2D>("Cursor_Basic_-42304");
 //            _pickCursor = Resources.Load<Texture2D>("Cursor_Hand_-41952");
@@ -36,7 +36,7 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
             return _raycastCaptured;
         }
 
-        public void FixedUpdate()
+        public void UserUpdate()
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             _hasThisFrameFocused = true;

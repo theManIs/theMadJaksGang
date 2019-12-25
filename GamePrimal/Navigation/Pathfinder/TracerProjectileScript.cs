@@ -1,38 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.GamePrimal.Controllers;
+using Assets.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using static Assets.TeamProjects.GamePrimal.SeparateComponents.ListsOfStuff.ResourcesList;
+using static UnityEngine.Resources;
 using Object = UnityEngine.Object;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
-namespace Assets.GamePrimal.Navigation.Pathfinder
+namespace Assets.TeamProjects.GamePrimal.Navigation.Pathfinder
 {
-    public class TracerProjectileScript : MonoBehaviour
+    public class TracerProjectileScript
     {
-        public float StepLength = 3; 
+        public float StepLength = 3;
 
+        private bool Engaged = true;
         private NavMeshAgent _NavMeshAgentFollow;
-        private GameObject _wayPoint;
-        private GameObject m_FinalDestination;
-        private GameObject m_CheckWayPoint;
-
-        private bool _pathWasSet = false;
-        private List<GameObject> _objectsList = new List<GameObject>();
+        private bool _pathWasSet;
         private Vector3 _lastEndWayPoint;
-        private Vector3 _bottomPadding;
         private Vector3 _lastCorner;
+        private Vector3 _bottomPadding;
+
         private readonly int InitPositionToPlungeRay = 15;
         private readonly int MaxRayCastDistance = 30;
+        private readonly List<GameObject> _objectsList = new List<GameObject>();
+        private readonly GameObject _wayPoint = Load<GameObject>(RegularWayPoint);
+        private readonly GameObject _finalDestination = Load<GameObject>(HorizontalBeacon);
+        private readonly GameObject _checkWayPoint = Load<GameObject>(CheckWayPoint);
+        private ControllerFocusSubject _cSubjectFocus;
 
-        // Start is called before the first frame update
-        public void Start()
+        public void UserStart()
         {
-            m_FinalDestination = Resources.Load<GameObject>("Horizontal_Beacon_11894");
-            m_CheckWayPoint = Resources.Load<GameObject>("WayPointMove Variant_12046");
-            _wayPoint = Resources.Load<GameObject>("WayPointWhite_11970");
-            _bottomPadding = new Vector3(0, _wayPoint.GetComponent<MeshRenderer>().bounds.size.y, 0);
+            if (!_finalDestination || !_checkWayPoint || !_wayPoint)
+            {
+                Engaged = false;
+                Debug.LogError("Resources is not defined");
+            }
+            else
+                _bottomPadding = new Vector3(0, _wayPoint.GetComponent<MeshRenderer>().bounds.size.y, 0);
         }
 
         void WasteWayPoints()
@@ -51,13 +61,19 @@ namespace Assets.GamePrimal.Navigation.Pathfinder
 
                 if (nvm)
                     _NavMeshAgentFollow = nvm;
+
+                MonoAmplifierRpg mar = navAgentTransform.GetComponent<MonoAmplifierRpg>();
+
+                if (mar && mar.MoveSpeed > 0)
+                    StepLength = mar.MoveSpeed;
             }
         }
 
-        // UserUpdate is called once per frame
-        public void FixedUpdate()
+        public void UserUpdate(UpdateParams up)
         {
-            if (!_NavMeshAgentFollow) return;
+            SetNavAgent(up.ActualInvoker);
+
+            if (!_NavMeshAgentFollow || !Engaged) return;
 
             Vector3[] corners = _NavMeshAgentFollow.path.corners;
 
@@ -150,7 +166,7 @@ namespace Assets.GamePrimal.Navigation.Pathfinder
 
         private void SpawnCheckPoint(float positionOffsetX, float positionOffsetZ, Vector3 currentCorner, int checkPointPos)
         {
-            GameObject gm = PutNewPointOnTheLine(m_CheckWayPoint, positionOffsetX, positionOffsetZ, currentCorner);
+            GameObject gm = PutNewPointOnTheLine(_checkWayPoint, positionOffsetX, positionOffsetZ, currentCorner);
 
             RotateToward(gm, _lastCorner);
             gm.GetComponentInChildren<TextMeshProUGUI>().SetText(Convert.ToString(checkPointPos));
@@ -158,7 +174,7 @@ namespace Assets.GamePrimal.Navigation.Pathfinder
 
         private void SpawnLastWayPoint(float positionOffsetX, float positionOffsetZ, Vector3 currentCorner)
         {
-            PutNewPointOnTheLine(m_FinalDestination, positionOffsetX, positionOffsetZ, currentCorner);
+            PutNewPointOnTheLine(_finalDestination, positionOffsetX, positionOffsetZ, currentCorner);
         }
 
         void SpawnNewWayPoint(float positionOffsetX, float positionOffsetZ, Vector3 currentCorner)

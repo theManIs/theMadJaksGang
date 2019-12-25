@@ -1,9 +1,11 @@
 ﻿using Assets.GamePrimal.Controllers;
 using Assets.GamePrimal.Navigation.HighlightFrame;
-using Assets.GamePrimal.Navigation.Pathfinder;
 using Assets.TeamProjects.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Navigation.HighlightFrame;
+using Assets.TeamProjects.GamePrimal.Navigation.Pathfinder;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
 
 namespace Assets.TeamProjects.GamePrimal.MainScene
@@ -14,11 +16,12 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
         private HighlightFrame _highlightFrame;
         private ControllerFocusSubject _subjectFocus;
         private MovableObjects _movableObjects;
-        private TracerProjectileScript _tracerProjectileScript;
+//        private TracerProjectileScript _tracerProjectileScript;
         private ControllerCharacterMovement _controllerCharacterMovement;
         private ControllerAttackCapture _controllerAttackCapture;
         private ControllerInput _controllerInput;
         private SceneBuilder _sceneBuilder;
+        private ControllerPathFinding _cPathFinding;
 
         void Awake()
         {
@@ -32,8 +35,9 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
             _highlightFrame = new HighlightFrame();
             _subjectFocus = ControllerRouter.GetControllerFocusSubject();
 //            _movableObjects = FindObjectOfType<MovableObjects>();
-            _tracerProjectileScript = new TracerProjectileScript();
+//            _tracerProjectileScript = new TracerProjectileScript();
 //            _controllerCharacterMovement = new ControllerCharacterMovement();
+            _cPathFinding = ControllerRouter.GetControllerPathFinding();
             _controllerAttackCapture = ControllerRouter.GetControllerAttackCapture();
             _controllerInput = ControllerRouter.GetControllerInput().UserAwake();
         }
@@ -53,7 +57,8 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
 
 //            _subjectFocus.Start();
             _controllerAttackCapture.Start();
-            _tracerProjectileScript.Start();
+//            _tracerProjectileScript.UserStart();
+            _cPathFinding.UserStart(new StartParams());
             _controllerInput.Start();
         }
 
@@ -66,9 +71,10 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
             _subjectFocus.UpdateOnce();
             _controllerAttackCapture.Update();
             _highlightFrame.FixedUpdate(_subjectFocus.GetFocus());
-            _tracerProjectileScript.SetNavAgent(_subjectFocus.GetFocus());
+//            _tracerProjectileScript.SetNavAgent(_subjectFocus.GetFocus());
 //            _controllerCharacterMovement.UserUpdate(_subjectFocus.GetFocus(), _subjectFocus.HasFocused());
-            _tracerProjectileScript.FixedUpdate();
+//            _tracerProjectileScript.UserUpdate();
+            _cPathFinding.UserUpdate(new UpdateParams());
         }
 
         void FixedUpdate()

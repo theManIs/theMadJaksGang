@@ -7,6 +7,7 @@ using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using UnityEngine;
 using UnityScript.Steps;
+using static Assets.TeamProjects.GamePrimal.SeparateComponents.ListsOfStuff.ResourcesList;
 
 namespace Assets.GamePrimal.Mono
 {
@@ -22,8 +23,12 @@ namespace Assets.GamePrimal.Mono
         [SerializeField] private int TurnPoints;
         [SerializeField] private int InitialTurnPoints;
         [SerializeField] private Sprite CharacterPortrait;
+        public int MaxHealth;
+        public int ExperienceActual;
+        public int ExperienceMax;
+        public Transform WeaponProjectile;
+        public int MoveSpeed;
 
-        public int MaxHealth { get; private set; }
         private DamageLogger _damageLogger;
 
         public float MeshSpeed { get; private set; } = 4f;
@@ -73,6 +78,8 @@ namespace Assets.GamePrimal.Mono
             return TurnPoints - actionCost >= 0;
         }
 
+        public void SubtractActionCost(int actionCost) => TurnPoints = TurnPoints - actionCost;
+
         private void Unpack(CharacterFeatures af)
         {
             if (CharacterFeatures)
@@ -82,10 +89,15 @@ namespace Assets.GamePrimal.Mono
                 MaxHealth = af.MaxHealth;
                 Initiative = af.Initiative;
                 Damage = af.Damage;
+                MoveSpeed = af.MoveSpeed;
                 TurnPoints = af.TurnPoints;
                 InitialTurnPoints = af.TurnPoints;
                 MaxTurnPoints = af.MaxTurnPoints;
                 CharacterPortrait = af.CharacterPortrait;
+                ExperienceActual = (int)(Random.value * 10);
+                ExperienceMax = (int)(Random.value * 10) + ExperienceActual;
+                WeaponProjectile = af.PreferredProjectile ? af.PreferredProjectile : 
+                    Resources.Load<GameObject>(ArrowProjectile)?.transform;
             }
         }
 

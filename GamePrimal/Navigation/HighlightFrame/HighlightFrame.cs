@@ -1,4 +1,5 @@
 ﻿using Assets.TeamProjects.GamePrimal.Helpers;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.ListsOfStuff;
 using UnityEngine;
 
 namespace Assets.TeamProjects.GamePrimal.Navigation.HighlightFrame

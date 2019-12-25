@@ -25,7 +25,7 @@ namespace Assets.GamePrimal.TextDamage
             Canvas can = canvasGm.AddComponent<Canvas>();
             can.renderMode = RenderMode.ScreenSpaceOverlay;
             _canvasHasCreated = true;
-            canvasGm.transform.parent = ms.transform;
+            canvasGm.transform.SetParent(ms.transform, false);
 
             return canvasGm;
         }

@@ -1368,10 +1368,15 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: 870105330075113774, guid: 4c936d998cef8594eaaf49b031a42c6e,
-    type: 3}
-  CharacterFeatures: {fileID: 11400000, guid: 90a80a41a0e258747b4b7cd971be0ca5, type: 2}
-  MeshSpeed: 4
+  CharacterFeatures: {fileID: 11400000, guid: b3a22b4b40505f4449e1398b87691e72, type: 2}
+  MaxTurnPoints: 0
+  TurnPoints: 0
+  InitialTurnPoints: 0
+  CharacterPortrait: {fileID: 0}
+  MaxHealth: 0
+  ExperienceActual: 0
+  ExperienceMax: 0
+  WeaponProjectile: {fileID: 0}
 --- !u!1 &4089596951873394531
 GameObject:
   m_ObjectHideFlags: 0

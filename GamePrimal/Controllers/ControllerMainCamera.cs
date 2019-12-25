@@ -43,16 +43,15 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
         public void UserUpdate()
         {
-//            Debug.Log(_hardCodeCameraRig.Target);
-            if (_hardCodeCameraRig.Target)
+            if (_hardCodeCameraRig  && _hardCodeCameraRig.Target)
                 if (_hardCodeCameraRig.HasReachedTarget())
                     _hardCodeCameraRig.SetTarget(null);
         }
 
         private void MoveCameraTo(EventTurnWasFoundParams args)
         {
-//            Debug.Log(activeCharacter);
-            _hardCodeCameraRig.SetTarget(args.TurnApplicant);
+            if (_hardCodeCameraRig)
+                _hardCodeCameraRig.SetTarget(args.TurnApplicant);
         }
     }
 }

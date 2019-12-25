@@ -13,6 +13,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         private Texture2D _cursorShoot;
         private Texture2D _moveCursor;
         private Texture2D _outRange;
+        private Texture2D _outOfRangeRanged;
 
         public void UserAwake(AwakeParams ap)
         {
@@ -27,6 +28,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             _pickCursor = Resources.Load<Texture2D>("G_Cursor_Hand_1530032");
             _moveCursor = Resources.Load<Texture2D>("G_Cursor_Move1_1530142");
             _outRange = Resources.Load<Texture2D>("G_Cursor_Attack_R");
+            _outOfRangeRanged = Resources.Load<Texture2D>("Arrow_R_72020");
         }
 
         public void SetCursor(Transform softFocus, Transform hardFocus)
@@ -37,7 +39,9 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             float attackRange = monoRpg && monoRpg.WieldingWeapon ? monoRpg.WieldingWeapon.WeaponRange : default;
             bool isWithinRange = softFocus && hardFocus && attackRange > Vector3.Distance(softFocus.position, hardFocus.position);
 
-            if (softFocus && hardFocus && hardFocus != softFocus && monomech && isRanged)
+            if (softFocus && hardFocus && hardFocus != softFocus && monomech && isRanged && !isWithinRange)
+                SetAnyCursor(_outOfRangeRanged);
+            else if (softFocus && hardFocus && hardFocus != softFocus && monomech && isRanged && isWithinRange)
                 SetShootCursor();
             else if (softFocus && hardFocus && hardFocus != softFocus && monomech && !isRanged && isWithinRange)
                 SetAggressiveCursor();

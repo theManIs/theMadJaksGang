@@ -9,6 +9,10 @@ namespace Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold
     public interface IUserAwake
     {
         void UserAwake(AwakeParams ap);
+    }
+
+    public interface IUserStart
+    {
         void UserStart(StartParams sp);
     }
 

@@ -17,6 +17,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
         private HealthHolder _healthHolder;
         private InitiativeHolder _initiativeHolder;
         private ControllerDrumSpinner _cDrupSpinner;
+        private ExperienceHolder _expHolder;
 
         public void UserAwake(AwakeParams ap)
         {
@@ -24,6 +25,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
             _actionPointsHolder = Object.FindObjectOfType<ActionPointsHolder>();
             _healthHolder = Object.FindObjectOfType<HealthHolder>();
             _initiativeHolder = Object.FindObjectOfType<InitiativeHolder>();
+            _expHolder = Object.FindObjectOfType<ExperienceHolder>();
             _cDrupSpinner = ControllerRouter.GetControllerDrumSpinner();
         }
 
@@ -53,6 +55,19 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
             {
                 _healthHolder.GetComponent<Slider>().value = health;
                 _healthHolder.GetComponent<Slider>().maxValue = maxHealth;
+            }
+        }
+
+        public void ShowExperienceBar(int exp, int maxExp, Transform actualInvoker)
+        {
+            if (actualInvoker != _cFocusSubject.GetHardFocus()) return;
+
+            Slider expSlider = _expHolder.GetComponent<Slider>();
+
+            if (expSlider)
+            {
+                _expHolder.GetComponent<Slider>().value = exp;
+                _expHolder.GetComponent<Slider>().maxValue = maxExp;
             }
         }
 
@@ -97,9 +112,17 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
         {
             _cFocusSubject.UpdateOnce();
 
-            this.ShowTurnPoints(up.AmplifierRpg.GetTurnPoints(), up.ActualInvoker);
-            this.ShowHealthBar(up.AmplifierRpg.ViewHealth(), up.AmplifierRpg.MaxHealth, up.ActualInvoker);
-            this.ShowInitiativeList(up.AmplifierRpg, up.ActualInvoker);
+            if (_actionPointsHolder)
+                this.ShowTurnPoints(up.AmplifierRpg.GetTurnPoints(), up.ActualInvoker);
+
+            if (_healthHolder)
+                this.ShowHealthBar(up.AmplifierRpg.ViewHealth(), up.AmplifierRpg.MaxHealth, up.ActualInvoker);
+
+            if (_initiativeHolder)
+                this.ShowInitiativeList(up.AmplifierRpg, up.ActualInvoker);
+
+            if (_expHolder)
+                this.ShowExperienceBar(up.AmplifierRpg.ExperienceActual, up.AmplifierRpg.ExperienceMax, up.ActualInvoker);
         }
 
     }

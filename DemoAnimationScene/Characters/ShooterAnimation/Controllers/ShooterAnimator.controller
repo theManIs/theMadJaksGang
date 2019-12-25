@@ -95,7 +95,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: a3db132b497dca4498f80f09a883821f,
+  m_Motion: {fileID: -203655887218126122, guid: f0bb143b9649032429694ec8caafaf46,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -663,7 +663,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 41558fe925627304493a78ae5d054b06,
+    m_Motion: {fileID: -203655887218126122, guid: 1c2ed650df622e2478896301ca384276,
       type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
@@ -672,7 +672,7 @@ BlendTree:
     m_DirectBlendParameter: MovementBlend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -203655887218126122, guid: 7a40544764fb69d46b5ee97c9683392f,
+    m_Motion: {fileID: -203655887218126122, guid: 249425fbed1a52c4ea2642c92e84ae8f,
       type: 3}
     m_Threshold: 0.25
     m_Position: {x: 1, y: 0}
@@ -681,7 +681,7 @@ BlendTree:
     m_DirectBlendParameter: MovementBlend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: -6836180313135659435, guid: 34c1882cb378f8b4683db7431a23fba7,
+    m_Motion: {fileID: -203655887218126122, guid: 5496d615c9c13914cbb097a86a5fe91f,
       type: 3}
     m_Threshold: 0.5
     m_Position: {x: 0, y: 1}
@@ -1085,7 +1085,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: HitReaction
+  m_Name: RifleHitReaction
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1099,7 +1099,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 9be63a2fc49a72143a7664230e0bf623,
+  m_Motion: {fileID: -203655887218126122, guid: 9b96e6c8745ecf64f910c5aba19c04ff,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -1162,7 +1162,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DyingRifle
+  m_Name: RifleDying
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -1175,7 +1175,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 341be29d206d1da4d9e478b4f1bf6b4f,
+  m_Motion: {fileID: -203655887218126122, guid: 6778fa5d266a41a4ebf8c8abdb8c53a6,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -1315,7 +1315,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 521208619f727c14fb0e016156b3cfe9,
+  m_Motion: {fileID: -203655887218126122, guid: 01c38973e858cf6418df723589ffd2e9,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 

@@ -1,5 +1,4 @@
 ﻿using Assets.GamePrimal.Navigation.HighlightFrame;
-using Assets.GamePrimal.Navigation.Pathfinder;
 using UnityEngine;
 using Assets.GamePrimal.SeparateComponents.PauseMenu;
 using Assets.TeamProjects.GamePrimal.Controllers;

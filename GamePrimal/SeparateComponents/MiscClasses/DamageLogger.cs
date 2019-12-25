@@ -20,6 +20,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         public event HitReaction AttackStarted;
         public event HitReactionFinished HitEndReached;
         public EventHitDetected EHitDetected = new EventHitDetected();
+        public EventHitFinished EHitFinished = new EventHitFinished();
 
         //        private NavMeshAgent _navMeshAgent;
         private Animator _animator;
@@ -96,7 +97,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 //                _animator.SetTrigger("Attacking");
 //                transform.LookAt(enemy);
 
-                _attacking = true;
+//                _attacking = true;
                 lastAlly = ally;
                 lastEnemy = enemy;
 
@@ -112,8 +113,9 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         {
 //            DebugInfo.Log("Release lock");
             _cAttackCapture.ReleaseFixated();
-            
-            _attacking = false;
+            EHitFinished.Invoke(new EventHitFinishedParams());
+
+//            _attacking = false;
         }
 
 //        public void HitApply()
@@ -124,8 +126,8 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         // Update is called once per frame
         public void Update()
         {
-            if (_attacking)
-                gameObject.transform.LookAt(lastEnemy);
+//            if (_attacking)
+//                gameObject.transform.LookAt(lastEnemy);
 
 //            if (!_isBlip && _navMeshAgent.hasPath)
 //            {

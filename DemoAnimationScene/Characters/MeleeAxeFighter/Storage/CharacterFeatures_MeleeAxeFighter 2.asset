@@ -20,6 +20,10 @@ MonoBehaviour:
   NavMeshSpeed: 4
   TurnPoints: 4
   MaxTurnPoints: 7
-  StartWeapon: {fileID: 870105330075113774, guid: 4c936d998cef8594eaaf49b031a42c6e,
+  StartWeapon: {fileID: 8241601621333600122, guid: 2c54a622e73641947851efdc4813e46a,
     type: 3}
   CharacterPortrait: {fileID: 21300000, guid: c1935998814701c449af65ea891664dc, type: 3}
+  ExperienceActual: 0
+  ExperienceMax: 0
+  PreferredProjectile: {fileID: 4681021545452234, guid: 7f44d876055f2ba4a8387a929924da06,
+    type: 3}

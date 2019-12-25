@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets.GamePrimal.Controllers;
+using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
@@ -23,6 +24,9 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         private float _baseMeshSpeed;
         private readonly float _minNavMeshSpeed = 0.04f;
         private readonly float _minNormalizedValue = 0.01f;
+        private bool _attacking = false;
+        private Transform _lastEnemy;
+        private MonoAmplifierRpg _monoAmplifierRpg;
 
         public void UserAwake(AwakeParams ap)
         {
@@ -31,6 +35,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             _dmLogger = ap.DamageLoggerComponent;
             _navMeshAgent = ap.NavMeshAgentComponent;
             _wieldingWeapon = ap.WieldingWeapon;
+            _monoAmplifierRpg = _transform.GetComponent<MonoAmplifierRpg>();
         }
 
         public void  UserStart(StartParams sp)
@@ -77,7 +82,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             {
                 _dmLogger.ReactOnHit += ReactOnHit;
                 _dmLogger.AttackStarted += AttackStarted;
-//                _dmLogger.EHitDetected.EndOfRound += HitDetectedHandler;
+                _dmLogger.EHitFinished.Event += HitFinished;
             }
 
         }
@@ -88,20 +93,35 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             {
                 _dmLogger.ReactOnHit -= ReactOnHit;
                 _dmLogger.AttackStarted -= AttackStarted;
-//                _dmLogger.EHitDetected.EndOfRound -= HitDetectedHandler;
+                _dmLogger.EHitFinished.Event -= HitFinished;
             }
         }
 
-//        public void HitDetectedHandler(AnimationEvent ae)
-//        {
-//            Debug.Log(ae);
-//        }
+        private void HitFinished(EventHitFinishedParams acp)
+        {
+            _attacking = false;
+        }
 
         private void AttackStarted(AttackCaptureParams acp)
         {
             _animator.SetTrigger("Attacking");
             _transform.LookAt(acp.Source);
             _lastAttackCapture = acp;
+            _attacking = true;
+            _lastEnemy = acp.Source;
+
+//            if (_monoAmplifierRpg.WieldingWeapon.isRanged)
+//                _monoAmplifierRpg.WieldingWeapon.ShootAnyProjectile(_monoAmplifierRpg.WeaponProjectile.transform, acp.Source);
+
+//            AnimatorClipInfo[] animatorClipInfo = _animator.GetCurrentAnimatorClipInfo(0);
+//
+//            if (animatorClipInfo.Length > 0 && animatorClipInfo[0].clip.name == "RifleFiring")
+//            {
+//                animatorClipInfo[0].clip.AddEvent(new AnimationEvent()
+//                {
+//                    
+//                });
+//            }
 
 //            Debug.Log(_animator.GetCurrentAnimatorClipInfoCount(0));
 //            Debug.Log(_animator.GetCurrentAnimatorClipInfo(0));
@@ -110,9 +130,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 
         public void UserUpdate(UpdateParams up)
         {
-//            if (_animator.GetCurrentAnimatorClipInfoCount(0)> 0)
-//                DebugInfo.Log(_animator.GetCurrentAnimatorClipInfo(0)[0].clip.length);
-//                DebugInfo.Log(_animator.GetCurrentAnimatorClipInfo(0)[0].clip.events);
+            if (!Engaged) return;
 
             if (Engaged)
                 if (!_isBlip && _navMeshAgent.hasPath)
@@ -146,6 +164,9 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 //                    DebugInfo.Log(GetClampedNormal(turningBlend) + "  " + GetClampedNormal(movementBlend));
 //                    DebugInfo.Log(_baseMeshSpeed);
                 }
+
+            if (_attacking)
+                _transform.LookAt(_lastEnemy);
         }
 
         private float GetClampedNormal(float value)

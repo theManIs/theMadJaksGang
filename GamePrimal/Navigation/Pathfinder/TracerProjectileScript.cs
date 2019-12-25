@@ -179,14 +179,14 @@ namespace Assets.TeamProjects.GamePrimal.Navigation.Pathfinder
         {
             RemoveObjectOnContact rmOnContact = map.ActualInvoker.GetComponent<RemoveObjectOnContact>();
             rmOnContact.EMoveCostApplied.Event -= SubtractMoveCost;
-            Debug.Log(map.ActualInvoker.name + " " + _interimMoveCost + " " + Time.time);
+//            Debug.Log(map.ActualInvoker.name + " " + _interimMoveCost + " " + Time.time);
 
             if (_interimMoveCost < 1)
                 _interimMoveCost += (1 / StepLength);
             else if (_localAmplifierRpg)
             {
                 _localAmplifierRpg.SubtractActionCost(1);
-                Debug.LogWarning("Subtract!" + " " + map.ActualInvoker.name + " " + _interimMoveCost + " " + Time.time);
+//                Debug.LogWarning("Subtract!" + " " + map.ActualInvoker.name + " " + _interimMoveCost + " " + Time.time);
                 _interimMoveCost = 0;
             }
         }

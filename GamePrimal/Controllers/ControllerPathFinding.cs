@@ -20,14 +20,11 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         public void UserUpdate(UpdateParams up)
         {
             Transform focusedObject = _cSubjectFocus.GetFocus();
+            MonoAmplifierRpg monoAmp = focusedObject?.GetComponent<MonoAmplifierRpg>();
 
-            if (focusedObject)
-            {
-                MonoAmplifierRpg monoAmp = focusedObject.GetComponent<MonoAmplifierRpg>();
-
-                if (focusedObject && monoAmp)
-                    _tracerProjectile.UserUpdate(new UpdateParams() { ActualInvoker = focusedObject, AmplifierRpg = monoAmp });
-            }
+            if (focusedObject && monoAmp)
+                _tracerProjectile.UserUpdate(new UpdateParams()
+                    {ActualInvoker = focusedObject, AmplifierRpg = monoAmp});
 
         }
     }

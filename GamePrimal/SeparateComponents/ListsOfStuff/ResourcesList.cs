@@ -7,5 +7,6 @@
         public const string CheckWayPoint = "WayPointMove Variant_12046";
         public const string RegularWayPoint = "WayPointWhite_11970";
         public const string ArrowProjectile = "ArrowProjectile_16716";
+        public const string HeadUpDisplay = "Hud_11982";
     }
 }

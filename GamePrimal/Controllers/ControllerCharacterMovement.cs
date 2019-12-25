@@ -1,4 +1,5 @@
 ﻿using Assets.GamePrimal.Controllers;
+using Assets.GamePrimal.Mono;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -59,7 +60,9 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
         public void FixedUpdate(Transform focusedObject, bool doMove)
         {
-            if (doMove)
+            MonoMechanicus mop = focusedObject.GetComponent<MonoMechanicus>();
+
+            if (doMove && mop._monoAmplifierRpg.GetTurnPoints() > 0)
                 this.MoveAnyMesh(focusedObject, this.GetClickPoint());
         }
     }

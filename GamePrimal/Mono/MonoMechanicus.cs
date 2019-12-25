@@ -19,7 +19,7 @@ namespace Assets.GamePrimal.Mono
         private CharacterAnimator _characterAnimator;
         private DamageLogger _damageLogger;
         private Rigidbody _rb;
-        private MonoAmplifierRpg _monoAmplifierRpg;
+        public MonoAmplifierRpg _monoAmplifierRpg;
         private HudViewer _hudViwer;
 
         private void Awake()

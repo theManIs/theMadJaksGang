@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Assets.GamePrimal.Controllers;
 using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.Navigation.Pathfinder.MonoScript;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using TMPro;
 using UnityEngine;
@@ -33,6 +35,8 @@ namespace Assets.TeamProjects.GamePrimal.Navigation.Pathfinder
         private readonly GameObject _finalDestination = Load<GameObject>(HorizontalBeacon);
         private readonly GameObject _checkWayPoint = Load<GameObject>(CheckWayPoint);
         private ControllerFocusSubject _cSubjectFocus;
+        private MonoAmplifierRpg _localAmplifierRpg;
+        private double _interimMoveCost;
 
         public void UserStart()
         {
@@ -63,6 +67,9 @@ namespace Assets.TeamProjects.GamePrimal.Navigation.Pathfinder
                     _NavMeshAgentFollow = nvm;
 
                 MonoAmplifierRpg mar = navAgentTransform.GetComponent<MonoAmplifierRpg>();
+
+                if (mar)
+                    _localAmplifierRpg = mar;
 
                 if (mar && mar.MoveSpeed > 0)
                     StepLength = mar.MoveSpeed;
@@ -154,6 +161,10 @@ namespace Assets.TeamProjects.GamePrimal.Navigation.Pathfinder
         private GameObject PutNewPointOnTheLine(GameObject targetObject, float positionOffsetX, float positionOffsetZ, Vector3 currentCorner)
         {
             GameObject objToSpawn = SpawnPlaceRotate(targetObject, currentCorner + new Vector3(positionOffsetX, InitPositionToPlungeRay, positionOffsetZ));
+            RemoveObjectOnContact rmObject = objToSpawn.GetComponent<RemoveObjectOnContact>();
+
+            if (rmObject)
+                rmObject.EMoveCostApplied.Event += SubtractMoveCost;
 
             Physics.Raycast(objToSpawn.transform.position, Vector3.down, out RaycastHit hit, MaxRayCastDistance);
 
@@ -162,6 +173,22 @@ namespace Assets.TeamProjects.GamePrimal.Navigation.Pathfinder
             _objectsList.Add(objToSpawn);
 
             return objToSpawn;
+        }
+
+        private void SubtractMoveCost(EventMoveCostAppliedParams map)
+        {
+            RemoveObjectOnContact rmOnContact = map.ActualInvoker.GetComponent<RemoveObjectOnContact>();
+            rmOnContact.EMoveCostApplied.Event -= SubtractMoveCost;
+            Debug.Log(map.ActualInvoker.name + " " + _interimMoveCost + " " + Time.time);
+
+            if (_interimMoveCost < 1)
+                _interimMoveCost += (1 / StepLength);
+            else if (_localAmplifierRpg)
+            {
+                _localAmplifierRpg.SubtractActionCost(1);
+                Debug.LogWarning("Subtract!" + " " + map.ActualInvoker.name + " " + _interimMoveCost + " " + Time.time);
+                _interimMoveCost = 0;
+            }
         }
 
         private void SpawnCheckPoint(float positionOffsetX, float positionOffsetZ, Vector3 currentCorner, int checkPointPos)

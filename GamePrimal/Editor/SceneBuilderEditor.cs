@@ -1,5 +1,6 @@
 ﻿using Assets.GamePrimal.Controllers;
 using Assets.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts;
 using Assets.TeamProjects.GamePrimal.Mono;
 using UnityEditor;
 using UnityEngine;

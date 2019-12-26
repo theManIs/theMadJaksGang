@@ -1,44 +1,38 @@
 using UnityEngine;
 
-namespace Assets.GamePrimal.CharacterOrtJoyPrafabs.CharacterScripts
+namespace Assets.TeamProjects.GamePrimal.CharacterOrtJoyPrafabs.CharacterScripts
 {
+    public enum UpdateType // The available methods of updating are:
+    {
+        FixedUpdate, // UserUpdate in UserUpdate (for tracking rigidbodies).
+        LateUpdate, // UserUpdate in LateUpdate. (for tracking objects that are moved in UserUpdate)
+        ManualUpdate, // user must call to update camera
+    }
+
     public abstract class AbstractTargetFollower : MonoBehaviour
     {
-        public enum UpdateType // The available methods of updating are:
-        {
-            FixedUpdate, // UserUpdate in UserUpdate (for tracking rigidbodies).
-            LateUpdate, // UserUpdate in LateUpdate. (for tracking objects that are moved in UserUpdate)
-            ManualUpdate, // user must call to update camera
-        }
 
-        [SerializeField] protected Transform m_Target;            // The target object to follow
-        [SerializeField] private bool m_AutoTargetPlayer = true;  // Whether the rig should automatically target the player.
-        [SerializeField] private UpdateType m_UpdateType;         // stores the selected update type
+        public bool LockTargetFerocious = false;
+        public Transform m_Target;            // The target object to follow
+        public UpdateType m_UpdateType;         // stores the selected update type
+
+        public Transform Target => m_Target;
 
         protected Rigidbody targetRigidbody;
 
+        private bool m_AutoTargetPlayer = false;
+
+        protected abstract void FollowTarget(float deltaTime);
 
         protected virtual void Start()
         {
-            // if auto targeting is used, find the object tagged "Player"
-            // any class inheriting from this should call base.Start() to perform this action!
-            if (m_AutoTargetPlayer)
-            {
-                FindAndTargetPlayer();
-            }
-            if (m_Target == null) return;
-            targetRigidbody = m_Target.GetComponent<Rigidbody>();
+            if (m_Target)
+                targetRigidbody = m_Target.GetComponent<Rigidbody>();
         }
 
 
         private void FixedUpdate()
         {
-            // we update from here if updatetype is set to Fixed, or in auto mode,
-            // if the target has a rigidbody, and isn't kinematic.
-            if (m_AutoTargetPlayer && (m_Target == null || !m_Target.gameObject.activeSelf))
-            {
-                FindAndTargetPlayer();
-            }
             if (m_UpdateType == UpdateType.FixedUpdate)
             {
                 FollowTarget(Time.deltaTime);
@@ -48,12 +42,6 @@ namespace Assets.GamePrimal.CharacterOrtJoyPrafabs.CharacterScripts
 
         private void LateUpdate()
         {
-            // we update from here if updatetype is set to Late, or in auto mode,
-            // if the target does not have a rigidbody, or - does have a rigidbody but is set to kinematic.
-            if (m_AutoTargetPlayer && (m_Target == null || !m_Target.gameObject.activeSelf))
-            {
-                FindAndTargetPlayer();
-            }
             if (m_UpdateType == UpdateType.LateUpdate)
             {
                 FollowTarget(Time.deltaTime);
@@ -63,41 +51,16 @@ namespace Assets.GamePrimal.CharacterOrtJoyPrafabs.CharacterScripts
 
         public void ManualUpdate()
         {
-            // we update from here if updatetype is set to Late, or in auto mode,
-            // if the target does not have a rigidbody, or - does have a rigidbody but is set to kinematic.
-            if (m_AutoTargetPlayer && (m_Target == null || !m_Target.gameObject.activeSelf))
-            {
-                FindAndTargetPlayer();
-            }
             if (m_UpdateType == UpdateType.ManualUpdate)
             {
                 FollowTarget(Time.deltaTime);
             }
         }
 
-        protected abstract void FollowTarget(float deltaTime);
-
-
-        public void FindAndTargetPlayer()
-        {
-            // auto target an object tagged player, if no target has been assigned
-            var targetObj = GameObject.FindGameObjectWithTag("Player");
-            if (targetObj)
-            {
-                SetTarget(targetObj.transform);
-            }
-        }
-
-
         public virtual void SetTarget(Transform newTransform)
         {
-            m_Target = newTransform;
-        }
-
-
-        public Transform Target
-        {
-            get { return m_Target; }
+            if (!LockTargetFerocious)
+                m_Target = newTransform;
         }
     }
 }

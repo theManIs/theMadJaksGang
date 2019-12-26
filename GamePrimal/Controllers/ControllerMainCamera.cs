@@ -1,5 +1,6 @@
 ﻿
 using Assets.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using UnityEngine;
 using UnityStandardAssets.Cameras;

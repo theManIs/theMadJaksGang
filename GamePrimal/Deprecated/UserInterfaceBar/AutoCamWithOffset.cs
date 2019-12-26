@@ -1,4 +1,5 @@
 using System;
+using Assets.AssetStore.Standard_Assets.Cameras.Scripts;
 using UnityEngine;
 #if UNITY_EDITOR
 
@@ -84,7 +85,7 @@ namespace UnityStandardAssets.Cameras
                 m_LastFlatAngle = currentFlatAngle;
             }
 
-            //DebugNormalAngles(m_Target);
+            //DebugNormalAngles(TargetObject);
             // camera position moves towards target position:
             transform.position = Vector3.Lerp(transform.position, m_Target.position + new Vector3(0, 5,-4), deltaTime * m_MoveSpeed);
 

@@ -1,8 +1,9 @@
+using Assets.TeamProjects.GamePrimal.CharacterOrtJoyPrafabs.CharacterScripts;
 using UnityEngine;
 
-namespace Assets.GamePrimal.CharacterOrtJoyPrafabs.CharacterScripts
+namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
 {
-    public abstract class PivotBasedCameraRig : UnityStandardAssets.Cameras.AbstractTargetFollower
+    public abstract class PivotBasedCameraRig : AbstractTargetFollower
     {
         // This script is designed to be placed on the root object of a camera rig,
         // comprising 3 gameobjects, each parented to the next:

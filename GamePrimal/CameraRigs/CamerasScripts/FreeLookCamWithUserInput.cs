@@ -1,10 +1,8 @@
 using System;
-using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
-using UnityEditor;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-namespace UnityStandardAssets.Cameras
+namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
 {
     public class FreeLookCamWithUserInput : PivotBasedCameraRig
     {
@@ -17,6 +15,8 @@ namespace UnityStandardAssets.Cameras
 
         public int MaxCloseDistance = 10;
         public int MaxFarDistance = 30;
+        public float ConstantTiltInt = 35;
+
         [SerializeField] private float m_MoveSpeed = 1f;                      // How fast the rig will move to keep up with the target's position.
         [Range(0f, 10f)] [SerializeField] private float m_TurnSpeed = 1.5f;   // How fast the rig will rotate from user input.
         [SerializeField] private float m_TurnSmoothing = 0.0f;                // How much smoothing to apply to the turn input, to reduce mouse-turn jerkiness
@@ -24,7 +24,7 @@ namespace UnityStandardAssets.Cameras
         [SerializeField] private float m_TiltMin = 45f;                       // The minimum value of the x axis rotation of the pivot.
         [SerializeField] private bool m_LockCursor = false;                   // Whether the cursor should be hidden and locked.
         [SerializeField] private bool m_VerticalAutoReturn = false;           // set wether or not the vertical axis should auto return
-        [SerializeField] private float SpeedAcceleration = .2f;           // set wether or not the vertical axis should auto return
+        [SerializeField] private float SpeedAcceleration = .2f;               // set wether or not the vertical axis should auto return
 
         private float m_LookAngle;                    // The rig's y axis rotation.
         private float m_TiltAngle;                    // The pivot's x axis rotation.
@@ -34,7 +34,6 @@ namespace UnityStandardAssets.Cameras
         private Quaternion m_TransformTargetRot;
         private Camera localCamera;
         private int maxRaycastDistance = 100;
-        private float _constantTiltInt = 35;
         public int MagnitudeThreshold = 300;
         private Transform _rootCameraHaystack;
 
@@ -47,7 +46,7 @@ namespace UnityStandardAssets.Cameras
             Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
             Cursor.visible = !m_LockCursor;
             m_PivotEulers = m_Pivot.rotation.eulerAngles;
-            _constantTiltInt = m_PivotEulers.x;
+            ConstantTiltInt = m_PivotEulers.x;
 
             m_PivotTargetRot = m_Pivot.transform.localRotation;
             m_TransformTargetRot = transform.localRotation;
@@ -129,7 +128,7 @@ namespace UnityStandardAssets.Cameras
             // Read the user input
             var x = CrossPlatformInputManager.GetAxis("Mouse X");
             var y = CrossPlatformInputManager.GetAxis("Mouse Y");
-            
+
             // Adjust the look angle by an amount proportional to the turn speed and horizontal input.
             m_LookAngle += x * m_TurnSpeed;
 
@@ -153,8 +152,8 @@ namespace UnityStandardAssets.Cameras
             }
 
             // Tilt input around X is applied to the pivot (the child of this object)
-//            m_PivotTargetRot = Quaternion.Euler(m_TiltAngle, m_PivotEulers.y, m_PivotEulers.z);
-            m_PivotTargetRot = Quaternion.Euler(_constantTiltInt, m_PivotEulers.y, m_PivotEulers.z);
+            m_PivotTargetRot = Quaternion.Euler(m_TiltAngle + ConstantTiltInt, m_PivotEulers.y, m_PivotEulers.z);
+//            m_PivotTargetRot = Quaternion.Euler(_constantTiltInt, m_PivotEulers.y, m_PivotEulers.z);
 
             if (m_TurnSmoothing > 0)
             {

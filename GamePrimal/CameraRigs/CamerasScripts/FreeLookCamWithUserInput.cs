@@ -15,7 +15,7 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
 
         public int MaxCloseDistance = 10;
         public int MaxFarDistance = 30;
-        public float ConstantTiltInt = 35;
+        public float StartTilt;
 
         [SerializeField] private float m_MoveSpeed = 1f;                      // How fast the rig will move to keep up with the target's position.
         [Range(0f, 10f)] [SerializeField] private float m_TurnSpeed = 1.5f;   // How fast the rig will rotate from user input.
@@ -46,7 +46,8 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
             Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
             Cursor.visible = !m_LockCursor;
             m_PivotEulers = m_Pivot.rotation.eulerAngles;
-            ConstantTiltInt = m_PivotEulers.x;
+            //            StartTilt = m_PivotEulers.x;
+            m_Pivot.rotation = Quaternion.Euler(StartTilt, m_PivotEulers.y, m_PivotEulers.z);
 
             m_PivotTargetRot = m_Pivot.transform.localRotation;
             m_TransformTargetRot = transform.localRotation;
@@ -148,11 +149,11 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
                 // on platforms with a mouse, we adjust the current angle based on Y mouse input and turn speed
                 m_TiltAngle -= y * m_TurnSpeed;
                 // and make sure the new value is within the tilt range
-                m_TiltAngle = Mathf.Clamp(m_TiltAngle, -m_TiltMin, m_TiltMax);
+                m_TiltAngle = Mathf.Clamp(m_TiltAngle, m_TiltMin, m_TiltMax);
             }
 
             // Tilt input around X is applied to the pivot (the child of this object)
-            m_PivotTargetRot = Quaternion.Euler(m_TiltAngle + ConstantTiltInt, m_PivotEulers.y, m_PivotEulers.z);
+            m_PivotTargetRot = Quaternion.Euler(m_TiltAngle, m_PivotEulers.y, m_PivotEulers.z);
 //            m_PivotTargetRot = Quaternion.Euler(_constantTiltInt, m_PivotEulers.y, m_PivotEulers.z);
 
             if (m_TurnSmoothing > 0)

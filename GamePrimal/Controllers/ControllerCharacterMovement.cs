@@ -60,9 +60,9 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
         public void FixedUpdate(Transform focusedObject, bool doMove)
         {
-            MonoMechanicus mop = focusedObject.GetComponent<MonoMechanicus>();
+            MonoMechanicus mop = focusedObject?.GetComponent<MonoMechanicus>();
 
-            if (doMove && mop._monoAmplifierRpg.GetTurnPoints() > 0)
+            if (mop && doMove && mop._monoAmplifierRpg.GetTurnPoints() > 0)
                 this.MoveAnyMesh(focusedObject, this.GetClickPoint());
         }
     }

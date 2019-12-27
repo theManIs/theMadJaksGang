@@ -14,6 +14,7 @@ namespace Assets.GamePrimal.Mono
     public class MonoMechanicus : MonoBehaviour
     {
         public bool _iAmMoving = false;
+        public bool InfiniteMoving = false;
 
         private ControllerDrumSpinner _cDrumSpinner;
         private CharacterAnimator _characterAnimator;

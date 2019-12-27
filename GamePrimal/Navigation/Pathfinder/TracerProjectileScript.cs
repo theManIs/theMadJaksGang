@@ -67,11 +67,14 @@ namespace Assets.TeamProjects.GamePrimal.Navigation.Pathfinder
                     _NavMeshAgentFollow = nvm;
 
                 MonoAmplifierRpg mar = navAgentTransform.GetComponent<MonoAmplifierRpg>();
+                MonoMechanicus monomech = navAgentTransform.GetComponent<MonoMechanicus>();
 
                 if (mar)
                     _localAmplifierRpg = mar;
 
-                if (mar && mar.MoveSpeed > 0)
+                if (monomech && monomech.InfiniteMoving)
+                    StepLength = Single.PositiveInfinity;
+                else if (mar && mar.MoveSpeed > 0)
                     StepLength = mar.MoveSpeed;
             }
         }

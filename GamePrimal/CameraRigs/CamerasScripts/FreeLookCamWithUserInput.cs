@@ -1,9 +1,18 @@
 using System;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
 {
+    [Serializable]
+    public struct ClampVector3
+    {
+        public float Init;
+        public float Min;
+        public float Max;
+    }
+
     public class FreeLookCamWithUserInput : PivotBasedCameraRig
     {
         // This script is designed to be placed on the root object of a camera rig,
@@ -13,31 +22,28 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
         // 		Pivot
         // 			Camera
 
-        public int MaxCloseDistance = 10;
-        public int MaxFarDistance = 30;
-        public float StartTilt;
-
-        [SerializeField] private float m_MoveSpeed = 1f;                      // How fast the rig will move to keep up with the target's position.
-        [Range(0f, 10f)] [SerializeField] private float m_TurnSpeed = 1.5f;   // How fast the rig will rotate from user input.
-        [SerializeField] private float m_TurnSmoothing = 0.0f;                // How much smoothing to apply to the turn input, to reduce mouse-turn jerkiness
-        [SerializeField] private float m_TiltMax = 75f;                       // The maximum value of the x axis rotation of the pivot.
-        [SerializeField] private float m_TiltMin = 45f;                       // The minimum value of the x axis rotation of the pivot.
-        [SerializeField] private bool m_LockCursor = false;                   // Whether the cursor should be hidden and locked.
-        [SerializeField] private bool m_VerticalAutoReturn = false;           // set wether or not the vertical axis should auto return
-        [SerializeField] private float SpeedAcceleration = .2f;               // set wether or not the vertical axis should auto return
+        public ClampVector3 DistanceAgainstTarget = new ClampVector3() {Min = 14, Max = 17, Init = 14};
+        public ClampVector3 TiltClampVector3 = new ClampVector3() {Min = 30, Max = 45, Init = 35};
+        [Range(0f, 5f)] public float FollowTargetSpeed = 1f;
+        [Range(0f, 1f)] public float CameraMovementSpeed = .2f;
+        [Range(0f, 5f)] public float AngleRotationSpeed = 1.5f;
+        public float m_TurnSmoothing = 0.0f;
+        public bool m_LockCursor = false;
+        public int FallowThreshold = 8;
+        public int MaxRaycastDistance = 100;
 
         private float m_LookAngle;                    // The rig's y axis rotation.
         private float m_TiltAngle;                    // The pivot's x axis rotation.
-        private const float k_LookDistance = 100f;    // How far in front of the pivot the character's look target is.
         private Vector3 m_PivotEulers;
         private Quaternion m_PivotTargetRot;
         private Quaternion m_TransformTargetRot;
         private Camera localCamera;
-        private int maxRaycastDistance = 100;
-        public int MagnitudeThreshold = 300;
-        private Transform _rootCameraHaystack;
 
         private float Scroll => CrossPlatformInputManager.GetAxis("Mouse ScrollWheel");
+        private float Horizontal => CrossPlatformInputManager.GetAxis("Horizontal");
+        private float Vertical => CrossPlatformInputManager.GetAxis("Vertical");
+        private bool Mouse2 => Input.GetKey(KeyCode.Mouse2);
+        private bool Mouse0 => Input.GetKey(KeyCode.Mouse0);
 
         protected override void Awake()
         {
@@ -47,31 +53,43 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
             Cursor.visible = !m_LockCursor;
             m_PivotEulers = m_Pivot.rotation.eulerAngles;
             //            StartTilt = m_PivotEulers.x;
-            m_Pivot.rotation = Quaternion.Euler(StartTilt, m_PivotEulers.y, m_PivotEulers.z);
+            m_Pivot.rotation = Quaternion.Euler(TiltClampVector3.Init, m_PivotEulers.y, m_PivotEulers.z);
 
             m_PivotTargetRot = m_Pivot.transform.localRotation;
             m_TransformTargetRot = transform.localRotation;
             localCamera = GetComponentInChildren<Camera>();
-
-            _rootCameraHaystack = m_Pivot.transform.parent;
         }
 
+        protected override void Start()
+        {
+            base.Start();
+            BringToInitialZoom();
+
+            m_TiltAngle = TiltClampVector3.Init;
+        }
 
         protected void Update()
         {
             MoveCameraWithInput();
 
-            if (Math.Abs(this.Scroll) > 0)
+            if (Math.Abs(Scroll) > 0)
                 ZoomInOut();
 
-            if (Input.GetKey(KeyCode.Mouse1))
+            if (Mouse2)
                 HandleRotationMovement();
 
-            if (m_LockCursor && Input.GetMouseButtonUp(0))
+            if (m_LockCursor && Mouse0)
             {
                 Cursor.lockState = m_LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
                 Cursor.visible = !m_LockCursor;
             }
+        }
+
+        private void BringToInitialZoom()
+        {
+            float diffDistance =  Vector3.Distance(m_Cam.position, transform.position) - DistanceAgainstTarget.Init;
+
+            m_Cam.Translate(Vector3.forward * diffDistance, Space.Self);
         }
 
         private void ZoomInOut()
@@ -80,21 +98,18 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
             Ray ray = localCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             float zoomDistance = 500 * this.Scroll * Time.deltaTime;
 
-            if (Physics.Raycast(ray, out RaycastHit hit, maxRaycastDistance))
-                if (hit.distance > MaxCloseDistance && iSign > 0 || iSign < 0 && hit.distance < MaxFarDistance)
-                    transform.Translate(ray.direction * zoomDistance, Space.World);
+            if (Physics.Raycast(ray, out RaycastHit hit, MaxRaycastDistance))
+                if (hit.distance > DistanceAgainstTarget.Min && iSign > 0 || iSign < 0 && hit.distance < DistanceAgainstTarget.Max)
+//                    transform.Translate(ray.direction * zoomDistance, Space.World);
+                    m_Cam.Translate(Vector3.forward * zoomDistance, Space.Self);
         }
 
         private void MoveCameraWithInput()
         {
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-            float v = CrossPlatformInputManager.GetAxis("Vertical");
-//            Debug.Log(h + " " + v);
-            Vector3 MoveStep = v * transform.forward * SpeedAcceleration + h * transform.right * SpeedAcceleration;
+            Vector3 MoveStep = Vertical * transform.forward * CameraMovementSpeed + Horizontal * transform.right * CameraMovementSpeed;
             //Debug.Log(MoveStep + " " + transform.position);
             transform.position = MoveStep + transform.position;
         }
-
 
         private void OnDisable()
         {
@@ -102,13 +117,12 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
             Cursor.visible = true;
         }
 
-
         protected override void FollowTarget(float deltaTime)
         {
-            if (m_Target == null) return;
+            if (m_Target == null || Vertical != 0 || Horizontal != 0) return;
             // Move the rig towards target position.
 //            Quaternion rotToward = Quaternion.FromToRotation(transform.forward, m_Target.position.normalized);
-            transform.position = Vector3.Lerp(transform.position, m_Target.position, deltaTime * m_MoveSpeed);
+            transform.position = Vector3.Lerp(transform.position, m_Target.position, deltaTime * FollowTargetSpeed);
 //            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotToward, Time.deltaTime);
 //            transform.rotation = Quaternion.LookRotation(m_Target.transform.position.normalized, Vector3.up);
         }
@@ -116,8 +130,8 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
         public bool HasReachedTarget()
         {
             if (!m_Target) return false;
-            //            DebugInfo.Log(Math.Abs(transform.position.sqrMagnitude - m_Target.position.sqrMagnitude) + " " + MagnitudeThreshold);
-            return Math.Abs(transform.position.sqrMagnitude - m_Target.position.sqrMagnitude) < MagnitudeThreshold;
+            //            DebugInfo.Log(Math.Abs(transform.position.sqrMagnitude - m_Target.position.sqrMagnitude) + " " + FallowThreshold);
+            return Math.Abs(transform.position.sqrMagnitude - m_Target.position.sqrMagnitude) < FallowThreshold;
         }
 
 
@@ -131,26 +145,26 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
             var y = CrossPlatformInputManager.GetAxis("Mouse Y");
 
             // Adjust the look angle by an amount proportional to the turn speed and horizontal input.
-            m_LookAngle += x * m_TurnSpeed;
+            m_LookAngle += x * AngleRotationSpeed;
 
             // Rotate the rig (the root object) around Y axis only:
             m_TransformTargetRot = Quaternion.Euler(0f, m_LookAngle, 0f);
 
 
-            if (m_VerticalAutoReturn)
-            {
-                // For tilt input, we need to behave differently depending on whether we're using mouse or touch input:
-                // on mobile, vertical input is directly mapped to tilt value, so it springs back automatically when the look input is released
-                // we have to test whether above or below zero because we want to auto-return to zero even if min and max are not symmetrical.
-                m_TiltAngle = y > 0 ? Mathf.Lerp(0, -m_TiltMin, y) : Mathf.Lerp(0, m_TiltMax, -y);
-            }
-            else
-            {
+//            if (m_VerticalAutoReturn)
+//            {
+//                // For tilt input, we need to behave differently depending on whether we're using mouse or touch input:
+//                // on mobile, vertical input is directly mapped to tilt value, so it springs back automatically when the look input is released
+//                // we have to test whether above or below zero because we want to auto-return to zero even if min and max are not symmetrical.
+//                m_TiltAngle = y > 0 ? Mathf.Lerp(0, -TiltClampVector3.Min, y) : Mathf.Lerp(0, TiltClampVector3.Max, -y);
+//            }
+//            else
+//            {
                 // on platforms with a mouse, we adjust the current angle based on Y mouse input and turn speed
-                m_TiltAngle -= y * m_TurnSpeed;
+                m_TiltAngle -= y * AngleRotationSpeed;
                 // and make sure the new value is within the tilt range
-                m_TiltAngle = Mathf.Clamp(m_TiltAngle, m_TiltMin, m_TiltMax);
-            }
+                m_TiltAngle = Mathf.Clamp(m_TiltAngle, TiltClampVector3.Min, TiltClampVector3.Max);
+//            }
 
             // Tilt input around X is applied to the pivot (the child of this object)
             m_PivotTargetRot = Quaternion.Euler(m_TiltAngle, m_PivotEulers.y, m_PivotEulers.z);

@@ -8,5 +8,7 @@
         public const string RegularWayPoint = "WayPointWhite_11970";
         public const string ArrowProjectile = "ArrowProjectile_16716";
         public const string HeadUpDisplay = "Hud_11982";
+        public const string FreeLookCameraRig = "FreeLookCameraRig_14626";
+        public const string GlobalMapCamera = "GlobalMapCamera_-32866";
     }
 }

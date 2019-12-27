@@ -15,8 +15,12 @@ namespace Assets.TeamProjects.GamePrimal.Editor
         [MenuItem("Assets/Add/MainScene")]
         private static void AddMainScene() => AddObject<MainScene.MainScene>("MainScene", true);
 
-        [MenuItem("Assets/Add/FreeCameraRig")]
-        private static void AddFreeCameraRig() => AddCameraRig("FreeCameraRig", true);
+        [MenuItem("Assets/Add/Cameras/FreeCameraRig")]
+//        private static void AddFreeCameraRig() => AddCameraRig("FreeCameraRig", true);
+        private static void AddFreeCameraRig() => AddPrefab<FreeLookCamWithUserInput>(ResourcesList.FreeLookCameraRig, true);
+
+        [MenuItem("Assets/Add/Cameras/GlobalMapCamera")]
+        private static void GlobalMapCamera() => AddPrefab<FreeLookCamWithUserInput>(ResourcesList.GlobalMapCamera, true);
 
         [MenuItem("Assets/Add/HeadUpDisplay")]
         private static void AddHud() => AddPrefab<GameObject>(ResourcesList.HeadUpDisplay);
@@ -32,7 +36,6 @@ namespace Assets.TeamProjects.GamePrimal.Editor
 
             gm.AddComponent<T>();
         }
-        //        Hud_11982
 
         private static void AddPrefab<T>(string prefabName, bool theLock = false) where T : Object
         {
@@ -48,7 +51,7 @@ namespace Assets.TeamProjects.GamePrimal.Editor
         {
             if (theLock && DoesScriptExist<FreeLookCamWithUserInput>()) return;
 
-            GameObject cameraRigPrefab = Resources.Load<GameObject>("FreeLookCameraRig_14626");
+            GameObject cameraRigPrefab = Resources.Load<GameObject>(ResourcesList.FreeLookCameraRig);
             Transform sBuilder = GetSceneBuilder();
 
             if (cameraRigPrefab && sBuilder) 

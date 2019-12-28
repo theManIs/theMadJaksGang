@@ -1,7 +1,6 @@
 using System;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
 
 namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
 {
@@ -39,9 +38,9 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
         private Quaternion m_TransformTargetRot;
         private Camera localCamera;
 
-        private float Scroll => CrossPlatformInputManager.GetAxis("Mouse ScrollWheel");
-        private float Horizontal => CrossPlatformInputManager.GetAxis("Horizontal");
-        private float Vertical => CrossPlatformInputManager.GetAxis("Vertical");
+        private float Scroll => Input.GetAxis("Mouse ScrollWheel");
+        private float Horizontal => Input.GetAxis("Horizontal");
+        private float Vertical => Input.GetAxis("Vertical");
         private bool Mouse2 => Input.GetKey(KeyCode.Mouse2);
         private bool Mouse0 => Input.GetKey(KeyCode.Mouse0);
 
@@ -141,8 +140,8 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
                 return;
 
             // Read the user input
-            var x = CrossPlatformInputManager.GetAxis("Mouse X");
-            var y = CrossPlatformInputManager.GetAxis("Mouse Y");
+            var x = Input.GetAxis("Mouse X");
+            var y = Input.GetAxis("Mouse Y");
 
             // Adjust the look angle by an amount proportional to the turn speed and horizontal input.
             m_LookAngle += x * AngleRotationSpeed;

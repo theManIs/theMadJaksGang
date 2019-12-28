@@ -10,5 +10,8 @@
         public const string HeadUpDisplay = "Hud_11982";
         public const string FreeLookCameraRig = "FreeLookCameraRig_14626";
         public const string GlobalMapCamera = "GlobalMapCamera_-32866";
+        public const string PureWeaponScene = "Assets/TeamProjects/AllScenes/PureWeaponScene.unity";
+        public const string AnimationDemoScene = "Assets/TeamProjects/AllScenes/AnimationDemoScene.unity";
+        public const string MapScene = "Assets/TeamProjects/AllScenes/MapScene.unity";
     }
 }

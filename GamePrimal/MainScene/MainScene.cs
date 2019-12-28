@@ -23,6 +23,8 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
         private SceneBuilder _sceneBuilder;
         private ControllerPathFinding _cPathFinding;
 
+        public ControllerInput ControllerInput => _controllerInput ?? ControllerRouter.GetControllerInput().UserAwake();
+
         void Awake()
         {
             if (!Camera.main)
@@ -39,8 +41,9 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
 //            _controllerCharacterMovement = new ControllerCharacterMovement();
             _cPathFinding = ControllerRouter.GetControllerPathFinding();
             _controllerAttackCapture = ControllerRouter.GetControllerAttackCapture();
-            _controllerInput = ControllerRouter.GetControllerInput().UserAwake();
+            _controllerInput = ControllerInput;
         }
+
 
         public Transform GetFocus() => _subjectFocus.GetFocus();
 //        public Transform GetCapture() => _subjectFocus.RetrieveRaycastCapture();
@@ -59,7 +62,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
             _controllerAttackCapture.Start();
 //            _tracerProjectileScript.UserStart();
             _cPathFinding.UserStart(new StartParams());
-            _controllerInput.Start();
+            ControllerInput.Start();
         }
 
         // UserUpdate is called once per frame
@@ -67,7 +70,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
         {
             if (!_engaged) return;
 
-            _controllerInput.Update();
+            ControllerInput.Update();
             _subjectFocus.UpdateOnce();
             _controllerAttackCapture.Update();
             _highlightFrame.FixedUpdate(_subjectFocus.GetFocus());
@@ -85,12 +88,12 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
 
         private void OnEnable()
         {
-            _controllerInput.UserEnable();
+            ControllerInput.UserEnable();
         }
 
         private void OnDisable()
         {
-            _controllerInput.UserDisable();
+            ControllerInput.UserDisable();
         }
     }
 }

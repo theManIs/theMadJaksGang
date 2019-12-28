@@ -2,6 +2,8 @@
 using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts;
 using Assets.TeamProjects.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh;
 using UnityEditor;
 using UnityEngine;
 using UnityStandardAssets.Cameras;

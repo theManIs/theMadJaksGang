@@ -1,8 +1,9 @@
 ﻿using Assets.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Assets.GamePrimal.SeparateComponents.PauseMenu
+namespace Assets.TeamProjects.GamePrimal.SeparateComponents.PauseMenu
 {
     public class PauseMenuBlock
     {
@@ -19,14 +20,14 @@ namespace Assets.GamePrimal.SeparateComponents.PauseMenu
             ControllerEvent.UserInputBroadcaster -= GetToMainMenu;
         }
 
-        public void GetToMainMenu(PressedButtons _pressedButtons)
+        public void GetToMainMenu(PressedButtons pressedButtons)
         {
+            if (!_sceneShift) return;
 
-            if (_pressedButtons.EscapeButton)
-            {
-                Debug.Log("ReloadScene");
-                SceneManager.LoadScene(_sceneShift.SceneManagerStruct.MainMenuScene);
-            }
+            if (pressedButtons.P)
+                _sceneShift.LoadPureWeaponScene();
+            else if (pressedButtons.L)
+                _sceneShift.LoadMapScene();
         }
     }
 }

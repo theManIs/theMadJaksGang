@@ -1,6 +1,9 @@
-﻿using Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts;
+﻿using Assets.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts;
 using Assets.TeamProjects.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.ListsOfStuff;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh;
 using UnityEditor;
 using UnityEngine;
 using UnityStandardAssets.Cameras;
@@ -9,11 +12,14 @@ namespace Assets.TeamProjects.GamePrimal.Editor
 {
     public class CreateMenuSceneBuilder : ScriptableObject
     {
-        [MenuItem("Assets/Add/SceneBuilder")]
+        [MenuItem("Assets/Add/Scene/SceneBuilder")]
         static void AddSceneBuilder() => AddObject<SceneBuilder>("SceneBuilder", true);
 
-        [MenuItem("Assets/Add/MainScene")]
+        [MenuItem("Assets/Add/Scene/MainScene")]
         private static void AddMainScene() => AddObject<MainScene.MainScene>("MainScene", true);
+
+        [MenuItem("Assets/Add/Scene/SceneShift")]
+        private static void AddSceneShift() => AddObject<SceneShift>("SceneShift", true);
 
         [MenuItem("Assets/Add/Cameras/FreeCameraRig")]
 //        private static void AddFreeCameraRig() => AddCameraRig("FreeCameraRig", true);

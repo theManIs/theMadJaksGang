@@ -119,7 +119,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 5838053d633ba7b429e4a01ad1cc37f0, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 7b195a46fa679ce43901ea2332163bc2, type: 2}
 --- !u!1 &264927
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 264927}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1da555adebcf2e4799ac3f4ab691b09, type: 3}
+  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4678409
@@ -1751,6 +1751,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
+  InfiniteMoving: 0
+  _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &166798189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1842,9 +1844,16 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: 9013047877416620597, guid: 7458e0f000dc7f449874a5cbffe6a78e,
-    type: 3}
-  MeshSpeed: 4
+  CharacterFeatures: {fileID: 11400000, guid: 8f067f268f94ecd4b8dafaf527bb95e7, type: 2}
+  MaxTurnPoints: 0
+  TurnPoints: 0
+  InitialTurnPoints: 0
+  CharacterPortrait: {fileID: 0}
+  MaxHealth: 0
+  ExperienceActual: 0
+  ExperienceMax: 0
+  WeaponProjectile: {fileID: 0}
+  MoveSpeed: 0
 --- !u!136 &166798193
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1869,7 +1878,7 @@ Animator:
   m_GameObject: {fileID: 166798187}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f0d7d9fd530a12e4cb6f8f11533a9788, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4a5e8cf67334f1147b1a5367d52f9438, type: 2}
+  m_Controller: {fileID: 9100000, guid: fef5da03570d66e47bab663906f393e4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3756,6 +3765,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
+  InfiniteMoving: 0
+  _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &309690289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3847,9 +3858,16 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: 5281868987032111156, guid: 109f33edf0b5bef4ba5d271bae56c1cc,
-    type: 3}
-  MeshSpeed: 4
+  CharacterFeatures: {fileID: 11400000, guid: 8f067f268f94ecd4b8dafaf527bb95e7, type: 2}
+  MaxTurnPoints: 0
+  TurnPoints: 0
+  InitialTurnPoints: 0
+  CharacterPortrait: {fileID: 0}
+  MaxHealth: 0
+  ExperienceActual: 0
+  ExperienceMax: 0
+  WeaponProjectile: {fileID: 0}
+  MoveSpeed: 0
 --- !u!136 &309690293
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3874,7 +3892,7 @@ Animator:
   m_GameObject: {fileID: 309690287}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f0d7d9fd530a12e4cb6f8f11533a9788, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4a5e8cf67334f1147b1a5367d52f9438, type: 2}
+  m_Controller: {fileID: 9100000, guid: fef5da03570d66e47bab663906f393e4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4406,7 +4424,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 333578030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1da555adebcf2e4799ac3f4ab691b09, type: 3}
+  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &336075150
@@ -4661,6 +4679,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
+  InfiniteMoving: 0
+  _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &369324637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4752,9 +4772,16 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: 8314681947802918673, guid: d2fa85b351819fd4885bdfa35c28856a,
-    type: 3}
-  MeshSpeed: 4
+  CharacterFeatures: {fileID: 0}
+  MaxTurnPoints: 0
+  TurnPoints: 0
+  InitialTurnPoints: 0
+  CharacterPortrait: {fileID: 0}
+  MaxHealth: 0
+  ExperienceActual: 0
+  ExperienceMax: 0
+  WeaponProjectile: {fileID: 0}
+  MoveSpeed: 0
 --- !u!136 &369324641
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4996,6 +5023,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
+  InfiniteMoving: 0
+  _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &376887737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5012,9 +5041,16 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: -7847976596070025753, guid: edc1c322363a708439bad6f7fb2d2f23,
-    type: 3}
-  MeshSpeed: 4
+  CharacterFeatures: {fileID: 0}
+  MaxTurnPoints: 0
+  TurnPoints: 0
+  InitialTurnPoints: 0
+  CharacterPortrait: {fileID: 0}
+  MaxHealth: 0
+  ExperienceActual: 0
+  ExperienceMax: 0
+  WeaponProjectile: {fileID: 0}
+  MoveSpeed: 0
 --- !u!136 &376887738
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6580,7 +6616,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 516452057}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1da555adebcf2e4799ac3f4ab691b09, type: 3}
+  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &517744822
@@ -7891,6 +7927,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
+  InfiniteMoving: 0
+  _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &632236057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7982,9 +8020,16 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: -7847976596070025753, guid: edc1c322363a708439bad6f7fb2d2f23,
-    type: 3}
-  MeshSpeed: 4
+  CharacterFeatures: {fileID: 11400000, guid: 8f067f268f94ecd4b8dafaf527bb95e7, type: 2}
+  MaxTurnPoints: 0
+  TurnPoints: 0
+  InitialTurnPoints: 0
+  CharacterPortrait: {fileID: 0}
+  MaxHealth: 0
+  ExperienceActual: 0
+  ExperienceMax: 0
+  WeaponProjectile: {fileID: 0}
+  MoveSpeed: 0
 --- !u!136 &632236061
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8009,7 +8054,7 @@ Animator:
   m_GameObject: {fileID: 632236055}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f0d7d9fd530a12e4cb6f8f11533a9788, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4a5e8cf67334f1147b1a5367d52f9438, type: 2}
+  m_Controller: {fileID: 9100000, guid: fef5da03570d66e47bab663906f393e4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -8131,6 +8176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
+  InfiniteMoving: 0
+  _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &645562779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8222,9 +8269,16 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: 8697812661151931783, guid: 836d5bda9924a5a4ba8bdd20f7c1baf0,
-    type: 3}
-  MeshSpeed: 4
+  CharacterFeatures: {fileID: 11400000, guid: 8f067f268f94ecd4b8dafaf527bb95e7, type: 2}
+  MaxTurnPoints: 0
+  TurnPoints: 0
+  InitialTurnPoints: 0
+  CharacterPortrait: {fileID: 0}
+  MaxHealth: 0
+  ExperienceActual: 0
+  ExperienceMax: 0
+  WeaponProjectile: {fileID: 0}
+  MoveSpeed: 0
 --- !u!136 &645562783
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8249,7 +8303,7 @@ Animator:
   m_GameObject: {fileID: 645562777}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: f0d7d9fd530a12e4cb6f8f11533a9788, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4a5e8cf67334f1147b1a5367d52f9438, type: 2}
+  m_Controller: {fileID: 9100000, guid: fef5da03570d66e47bab663906f393e4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -9032,7 +9086,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 718386185}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1da555adebcf2e4799ac3f4ab691b09, type: 3}
+  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &719556711
@@ -10404,6 +10458,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
+  InfiniteMoving: 0
+  _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &834026864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10420,9 +10476,16 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: 5281868987032111156, guid: 109f33edf0b5bef4ba5d271bae56c1cc,
-    type: 3}
-  MeshSpeed: 3
+  CharacterFeatures: {fileID: 11400000, guid: 90a80a41a0e258747b4b7cd971be0ca5, type: 2}
+  MaxTurnPoints: 0
+  TurnPoints: 0
+  InitialTurnPoints: 0
+  CharacterPortrait: {fileID: 0}
+  MaxHealth: 0
+  ExperienceActual: 0
+  ExperienceMax: 0
+  WeaponProjectile: {fileID: 0}
+  MoveSpeed: 0
 --- !u!136 &834026865
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10522,7 +10585,7 @@ Animator:
   m_GameObject: {fileID: 834026862}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b66a292a062823843b9d7f427d736602, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4a5e8cf67334f1147b1a5367d52f9438, type: 2}
+  m_Controller: {fileID: 9100000, guid: fef5da03570d66e47bab663906f393e4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -13347,6 +13410,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
+  InfiniteMoving: 0
+  _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &1031844287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13363,9 +13428,16 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: 8488152998251271998, guid: 3ce98cd8856ada542980da3471d6fe4b,
-    type: 3}
-  MeshSpeed: 4
+  CharacterFeatures: {fileID: 0}
+  MaxTurnPoints: 0
+  TurnPoints: 0
+  InitialTurnPoints: 0
+  CharacterPortrait: {fileID: 0}
+  MaxHealth: 0
+  ExperienceActual: 0
+  ExperienceMax: 0
+  WeaponProjectile: {fileID: 0}
+  MoveSpeed: 0
 --- !u!136 &1031844288
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -16162,7 +16234,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1260196672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1da555adebcf2e4799ac3f4ab691b09, type: 3}
+  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1261597164
@@ -16195,6 +16267,58 @@ Transform:
   - {fileID: 1182276066}
   m_Father: {fileID: 1753527137}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1265079382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1265079384}
+  - component: {fileID: 1265079383}
+  m_Layer: 0
+  m_Name: SceneShift
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1265079383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265079382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6329fafbbea565d4095831355d2ae8f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActualScene:
+    _sceneAsset: {fileID: 0}
+  SManager:
+    PureWeaponScene:
+      _sceneAsset: {fileID: 0}
+    AnimationDemoScene:
+      _sceneAsset: {fileID: 0}
+    MapScene:
+      _sceneAsset: {fileID: 0}
+--- !u!4 &1265079384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265079382}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1266537325
 GameObject:
@@ -17540,7 +17664,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1398589595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1da555adebcf2e4799ac3f4ab691b09, type: 3}
+  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1409787903
@@ -19054,7 +19178,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1500926438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1da555adebcf2e4799ac3f4ab691b09, type: 3}
+  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1504419585
@@ -19393,20 +19517,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07aa2390649fc2a47ae882ee6d967196, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LockTargetFerocious: 0
   m_Target: {fileID: 0}
-  m_AutoTargetPlayer: 1
   m_UpdateType: 0
-  MaxCloseDistance: 5
-  MaxFarDistance: 30
-  m_MoveSpeed: 1
-  m_TurnSpeed: 1.5
+  DistanceAgainstTarget:
+    Init: 14
+    Min: 14
+    Max: 17
+  TiltClampVector3:
+    Init: 35
+    Min: 30
+    Max: 45
+  FollowTargetSpeed: 1
+  CameraMovementSpeed: 0.2
+  AngleRotationSpeed: 1.5
   m_TurnSmoothing: 0
-  m_TiltMax: 75
-  m_TiltMin: 45
   m_LockCursor: 0
-  m_VerticalAutoReturn: 0
-  SpeedAcceleration: 0.2
-  MagnitudeThreshold: 300
+  FallowThreshold: 8
+  MaxRaycastDistance: 100
 --- !u!54 &1526765837
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -22235,7 +22363,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1792233342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1da555adebcf2e4799ac3f4ab691b09, type: 3}
+  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1792826227
@@ -23072,6 +23200,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
+  InfiniteMoving: 0
+  _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &1879254458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23088,9 +23218,16 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: 8697812661151931783, guid: 836d5bda9924a5a4ba8bdd20f7c1baf0,
-    type: 3}
-  MeshSpeed: 4
+  CharacterFeatures: {fileID: 11400000, guid: 90a80a41a0e258747b4b7cd971be0ca5, type: 2}
+  MaxTurnPoints: 0
+  TurnPoints: 0
+  InitialTurnPoints: 0
+  CharacterPortrait: {fileID: 0}
+  MaxHealth: 0
+  ExperienceActual: 0
+  ExperienceMax: 0
+  WeaponProjectile: {fileID: 0}
+  MoveSpeed: 0
 --- !u!136 &1879254459
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -23190,7 +23327,7 @@ Animator:
   m_GameObject: {fileID: 1879254456}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b66a292a062823843b9d7f427d736602, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4a5e8cf67334f1147b1a5367d52f9438, type: 2}
+  m_Controller: {fileID: 9100000, guid: fef5da03570d66e47bab663906f393e4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -23744,7 +23881,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1932124846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1da555adebcf2e4799ac3f4ab691b09, type: 3}
+  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1936968708
@@ -24528,7 +24665,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2010231079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1da555adebcf2e4799ac3f4ab691b09, type: 3}
+  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2012248648
@@ -25563,6 +25700,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
+  InfiniteMoving: 0
+  _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &2091790342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25654,9 +25793,16 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: 8304583203783348068, guid: 73712f7a362aaa6498ca32e297578e7a,
-    type: 3}
-  MeshSpeed: 4
+  CharacterFeatures: {fileID: 0}
+  MaxTurnPoints: 0
+  TurnPoints: 0
+  InitialTurnPoints: 0
+  CharacterPortrait: {fileID: 0}
+  MaxHealth: 0
+  ExperienceActual: 0
+  ExperienceMax: 0
+  WeaponProjectile: {fileID: 0}
+  MoveSpeed: 0
 --- !u!136 &2091790346
 CapsuleCollider:
   m_ObjectHideFlags: 0

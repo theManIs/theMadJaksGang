@@ -90,11 +90,11 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
             for (int i = 1; i < 5; i++)
             {
                 Transform nthChild = _initiativeHolder.transform.GetChild(i);
-
+                Debug.Log(localDrum.Count);
                 if (localDrum.Count > 0)
                 {
                     Transform recentChar = localDrum.Dequeue();
-
+                    Debug.Log(recentChar);
                     if (nthChild.GetComponent<Image>())
                         nthChild.GetComponent<Image>().sprite = recentChar.GetComponent<MonoAmplifierRpg>().GetCharacterPortrait();
                 }

@@ -1,9 +1,9 @@
 ﻿using Assets.GamePrimal.Navigation.HighlightFrame;
 using UnityEngine;
-using Assets.GamePrimal.SeparateComponents.PauseMenu;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.PauseMenu;
 using static Assets.GamePrimal.Controllers.ControllerRouter;
 
 namespace Assets.GamePrimal.Controllers
@@ -11,6 +11,10 @@ namespace Assets.GamePrimal.Controllers
     public struct PressedButtons
     {
         public bool EscapeButton;
+        public bool N;
+        public bool P;
+        public bool O;
+        public bool L;
     }
 
     public class ControllerInput
@@ -58,7 +62,13 @@ namespace Assets.GamePrimal.Controllers
 
             if (Input.GetKeyDown(KeyCode.Escape))
                 _pressedButtons.EscapeButton = true;
-
+            else if (Input.GetKeyDown(KeyCode.O))
+                _pressedButtons.O = true;
+            else if (Input.GetKeyDown(KeyCode.P))
+                _pressedButtons.P = true;
+            else if (Input.GetKeyDown(KeyCode.L))
+                _pressedButtons.L = true;
+            
             _subjectFocus.UpdateOnce();
             _pauseMenu.GetToMainMenu(_pressedButtons);
             _controllerMainCamera.UserUpdate();

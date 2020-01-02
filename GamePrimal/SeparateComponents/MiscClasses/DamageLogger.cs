@@ -105,7 +105,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 //                Invoke(nameof(HitApply), 1f);
 //                Invoke(nameof(HitEndedHandler), 2);
 
-                EHitDetected.Invoke(acp);
+                EHitDetected.Invoke(new HitDetectedParams() {HasDied = acp.HasDied, HasHit = acp.HasHit, Source = acp.Source, Target = acp.Target});
             }
         }
 
@@ -113,7 +113,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         {
 //            DebugInfo.Log("Release lock");
             _cAttackCapture.ReleaseFixated();
-            EHitFinished.Invoke(new EventHitFinishedParams());
+            EHitFinished.Invoke(new EventParamsBase());
 
 //            _attacking = false;
         }

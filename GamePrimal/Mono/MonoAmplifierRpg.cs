@@ -68,7 +68,7 @@ namespace Assets.GamePrimal.Mono
             TurnPoints = InitialTurnPoints;
         }
 
-        private void HitCapturedHandler(AttackCaptureParams acp)
+        private void HitCapturedHandler(EventParamsBase epb)
         {
             TurnPoints -= 2;
         }

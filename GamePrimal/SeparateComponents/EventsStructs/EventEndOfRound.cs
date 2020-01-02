@@ -2,16 +2,9 @@
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs
 {
-    public delegate void EventEndOfRoundDelegate(EventEndOfRoundParams acp);
-
-    public struct EventEndOfRoundParams
-    {
-
-    }
-
     public struct EventEndOfRound
     {
-        public event EventEndOfRoundDelegate Event;
-        public void Invoke(EventEndOfRoundParams args) => Event?.Invoke(args);
+        public event EventParamsBaseDelegate Event;
+        public void Invoke(EventParamsBase args) => Event?.Invoke(args);
     }
 }

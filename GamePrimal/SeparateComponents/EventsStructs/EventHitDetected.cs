@@ -1,17 +1,19 @@
 ﻿using Assets.TeamProjects.GamePrimal.Controllers;
+using UnityEngine;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs
 {
-    public delegate void HitDetectedDelegate(AttackCaptureParams acp);
-
-    public struct HitDetectedParams
+    public class HitDetectedParams : EventParamsBase
     {
-
+        public Transform Source;
+        public Transform Target;
+        public bool HasHit;
+        public bool HasDied;
     }
 
     public struct EventHitDetected
     {
-        public event HitDetectedDelegate HitDetectedEvent;
-        public void Invoke(AttackCaptureParams acp) => HitDetectedEvent?.Invoke(acp);
+        public event EventParamsBaseDelegate HitDetectedEvent;
+        public void Invoke(HitDetectedParams acp) => HitDetectedEvent?.Invoke(acp);
     }
 }

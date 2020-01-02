@@ -15,12 +15,12 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
         private bool _engaged = true;
         private HighlightFrame _highlightFrame;
         private ControllerFocusSubject _subjectFocus;
-        private MovableObjects _movableObjects;
+//        private MovableObjects _movableObjects;
 //        private TracerProjectileScript _tracerProjectileScript;
         private ControllerCharacterMovement _controllerCharacterMovement;
         private ControllerAttackCapture _controllerAttackCapture;
         private ControllerInput _controllerInput;
-        private SceneBuilder _sceneBuilder;
+//        private SceneBuilder _sceneBuilder;
         private ControllerPathFinding _cPathFinding;
 
         public ControllerInput ControllerInput => _controllerInput ?? ControllerRouter.GetControllerInput().UserAwake();

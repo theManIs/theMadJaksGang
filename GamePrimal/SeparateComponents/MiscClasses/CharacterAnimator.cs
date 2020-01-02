@@ -97,7 +97,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             }
         }
 
-        private void HitFinished(EventHitFinishedParams acp)
+        private void HitFinished(EventParamsBase epb)
         {
             _attacking = false;
         }

@@ -27,4 +27,4 @@ MonoBehaviour:
   ExperienceMax: 0
   PreferredProjectile: {fileID: 4681021545452234, guid: 7f44d876055f2ba4a8387a929924da06,
     type: 3}
-  MoveSpeed: 2
+  MoveSpeed: 1

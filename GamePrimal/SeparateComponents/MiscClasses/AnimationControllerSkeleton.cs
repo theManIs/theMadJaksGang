@@ -26,7 +26,7 @@ namespace Assets.GamePrimal.CharacterOrtJoyPrafabs.Enemies.Skeleton
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
             _manMainScene = FindObjectOfType<MainScene>();
-            _ce = ControllerRouter.GetControllerEvent();
+            _ce = StaticProxyRouter.GetControllerEvent();
             _amplifier = GetComponent<MonoAmplifierRpg>();
 
             ControllerFloatingText.Initialize();

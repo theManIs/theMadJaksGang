@@ -4,7 +4,7 @@ using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using UnityEngine;
-using static Assets.GamePrimal.Controllers.ControllerRouter;
+using static Assets.TeamProjects.GamePrimal.Proxies.StaticProxyRouter;
 
 namespace Assets.TeamProjects.GamePrimal.Controllers
 {

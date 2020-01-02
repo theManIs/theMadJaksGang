@@ -3,6 +3,7 @@ using Assets.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
@@ -26,7 +27,7 @@ namespace Assets.GamePrimal.Mono
 
         private void Awake()
         {
-            _cDrumSpinner = ControllerRouter.GetControllerDrumSpinner();
+            _cDrumSpinner = StaticProxyRouter.GetControllerDrumSpinner();
             _characterAnimator = new CharacterAnimator();
             _damageLogger = gameObject.AddComponent<DamageLogger>();
 

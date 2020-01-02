@@ -3,6 +3,7 @@ using Assets.GamePrimal.Controllers;
 using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Mono;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
@@ -28,7 +29,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
 
         public void UserAwake(AwakeParams ap)
         {
-            _cFocusSubject = ControllerRouter.GetControllerFocusSubject();
+            _cFocusSubject = StaticProxyRouter.GetControllerFocusSubject();
             _actionPointsHolder = Object.FindObjectOfType<ActionPointsHolder>();
             _healthHolder = Object.FindObjectOfType<HealthHolder>();
             _initiativeHolder = Object.FindObjectOfType<InitiativeHolder>();

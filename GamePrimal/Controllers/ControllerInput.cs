@@ -3,7 +3,7 @@ using UnityEngine;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
-using static Assets.GamePrimal.Controllers.ControllerRouter;
+using static Assets.TeamProjects.GamePrimal.Proxies.StaticProxyRouter;
 
 namespace Assets.GamePrimal.Controllers
 {

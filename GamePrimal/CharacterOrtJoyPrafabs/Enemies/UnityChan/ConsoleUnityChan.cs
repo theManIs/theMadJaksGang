@@ -13,7 +13,7 @@ namespace Assets.GamePrimal.CharacterOrtJoyPrafabs.Enemies.UnityChan
         void Awake()
         {
             _animator = GetComponent<Animator>();
-            _ce = ControllerRouter.GetControllerEvent();
+            _ce = StaticProxyRouter.GetControllerEvent();
         }
 
         private void OnEnable() => ControllerEvent.HitAppliedHandler += GetDamage;

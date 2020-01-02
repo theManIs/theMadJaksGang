@@ -5,6 +5,7 @@ using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Navigation.HighlightFrame;
 using Assets.TeamProjects.GamePrimal.Navigation.Pathfinder;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
 //        private SceneBuilder _sceneBuilder;
         private ControllerPathFinding _cPathFinding;
 
-        public ControllerInput ControllerInput => _controllerInput ?? ControllerRouter.GetControllerInput().UserAwake();
+        public ControllerInput ControllerInput => _controllerInput ?? StaticProxyRouter.GetControllerInput().UserAwake();
 
         void Awake()
         {
@@ -35,13 +36,13 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
             }
 
             _highlightFrame = new HighlightFrame();
-            _subjectFocus = ControllerRouter.GetControllerFocusSubject();
+            _subjectFocus = StaticProxyRouter.GetControllerFocusSubject();
             Debug.Log("Subject focus hash " +_subjectFocus.GetHashCode());
 //            _movableObjects = FindObjectOfType<MovableObjects>();
 //            _tracerProjectileScript = new TracerProjectileScript();
 //            _controllerCharacterMovement = new ControllerCharacterMovement();
-            _cPathFinding = ControllerRouter.GetControllerPathFinding();
-            _controllerAttackCapture = ControllerRouter.GetControllerAttackCapture();
+            _cPathFinding = StaticProxyRouter.GetControllerPathFinding();
+            _controllerAttackCapture = StaticProxyRouter.GetControllerAttackCapture();
             _controllerInput = ControllerInput;
         }
 

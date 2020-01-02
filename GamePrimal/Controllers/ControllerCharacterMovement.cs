@@ -14,8 +14,8 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
         public ControllerCharacterMovement UserAwake()
         {
-            _cAttackCapture = ControllerRouter.GetControllerAttackCapture();
-            _cEvent = ControllerRouter.GetControllerEvent();
+            _cAttackCapture = StaticProxyRouter.GetControllerAttackCapture();
+            _cEvent = StaticProxyRouter.GetControllerEvent();
 
             return this;
         }

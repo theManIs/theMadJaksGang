@@ -2,6 +2,7 @@
 using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Navigation.Pathfinder;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
     {
         public bool DebugFlag = false;
         private readonly TracerProjectileScript _tracerProjectile = new TracerProjectileScript();
-        private ControllerFocusSubject _cSubjectFocus = ControllerRouter.GetControllerFocusSubject();
+        private ControllerFocusSubject _cSubjectFocus = StaticProxyRouter.GetControllerFocusSubject();
 
         public void UserStart(StartParams sp)
         {

@@ -1,6 +1,7 @@
 ﻿using Assets.GamePrimal.Controllers;
 using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using UnityEngine;
 
@@ -25,7 +26,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         public void Start()
         {
             _theMainScene = Object.FindObjectOfType<MainScene.MainScene>();
-            _cFocusSubject = ControllerRouter.GetControllerFocusSubject();
+            _cFocusSubject = StaticProxyRouter.GetControllerFocusSubject();
         }
 
         public void ReleaseFixated() => HasHit = false;
@@ -42,7 +43,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
                 {
                     AttackCaptureParams acp = new AttackCaptureParams() { Source = captured, Target = focused, HasHit = HasHit };
 
-                    ControllerRouter.GetControllerEvent().HitDetectedInvoke(acp);
+                    StaticProxyRouter.GetControllerEvent().HitDetectedInvoke(acp);
 //                    Debug.Log("Locked " + Time.time);
                     HitFixated = true;
                 }

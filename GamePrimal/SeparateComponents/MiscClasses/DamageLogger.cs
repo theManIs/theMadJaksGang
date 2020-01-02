@@ -43,9 +43,9 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             _animator = GetComponent<Animator>();
             _capsuleCollider = GetComponent<CapsuleCollider>();
 //            _manMainScene = Object.FindObjectOfType<MainScene.MainScene>();
-            _ce = ControllerRouter.GetControllerEvent();
+            _ce = StaticProxyRouter.GetControllerEvent();
             _amplifier = GetComponent<MonoAmplifierRpg>();
-            _cAttackCapture = ControllerRouter.GetControllerAttackCapture();
+            _cAttackCapture = StaticProxyRouter.GetControllerAttackCapture();
 
             ControllerFloatingText.Initialize();
         }

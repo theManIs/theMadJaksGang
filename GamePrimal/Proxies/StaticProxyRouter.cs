@@ -1,15 +1,11 @@
-﻿using System;
-using System.Diagnostics.Tracing;
+﻿using Assets.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Controllers;
-using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
-using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using UnityEngine;
-using Object = System.Object;
 
-namespace Assets.GamePrimal.Controllers
+namespace Assets.TeamProjects.GamePrimal.Proxies
 {
-    public class ControllerRouter
+    public class StaticProxyRouter
     {
         private static ControllerInput _cInput;
         private static ControllerDrumSpinner _cDrum;

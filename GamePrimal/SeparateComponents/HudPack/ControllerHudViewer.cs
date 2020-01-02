@@ -8,7 +8,7 @@ using Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
 using UnityEngine.UI;
-using static Assets.GamePrimal.Controllers.ControllerRouter;
+using static Assets.TeamProjects.GamePrimal.Proxies.StaticProxyRouter;
 using static Assets.TeamProjects.GamePrimal.SeparateComponents.ListsOfStuff.ResourcesList;
 using static UnityEngine.Resources;
 

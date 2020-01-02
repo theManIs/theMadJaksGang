@@ -10,14 +10,21 @@ using UnityEngine.UI;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
 {
-    public class HudViewer : IUserAwake, IUpdate
+    public class HudViewer : IUserAwake, IUpdate, IUserAwakeInstantiator<HudViewer>
     {
+        public bool DebugFlag = false;
         private ActionPointsHolder _actionPointsHolder;
         private ControllerFocusSubject _cFocusSubject;
         private HealthHolder _healthHolder;
         private InitiativeHolder _initiativeHolder;
         private ControllerDrumSpinner _cDrupSpinner;
         private ExperienceHolder _expHolder;
+        public HudViewer UserAwakeInstantiator(AwakeParams ap)
+        {
+            UserAwake(ap);
+
+            return this;
+        }
 
         public void UserAwake(AwakeParams ap)
         {
@@ -28,12 +35,6 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
             _expHolder = Object.FindObjectOfType<ExperienceHolder>();
             _cDrupSpinner = ControllerRouter.GetControllerDrumSpinner();
         }
-
-        public void UserStart(StartParams sp)
-        {
-            throw new System.NotImplementedException();
-        }
-
 
         public void ShowTurnPoints(int points, Transform actualInvoker)
         {
@@ -49,12 +50,12 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
         {
             if (actualInvoker != _cFocusSubject.GetHardFocus()) return;
 
-            Slider healthSlider = _healthHolder.GetComponent<Slider>();
+            Slider healthSlider = _healthHolder.GetComponentInChildren<Slider>();
 
             if (healthSlider)
             {
-                _healthHolder.GetComponent<Slider>().value = health;
-                _healthHolder.GetComponent<Slider>().maxValue = maxHealth;
+                healthSlider.value = health;
+                healthSlider.maxValue = maxHealth;
             }
         }
 
@@ -62,12 +63,12 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
         {
             if (actualInvoker != _cFocusSubject.GetHardFocus()) return;
 
-            Slider expSlider = _expHolder.GetComponent<Slider>();
+            Slider expSlider = _expHolder.GetComponentInChildren<Slider>();
 
             if (expSlider)
             {
-                _expHolder.GetComponent<Slider>().value = exp;
-                _expHolder.GetComponent<Slider>().maxValue = maxExp;
+                expSlider.value = exp;
+                expSlider.maxValue = maxExp;
             }
         }
 
@@ -77,20 +78,27 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
 
             Queue<Transform> localDrum = _cDrupSpinner.GetDrum();
             Transform hardFocus = _cDrupSpinner.GetWhoseTurn();
-//            Debug.Log(localDrum.Count);
+            
+            if (DebugFlag) Debug.Log("Does not have a focus: " + hardFocus);
 
             if (hardFocus)
             {   
                 Transform nthChild = _initiativeHolder.transform.GetChild(0);
+                Image nthImage = nthChild.GetComponent<Image>();
+                Sprite portraitSprite = hardFocus.GetComponent<MonoAmplifierRpg>().GetCharacterPortrait();
 
-                if (nthChild.GetComponent<Image>())
-                    nthChild.GetComponent<Image>().sprite = hardFocus.GetComponent<MonoAmplifierRpg>().GetCharacterPortrait();
+                if (nthImage)
+                    nthChild.GetComponent<Image>().sprite = portraitSprite;
+
+                if (DebugFlag && !nthChild) Debug.Log("Does not have the first icon: " + nthChild);
+                if (DebugFlag && !portraitSprite) Debug.Log("Does not have portrait sprite: " + portraitSprite);
+                if (DebugFlag && !nthImage) Debug.Log("Does not have the first image: " + nthImage + " " + nthImage.sprite);
             }
 
             for (int i = 1; i < 5; i++)
             {
                 Transform nthChild = _initiativeHolder.transform.GetChild(i);
-                Debug.Log(localDrum.Count);
+//                Debug.Log(localDrum.Count);
                 if (localDrum.Count > 0)
                 {
                     Transform recentChar = localDrum.Dequeue();

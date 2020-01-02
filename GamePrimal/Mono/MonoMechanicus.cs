@@ -11,7 +11,7 @@ using UnityEngine.AI;
 namespace Assets.GamePrimal.Mono
 {
     [RequireComponent(typeof(MonoAmplifierRpg))]
-    public class MonoMechanicus : MonoBehaviour
+    public class MonoMechanicus : MonoBehaviourBaseClass
     {
         public bool _iAmMoving = false;
         public bool InfiniteMoving = false;
@@ -21,18 +21,20 @@ namespace Assets.GamePrimal.Mono
         private DamageLogger _damageLogger;
         private Rigidbody _rb;
         public MonoAmplifierRpg _monoAmplifierRpg;
-        private HudViewer _hudViwer;
+//        private HudViewer _hudViwer;
 
         private void Awake()
         {
             _cDrumSpinner = ControllerRouter.GetControllerDrumSpinner();
             _characterAnimator = new CharacterAnimator();
             _damageLogger = gameObject.AddComponent<DamageLogger>();
-            _rb = gameObject.AddComponent<Rigidbody>();
+
+            _rb = AddAndGetRigidbody(transform);
             _rb.isKinematic = true;
             _rb.constraints = RigidbodyConstraints.FreezePositionX;
+
             _monoAmplifierRpg = GetComponent<MonoAmplifierRpg>();
-            _hudViwer = new HudViewer();
+//            _hudViwer = new HudViewer();
 //            Debug.Log(_monoAmplifierRpg.MeshSpeed);
             _characterAnimator.UserAwake(new AwakeParams()
             {
@@ -44,7 +46,7 @@ namespace Assets.GamePrimal.Mono
 
             });
 
-            _hudViwer.UserAwake(new AwakeParams());
+//            _hudViwer.UserAwake(new AwakeParams());
         }
 
         // Start is called before the first frame update
@@ -80,7 +82,7 @@ namespace Assets.GamePrimal.Mono
 
             _characterAnimator.UserUpdate(new UpdateParams());
 
-            _hudViwer.UserUpdate(new UpdateParams() {ActualInvoker = transform, AmplifierRpg = _monoAmplifierRpg});
+//            _hudViwer.UserUpdate(new UpdateParams() {ActualInvoker = transform, AmplifierRpg = _monoAmplifierRpg});
         }
 
         private void OnEnable()

@@ -21,5 +21,15 @@ namespace Assets.TeamProjects.GamePrimal.Mono
 
             return targetComponent;
         }
+
+        protected Rigidbody AddAndGetRigidbody(Transform root)
+        {
+            Rigidbody rb = root.GetComponent<Rigidbody>();
+
+            if (!rb)
+                return root.gameObject.AddComponent<Rigidbody>();
+
+            return rb;
+        }
     }
 }

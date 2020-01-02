@@ -9,6 +9,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 {
     public class ControllerPathFinding : IUserStart, IUpdate
     {
+        public bool DebugFlag = false;
         private readonly TracerProjectileScript _tracerProjectile = new TracerProjectileScript();
         private ControllerFocusSubject _cSubjectFocus = ControllerRouter.GetControllerFocusSubject();
 
@@ -21,6 +22,9 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         {
             Transform focusedObject = _cSubjectFocus.GetFocus();
             MonoAmplifierRpg monoAmp = focusedObject?.GetComponent<MonoAmplifierRpg>();
+            
+            if (DebugFlag)
+                Debug.Log(focusedObject);
 
             if (focusedObject && monoAmp)
                 _tracerProjectile.UserUpdate(new UpdateParams()

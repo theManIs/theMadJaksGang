@@ -28,6 +28,8 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.PauseMenu
                 _sceneShift.LoadPureWeaponScene();
             else if (pressedButtons.L)
                 _sceneShift.LoadMapScene();
+            else if (pressedButtons.O)
+                _sceneShift.LoadChurchFirstFloorScene();
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh
         public SceneField PureWeaponScene;
         public SceneField AnimationDemoScene;
         public SceneField MapScene;
+        public SceneField ChurchFirstFloor;
     }
 
     public class SceneShift : UnityEngine.MonoBehaviour
@@ -26,7 +27,8 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh
         {
             AnimationDemoScene = new SceneField(),
             MapScene = new SceneField(),
-            PureWeaponScene = new SceneField()
+            PureWeaponScene = new SceneField(),
+            ChurchFirstFloor = new SceneField()
         };
 
         public void Awake()
@@ -40,8 +42,11 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh
             SManager.PureWeaponScene.SetFromPath(ResourcesList.PureWeaponScene);
             SManager.AnimationDemoScene.SetFromPath(ResourcesList.AnimationDemoScene);
             SManager.MapScene.SetFromPath(ResourcesList.MapScene);
+            SManager.ChurchFirstFloor.SetFromPath(ResourcesList.ChurchTheFirstFloor);
+
         }
         public void LoadMapScene() => SceneManager.LoadScene(SManager.MapScene);
         public void LoadPureWeaponScene() => SceneManager.LoadScene(SManager.PureWeaponScene);
+        public void LoadChurchFirstFloorScene() => SceneManager.LoadScene(SManager.ChurchFirstFloor);
     }
 }

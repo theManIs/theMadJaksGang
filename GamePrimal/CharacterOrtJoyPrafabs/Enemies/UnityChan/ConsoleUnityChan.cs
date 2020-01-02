@@ -1,4 +1,5 @@
 ﻿using Assets.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using UnityEngine;
 
 namespace Assets.GamePrimal.CharacterOrtJoyPrafabs.Enemies.UnityChan

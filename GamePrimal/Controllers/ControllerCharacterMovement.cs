@@ -1,5 +1,6 @@
 ﻿using Assets.GamePrimal.Controllers;
 using Assets.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using UnityEngine;
 using UnityEngine.AI;
 

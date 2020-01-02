@@ -1,4 +1,5 @@
-﻿using Assets.GamePrimal.Controllers;
+﻿using System.IO;
+using Assets.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
@@ -66,7 +67,7 @@ namespace Assets.GamePrimal.Mono
             if (!enabled) return;
 
             bool doIReallyMove = _cDrumSpinner.DoIMove(transform);
-
+//            Debug.Log(doIReallyMove + " " + nameof(_cDrumSpinner));
             if (doIReallyMove)
             {
 //                Debug.Log(Time.time + " " + gameObject.name + " " + GetComponent<MonoAmplifierRpg>().GetInitiative());

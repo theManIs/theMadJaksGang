@@ -1,4 +1,5 @@
-﻿using Assets.GamePrimal.Mono;
+﻿using Assets.GamePrimal.Controllers;
+using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
@@ -21,7 +22,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack
         private ActionPointsHolder _actionPointsHolder;
         private HudViewer _hudViewer;
         private ControllerFocusSubject _subjectFocus;
-
+        private ControllerDrumSpinner _cDrumSpinner;
 
         private void Awake()
         {
@@ -29,8 +30,10 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack
             _healthHolder = GetComponentInChildren<HealthHolder>();
             _betlHolder = GetComponentInChildren<BeltHolder>();
             _actionPointsHolder = GetComponentInChildren<ActionPointsHolder>();
-            _hudViewer = new HudViewer().UserAwakeInstantiator(new AwakeParams());
+            _cDrumSpinner = GetControllerDrumSpinner();
             _subjectFocus = GetControllerFocusSubject();
+            AwakeParams ap = new AwakeParams() {CDrumSpinner = _cDrumSpinner};
+            _hudViewer = new HudViewer().UserAwakeInstantiator(ref ap);
         }
 
         private void Start()

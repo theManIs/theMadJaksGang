@@ -3,7 +3,6 @@ using UnityEngine;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
-using Assets.TeamProjects.GamePrimal.SeparateComponents.PauseMenu;
 using static Assets.GamePrimal.Controllers.ControllerRouter;
 
 namespace Assets.GamePrimal.Controllers
@@ -20,7 +19,6 @@ namespace Assets.GamePrimal.Controllers
     public class ControllerInput
     {
         private PressedButtons _pressedButtons;
-        private PauseMenuBlock _pauseMenu;
         private ControllerMainCamera _controllerMainCamera;
         private ControllerCharacterMovement _cMovementCharacter;
         private ControllerFocusSubject _subjectFocus;
@@ -29,7 +27,6 @@ namespace Assets.GamePrimal.Controllers
         public ControllerInput UserAwake()
         {
             _controllerMainCamera = GetControllerMainCamera();
-            _pauseMenu = new PauseMenuBlock();
             _cMovementCharacter = GetControllerCharacterMovement();
             _subjectFocus = GetControllerFocusSubject();
             _cursorChanger = new CursorChanger();
@@ -51,7 +48,6 @@ namespace Assets.GamePrimal.Controllers
 
         public void Start()
         {
-            _pauseMenu.Start();
             _controllerMainCamera.UserStart();
             _cursorChanger.UserStart(new StartParams());
         }
@@ -70,7 +66,6 @@ namespace Assets.GamePrimal.Controllers
                 _pressedButtons.L = true;
             
             _subjectFocus.UpdateOnce();
-            _pauseMenu.GetToMainMenu(_pressedButtons);
             _controllerMainCamera.UserUpdate();
             _cMovementCharacter.FixedUpdate(_subjectFocus.GetFocus(), _subjectFocus.HasFocused());
             _cursorChanger.SetCursor(_subjectFocus.GetSoftFocus(), _subjectFocus.GetHardFocus());

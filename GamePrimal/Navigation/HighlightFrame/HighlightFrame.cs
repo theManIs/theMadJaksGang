@@ -34,7 +34,7 @@ namespace Assets.TeamProjects.GamePrimal.Navigation.HighlightFrame
         public void FixedUpdate(Transform objToHighlight)
         {
             if (!Engaged) return;
-
+//                Debug.Log("Object to highlight " + (objToHighlight ? objToHighlight.GetInstanceID().ToString() : "null"));
             if (objToHighlight is null) {
                 RemoveHighlight();
             } else {

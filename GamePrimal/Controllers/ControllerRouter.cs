@@ -1,6 +1,11 @@
-﻿using Assets.TeamProjects.GamePrimal.Controllers;
+﻿using System;
+using System.Diagnostics.Tracing;
+using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
+using Assets.TeamProjects.GamePrimal.Proxies;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using UnityEngine;
+using Object = System.Object;
 
 namespace Assets.GamePrimal.Controllers
 {
@@ -13,14 +18,88 @@ namespace Assets.GamePrimal.Controllers
         private static ControllerCharacterMovement _cCMov;
         private static ControllerFocusSubject _cFs;
         private static ControllerPathFinding _cPF;
+        private static bool _debugFlag = true;
+        private static bool _theFirstCall = true;
+
+        #region TheFirstCall
+
+        private static void TheFirstCall()
+        {
+            if (!_theFirstCall) return;
+
+            _theFirstCall = false;
+
+            StaticProxyEvent.EEndOfRound.Event += TheFirstCallCameToEnd;
+        }
+
+        private static void TheFirstCallCameToEnd(EventParamsBase epb)
+        {
+            StaticProxyEvent.EEndOfRound.Event -= TheFirstCallCameToEnd;
+            _theFirstCall = true;
+
+            _cDrum = default;
+            _cFs = default;
+            _cPF = default;
+            _cInput = default;
+            _cMCam = default;
+            _cACap = default;
+            _cCMov = default;
+
+            if (_debugFlag) Debug.LogWarning("ControllerDrumSpinner is dead " + _cDrum);
+            if (_debugFlag) Debug.LogWarning("ControllerFocusSubject is dead " + _cFs);
+            if (_debugFlag) Debug.LogWarning("ControllerFocusSubject is dead " + _cPF);
+        }
+
+        #endregion
 
         public static ControllerEvent GetControllerEvent() => new ControllerEvent();
-        public static ControllerInput GetControllerInput() => _cInput ?? (_cInput = new ControllerInput());
-        public static ControllerDrumSpinner GetControllerDrumSpinner() => _cDrum ?? (_cDrum = new ControllerDrumSpinner());
-        public static ControllerMainCamera GetControllerMainCamera() => _cMCam ?? (_cMCam = new ControllerMainCamera());
-        public static ControllerAttackCapture GetControllerAttackCapture() => _cACap ?? (_cACap = new ControllerAttackCapture());
-        public static ControllerCharacterMovement GetControllerCharacterMovement() => _cCMov ?? (_cCMov = new ControllerCharacterMovement().UserAwake());
-        public static ControllerFocusSubject GetControllerFocusSubject() => _cFs ?? (_cFs = new ControllerFocusSubject());
-        public static ControllerPathFinding GetControllerPathFinding() => _cPF ?? ((_cPF = new ControllerPathFinding()));
+        public static ControllerInput GetControllerInput()
+        {
+            TheFirstCall();
+
+            return _cInput ?? (_cInput = new ControllerInput());
+        }
+
+        public static ControllerDrumSpinner GetControllerDrumSpinner()
+        {
+            TheFirstCall();
+
+            return _cDrum ?? (_cDrum = new ControllerDrumSpinner());
+        }
+
+        public static ControllerMainCamera GetControllerMainCamera()
+        {
+            TheFirstCall();
+
+            return _cMCam ?? (_cMCam = new ControllerMainCamera());
+        }
+
+        public static ControllerAttackCapture GetControllerAttackCapture()
+        {
+            TheFirstCall();
+            
+            return _cACap ?? (_cACap = new ControllerAttackCapture());
+        }
+
+        public static ControllerCharacterMovement GetControllerCharacterMovement()
+        {
+            TheFirstCall();
+
+            return _cCMov ?? (_cCMov = new ControllerCharacterMovement().UserAwake());
+        }
+
+        public static ControllerFocusSubject GetControllerFocusSubject()
+        {
+            TheFirstCall();
+            
+            return (_cFs ?? (_cFs = new ControllerFocusSubject()));
+        }
+
+        public static ControllerPathFinding GetControllerPathFinding()
+        {
+            TheFirstCall();
+            
+            return _cPF ?? ((_cPF = new ControllerPathFinding()));
+        }
     }
 }

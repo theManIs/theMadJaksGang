@@ -1,5 +1,7 @@
 ﻿using Assets.GamePrimal.TextDamage;
 using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
+using Assets.TeamProjects.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,7 +15,7 @@ namespace Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold
 
     public interface IUserAwakeInstantiator<T>
     {
-        T UserAwakeInstantiator(AwakeParams ap);
+        T UserAwakeInstantiator(ref AwakeParams ap);
     }
 
 
@@ -35,5 +37,7 @@ namespace Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold
         public DamageLogger DamageLoggerComponent;
         public NavMeshAgent NavMeshAgentComponent;
         public WeaponOperator WieldingWeapon;
+        public ControllerDrumSpinner CDrumSpinner;
+        public EventEndOfRound EEndOfRound;
     }
 }

@@ -1,6 +1,7 @@
 ﻿
 using Assets.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using UnityEngine;
 using UnityStandardAssets.Cameras;
@@ -34,12 +35,12 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
         public void UserEnable()
         {
-            ControllerRouter.GetControllerDrumSpinner().ETurnWasFound.Event += MoveCameraTo;
+            StaticProxyEvent.ETurnWasFound.Event += MoveCameraTo;
         }
 
         public void UserDisable()
         {
-            ControllerRouter.GetControllerDrumSpinner().ETurnWasFound.Event -= MoveCameraTo;
+            StaticProxyEvent.ETurnWasFound.Event -= MoveCameraTo;
         }
 
         public void UserUpdate()

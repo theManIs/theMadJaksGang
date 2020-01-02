@@ -28,7 +28,7 @@ namespace Assets.TeamProjects.GamePrimal.Editor
             if (EditorApplication.isPlaying) return;
 
             bool hasCameraRig = DoesScriptExist<FreeLookCamWithUserInput>();
-            bool hasSceneShift = DoesScriptExist<SceneShift>();
+            bool hasSceneShift = DoesScriptExist<ControllerSceneShift>();
             bool hasMainScene = DoesScriptExist<MainScene.MainScene>();
 
             GUILayout.Space(10);
@@ -66,7 +66,7 @@ namespace Assets.TeamProjects.GamePrimal.Editor
             bool isAkaiArcher = AddButton("AkaiArcher", false);
 
             CameraRigPressed(_isPressedCameraRig, hasCameraRig);
-            CreateAndAddPressed<SceneShift>("SceneShift", _isPressedSceneShift, hasSceneShift);
+            CreateAndAddPressed<ControllerSceneShift>("SceneShift", _isPressedSceneShift, hasSceneShift);
             CreateAndAddPressed<MainScene.MainScene>("MainScene", _isMainScenePressed, hasMainScene);
             CreateAndAddCharacter("TreacherousDrake", isAddDrakePressed);
             CreateAndAddCharacter("PreposterousSkeleton", isPreposterousSkeletonPressed);

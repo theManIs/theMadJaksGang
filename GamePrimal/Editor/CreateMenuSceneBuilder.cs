@@ -19,7 +19,7 @@ namespace Assets.TeamProjects.GamePrimal.Editor
         private static void AddMainScene() => AddObject<MainScene.MainScene>("MainScene", true);
 
         [MenuItem("Assets/Add/Scene/SceneShift")]
-        private static void AddSceneShift() => AddObject<SceneShift>("SceneShift", true);
+        private static void AddSceneShift() => AddObject<ControllerSceneShift>("SceneShift", true);
 
         [MenuItem("Assets/Add/Cameras/FreeCameraRig")]
 //        private static void AddFreeCameraRig() => AddCameraRig("FreeCameraRig", true);

@@ -36,6 +36,7 @@ namespace Assets.TeamProjects.GamePrimal.MainScene
 
             _highlightFrame = new HighlightFrame();
             _subjectFocus = ControllerRouter.GetControllerFocusSubject();
+            Debug.Log("Subject focus hash " +_subjectFocus.GetHashCode());
 //            _movableObjects = FindObjectOfType<MovableObjects>();
 //            _tracerProjectileScript = new TracerProjectileScript();
 //            _controllerCharacterMovement = new ControllerCharacterMovement();

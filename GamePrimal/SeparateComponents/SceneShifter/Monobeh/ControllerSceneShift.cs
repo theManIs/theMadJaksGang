@@ -1,11 +1,11 @@
 ﻿using System;
 using Assets.GamePrimal.Helpers;
+using Assets.TeamProjects.GamePrimal.Proxies;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.ListsOfStuff;
-using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Object = System.Object;
+using static Assets.TeamProjects.GamePrimal.Proxies.StaticProxyInput;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh
 {
@@ -18,7 +18,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh
         public SceneField ChurchFirstFloor;
     }
 
-    public class SceneShift : UnityEngine.MonoBehaviour
+    public class ControllerSceneShift : MonoBehaviour
     {
         public SceneField ActualScene;
 
@@ -31,22 +31,40 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh
             ChurchFirstFloor = new SceneField()
         };
 
-        public void Awake()
+        private void Awake()
         {
-            ActualScene.SetFromScene(SceneManager.GetActiveScene());
+            if (FindObjectsOfType<ControllerSceneShift>().Length > 1)
+                Destroy(gameObject);
         }
 
-        public void Start()
+        private void Start()
         {
-//            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
+            ActualScene.SetFromScene(SceneManager.GetActiveScene());
             SManager.PureWeaponScene.SetFromPath(ResourcesList.PureWeaponScene);
             SManager.AnimationDemoScene.SetFromPath(ResourcesList.AnimationDemoScene);
             SManager.MapScene.SetFromPath(ResourcesList.MapScene);
             SManager.ChurchFirstFloor.SetFromPath(ResourcesList.ChurchTheFirstFloor);
-
         }
-        public void LoadMapScene() => SceneManager.LoadScene(SManager.MapScene);
-        public void LoadPureWeaponScene() => SceneManager.LoadScene(SManager.PureWeaponScene);
-        public void LoadChurchFirstFloorScene() => SceneManager.LoadScene(SManager.ChurchFirstFloor);
+
+        private void Update()
+        {
+            if (P)
+                LoadPureWeaponScene();
+            else if (L)
+                LoadMapScene();
+            else if (O)
+                LoadChurchFirstFloorScene();
+        }
+
+        public void LoadMapScene() => LoadAnyScene(SManager.MapScene);
+        public void LoadPureWeaponScene() => LoadAnyScene(SManager.PureWeaponScene);
+        public void LoadChurchFirstFloorScene() => LoadAnyScene(SManager.ChurchFirstFloor);
+
+        private void LoadAnyScene(string sceneName)
+        {
+            StaticProxyEvent.EEndOfRound.Invoke(new EventParamsBase());
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }

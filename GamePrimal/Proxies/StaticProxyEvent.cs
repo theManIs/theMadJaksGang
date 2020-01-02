@@ -1,8 +1,16 @@
-﻿using Assets.TeamProjects.GamePrimal.Controllers;
+﻿using Assets.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.Controllers;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using UnityEngine;
 
-namespace Assets.GamePrimal.Controllers
+namespace Assets.TeamProjects.GamePrimal.Proxies
 {
+    public class StaticProxyEvent
+    {
+        public static EventEndOfRound EEndOfRound = new EventEndOfRound();
+        public static EventTurnWasFound ETurnWasFound = new EventTurnWasFound();
+    }
+
     public class ControllerEvent
     {
         public delegate void HitDetected(AttackCaptureParams acp);
@@ -10,14 +18,6 @@ namespace Assets.GamePrimal.Controllers
 
         public delegate void HitApplied(Transform captured, Transform broadcaster);
         public static event HitApplied HitAppliedHandler;
-
-        public delegate void UserInput(PressedButtons pressedButtons);
-        public static event UserInput UserInputBroadcaster;
-
-        public void UserInputInvoke(PressedButtons pressedButtons)
-        {
-            UserInputBroadcaster?.Invoke(pressedButtons);
-        }
 
         public void HitDetectedInvoke(AttackCaptureParams acp)
         {

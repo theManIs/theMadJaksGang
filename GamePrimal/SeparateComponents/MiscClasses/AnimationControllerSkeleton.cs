@@ -4,6 +4,7 @@ using UnityEngine.AI;
 using Assets.GamePrimal.Mono;
 using Assets.GamePrimal.TextDamage;
 using Assets.TeamProjects.GamePrimal.MainScene;
+using Assets.TeamProjects.GamePrimal.Proxies;
 
 namespace Assets.GamePrimal.CharacterOrtJoyPrafabs.Enemies.Skeleton
 {

@@ -1,20 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Assets.GamePrimal.Controllers;
 using Assets.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using UnityEngine;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace Assets.TeamProjects.GamePrimal.Controllers
 {
-//    public delegate void RoundHandler(Transform activeCharacter);
     public class ControllerDrumSpinner
     {
-//        public event RoundHandler RoundHandlerEvent;
-        public EventTurnWasFound ETurnWasFound = new EventTurnWasFound();
-        public EventEndOfRound EEndOfRound = new EventEndOfRound();
         public float InstanceId;
 
-        private static Queue<Transform> _theDrum = new Queue<Transform>();
+        private Queue<Transform> _theDrum = new Queue<Transform>();
         private bool _roundIsFilled = false;
         private int _frameCount = -1;
         private readonly int _frameThrottle = 25;
@@ -26,6 +28,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         public ControllerDrumSpinner()
         {
             InstanceId = Random.value;
+//            Debug.Log("ControllerDrumSpinner " + InstanceId);
         }
 
         public bool ReleaseRound()
@@ -38,22 +41,19 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         public bool DoIMove(Transform applicant)
         {
             if (_roundIsFilled) return false;
-
 //            Debug.Log(_theDrum.Count + " " + Time.time);
-
             FillTheDrum();
 
             int whoIsNext = _theDrum.Peek().GetInstanceID();
             int applicantId = applicant.GetInstanceID();
             bool doIMove = whoIsNext == applicantId;
-
+//            Debug.Log(whoIsNext + " == " + applicantId + " = " + doIMove);
             MarkThisRoundFilled(doIMove);
 
             if (doIMove)
             {
 //                Debug.Log("Turn was found " + Time.time);
-//                RoundHandlerEvent?.Invoke(applicant);
-                ETurnWasFound.Invoke(new EventTurnWasFoundParams() { TurnApplicant = applicant });
+                StaticProxyEvent.ETurnWasFound.Invoke(new EventTurnWasFoundParams() { TurnApplicant = applicant });
 
                 _whoseTurn = applicant;
             }
@@ -76,7 +76,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
             {
                 _theDrum = SpinTheDrum();
 
-                ETurnWasFound.Invoke(new EventTurnWasFoundParams());
+                StaticProxyEvent.ETurnWasFound.Invoke(new EventTurnWasFoundParams());
             }
         }
         private void MarkThisRoundFilled(bool doIMove)
@@ -126,5 +126,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
             else
                 return value;
         }
+
+        public ControllerDrumSpinner UserAwakeInstantiator() => this;
     }
 }

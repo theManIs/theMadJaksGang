@@ -12,14 +12,14 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
 {
     public class HudViewer : IUserAwake, IUpdate, IUserAwakeInstantiator<HudViewer>
     {
-        public bool DebugFlag = false;
         private ActionPointsHolder _actionPointsHolder;
         private ControllerFocusSubject _cFocusSubject;
         private HealthHolder _healthHolder;
         private InitiativeHolder _initiativeHolder;
         private ControllerDrumSpinner _cDrupSpinner;
         private ExperienceHolder _expHolder;
-        public HudViewer UserAwakeInstantiator(AwakeParams ap)
+        private bool _debugFlag = false;
+        public HudViewer UserAwakeInstantiator(ref AwakeParams ap)
         {
             UserAwake(ap);
 
@@ -33,7 +33,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
             _healthHolder = Object.FindObjectOfType<HealthHolder>();
             _initiativeHolder = Object.FindObjectOfType<InitiativeHolder>();
             _expHolder = Object.FindObjectOfType<ExperienceHolder>();
-            _cDrupSpinner = ControllerRouter.GetControllerDrumSpinner();
+            _cDrupSpinner = ap.CDrumSpinner;
         }
 
         public void ShowTurnPoints(int points, Transform actualInvoker)
@@ -75,11 +75,11 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
         public void ShowInitiativeList(MonoAmplifierRpg mar, Transform actualInvoker)
         {
             if (actualInvoker != _cFocusSubject.GetHardFocus()) return;
-
+//            Debug.Log(_cDrupSpinner);
             Queue<Transform> localDrum = _cDrupSpinner.GetDrum();
             Transform hardFocus = _cDrupSpinner.GetWhoseTurn();
-            
-            if (DebugFlag) Debug.Log("Does not have a focus: " + hardFocus);
+            if (_debugFlag) Debug.Log("Local drum count " + localDrum.Count);
+            if (_debugFlag && !hardFocus) Debug.Log("Does not have a focus: " + hardFocus);
 
             if (hardFocus)
             {   
@@ -90,30 +90,31 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
                 if (nthImage)
                     nthChild.GetComponent<Image>().sprite = portraitSprite;
 
-                if (DebugFlag && !nthChild) Debug.Log("Does not have the first icon: " + nthChild);
-                if (DebugFlag && !portraitSprite) Debug.Log("Does not have portrait sprite: " + portraitSprite);
-                if (DebugFlag && !nthImage) Debug.Log("Does not have the first image: " + nthImage + " " + nthImage.sprite);
+                if (_debugFlag && !nthChild) Debug.Log("Does not have the first icon: " + nthChild);
+                if (_debugFlag && !portraitSprite) Debug.Log("Does not have portrait sprite: " + portraitSprite);
+                if (_debugFlag && !nthImage) Debug.Log("Does not have the first image: " + nthImage + " " + nthImage.sprite);
             }
 
-            for (int i = 1; i < 5; i++)
-            {
-                Transform nthChild = _initiativeHolder.transform.GetChild(i);
-//                Debug.Log(localDrum.Count);
-                if (localDrum.Count > 0)
+            if (hardFocus)
+                for (int i = 1; i < 5; i++)
                 {
-                    Transform recentChar = localDrum.Dequeue();
-                    Debug.Log(recentChar);
-                    if (nthChild.GetComponent<Image>())
-                        nthChild.GetComponent<Image>().sprite = recentChar.GetComponent<MonoAmplifierRpg>().GetCharacterPortrait();
-                }
-                else
-                {
-                    if (nthChild.GetComponent<Image>())
-                        nthChild.GetComponent<Image>().sprite = null;
-                }
-                 
+                    Transform nthChild = _initiativeHolder.transform.GetChild(i);
+                    
+                    if (localDrum.Count > 0)
+                    {
+                        Transform recentChar = localDrum.Dequeue();
+    //                    Debug.Log(recentChar);
+                        if (nthChild.GetComponent<Image>())
+                            nthChild.GetComponent<Image>().sprite = recentChar.GetComponent<MonoAmplifierRpg>().GetCharacterPortrait();
+                    }
+                    else
+                    {
+                        if (nthChild.GetComponent<Image>())
+                            nthChild.GetComponent<Image>().sprite = null;
+                    }
+                     
 
-            }
+                }
         }
 
         public void UserUpdate(UpdateParams up)

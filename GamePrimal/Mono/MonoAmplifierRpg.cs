@@ -3,6 +3,7 @@ using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers;
 using Assets.TeamProjects.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using UnityEngine;
@@ -54,13 +55,13 @@ namespace Assets.GamePrimal.Mono
         private void OnEnable()
         {
             _damageLogger.EHitDetected.HitDetectedEvent += HitCapturedHandler;
-            ControllerRouter.GetControllerDrumSpinner().ETurnWasFound.Event += TurnWasFoundHandler;
+            StaticProxyEvent.ETurnWasFound.Event += TurnWasFoundHandler;
         }
 
         private void OnDisable()
         {
             _damageLogger.EHitDetected.HitDetectedEvent += HitCapturedHandler;
-            ControllerRouter.GetControllerDrumSpinner().ETurnWasFound.Event -= TurnWasFoundHandler;
+            StaticProxyEvent.ETurnWasFound.Event -= TurnWasFoundHandler;
         }
 
         private void TurnWasFoundHandler(EventTurnWasFoundParams acp)

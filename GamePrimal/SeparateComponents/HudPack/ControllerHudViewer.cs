@@ -1,5 +1,4 @@
-﻿using Assets.GamePrimal.Controllers;
-using Assets.GamePrimal.Mono;
+﻿using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
@@ -8,6 +7,7 @@ using Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
 using UnityEngine.UI;
+using static Assets.GamePrimal.Controllers.ControllerRouter;
 using static Assets.TeamProjects.GamePrimal.SeparateComponents.ListsOfStuff.ResourcesList;
 using static UnityEngine.Resources;
 
@@ -30,7 +30,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack
             _betlHolder = GetComponentInChildren<BeltHolder>();
             _actionPointsHolder = GetComponentInChildren<ActionPointsHolder>();
             _hudViewer = new HudViewer().UserAwakeInstantiator(new AwakeParams());
-            _subjectFocus = ControllerRouter.GetControllerFocusSubject();
+            _subjectFocus = GetControllerFocusSubject();
         }
 
         private void Start()

@@ -186,7 +186,8 @@ namespace Assets.TeamProjects.GamePrimal.Navigation.Pathfinder
 
             if (_interimMoveCost < 1)
                 _interimMoveCost += (1 / StepLength);
-            else if (_localAmplifierRpg)
+            
+            if (_localAmplifierRpg && _interimMoveCost.Equals(1f))
             {
                 _localAmplifierRpg.SubtractActionCost(1);
 //                Debug.LogWarning("Subtract!" + " " + map.ActualInvoker.name + " " + _interimMoveCost + " " + Time.time);

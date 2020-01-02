@@ -23,8 +23,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
             Transform focusedObject = _cSubjectFocus.GetFocus();
             MonoAmplifierRpg monoAmp = focusedObject?.GetComponent<MonoAmplifierRpg>();
             
-            if (DebugFlag)
-                Debug.Log(focusedObject);
+            if (DebugFlag) Debug.Log(focusedObject);
 
             if (focusedObject && monoAmp)
                 _tracerProjectile.UserUpdate(new UpdateParams()

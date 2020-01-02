@@ -543,7 +543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 632406941336540980}
-  - component: {fileID: 6562443807100048674}
+  - component: {fileID: 2688013533804144070}
   m_Layer: 0
   m_Name: WeaponPoint (1)
   m_TagString: Untagged
@@ -565,7 +565,7 @@ Transform:
   m_Father: {fileID: 397152040876729853}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6562443807100048674
+--- !u!114 &2688013533804144070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -574,7 +574,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1495076172040808710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1da555adebcf2e4799ac3f4ab691b09, type: 3}
+  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2010216842212952442
@@ -1974,7 +1974,7 @@ Animator:
   m_GameObject: {fileID: 8368396772581234920}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ebe9003f89c52244c8912e56f78f912e, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4a5e8cf67334f1147b1a5367d52f9438, type: 2}
+  m_Controller: {fileID: 9100000, guid: fef5da03570d66e47bab663906f393e4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2088,9 +2088,16 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  WieldingWeapon: {fileID: -7847976596070025753, guid: edc1c322363a708439bad6f7fb2d2f23,
-    type: 3}
-  MeshSpeed: 4
+  CharacterFeatures: {fileID: 11400000, guid: 0c7a0a9f274634749ba3b84e7678f59b, type: 2}
+  MaxTurnPoints: 0
+  TurnPoints: 0
+  InitialTurnPoints: 0
+  CharacterPortrait: {fileID: 0}
+  MaxHealth: 0
+  ExperienceActual: 0
+  ExperienceMax: 0
+  WeaponProjectile: {fileID: 0}
+  MoveSpeed: 0
 --- !u!1 &8607537705644250409
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,7 +19,8 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
         private InitiativeHolder _initiativeHolder;
         private ControllerDrumSpinner _cDrupSpinner;
         private ExperienceHolder _expHolder;
-        private bool _debugFlag = false;
+        private bool _debugFlag = true;
+
         public HudViewer UserAwakeInstantiator(ref AwakeParams ap)
         {
             UserAwake(ap);
@@ -73,49 +74,51 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
             }
         }
 
+        private void SetImage(ref int childNum, Transform focusPoint)
+        {
+            Transform nthChild = _initiativeHolder.transform.GetChild(childNum);
+            Image nthImage = nthChild.GetComponent<Image>();
+            nthImage.sprite = focusPoint == null ? null : focusPoint.GetComponent<MonoAmplifierRpg>().GetCharacterPortrait();
+
+            if (focusPoint is null)
+                nthImage.sprite = null;
+            else
+            {
+                Sprite portraitSprite = focusPoint.GetComponent<MonoAmplifierRpg>().GetCharacterPortrait();
+
+                nthImage.sprite = portraitSprite;
+
+                if (_debugFlag && !portraitSprite) Debug.Log("Does not have portrait sprite: " + portraitSprite);
+            }
+
+            childNum++;
+
+            if (_debugFlag && !nthChild) Debug.Log("Does not have the first icon: " + nthChild);
+            if (_debugFlag && !nthImage) Debug.Log("Does not have the first image: " + nthImage + " " + nthImage.sprite);
+        }
+
         public void ShowInitiativeList(MonoAmplifierRpg mar, Transform actualInvoker)
         {
             if (actualInvoker != _cFocusSubject.GetHardFocus()) return;
-//            Debug.Log(_cDrupSpinner);
-            Queue<Transform> localDrum = _cDrupSpinner.GetDrum();
-            Transform hardFocus = _cDrupSpinner.GetWhoseTurn();
-            if (_debugFlag) Debug.Log("Local drum count " + localDrum.Count);
-            if (_debugFlag && !hardFocus) Debug.Log("Does not have a focus: " + hardFocus);
+            if (!_cFocusSubject.GetHardFocus()) return;
 
-            if (hardFocus)
-            {   
-                Transform nthChild = _initiativeHolder.transform.GetChild(0);
-                Image nthImage = nthChild.GetComponent<Image>();
-                Sprite portraitSprite = hardFocus.GetComponent<MonoAmplifierRpg>().GetCharacterPortrait();
+            int childCount = _initiativeHolder.transform.childCount;
+            int iconsLocker = 0;
 
-                if (nthImage)
-                    nthChild.GetComponent<Image>().sprite = portraitSprite;
+            FillTheLineGap(ref iconsLocker, childCount, _cDrupSpinner.ActualDrum, _cDrupSpinner.GetWhoseTurn());
 
-                if (_debugFlag && !nthChild) Debug.Log("Does not have the first icon: " + nthChild);
-                if (_debugFlag && !portraitSprite) Debug.Log("Does not have portrait sprite: " + portraitSprite);
-                if (_debugFlag && !nthImage) Debug.Log("Does not have the first image: " + nthImage + " " + nthImage.sprite);
-            }
+            if (iconsLocker < childCount) 
+                FillTheLineGap(ref iconsLocker, childCount, _cDrupSpinner.DrumBlank, null);
+        }
 
-            if (hardFocus)
-                for (int i = 1; i < 5; i++)
-                {
-                    Transform nthChild = _initiativeHolder.transform.GetChild(i);
-                    
-                    if (localDrum.Count > 0)
-                    {
-                        Transform recentChar = localDrum.Dequeue();
-    //                    Debug.Log(recentChar);
-                        if (nthChild.GetComponent<Image>())
-                            nthChild.GetComponent<Image>().sprite = recentChar.GetComponent<MonoAmplifierRpg>().GetCharacterPortrait();
-                    }
-                    else
-                    {
-                        if (nthChild.GetComponent<Image>())
-                            nthChild.GetComponent<Image>().sprite = null;
-                    }
-                     
+        private void FillTheLineGap(ref int iconsLocker, int globalLock, Queue<Transform> localQueue, Transform theFirst)
+        {
+            int startAmount = localQueue.Count;
 
-                }
+            SetImage(ref iconsLocker, theFirst);
+
+            for (int i = 0; i < startAmount && iconsLocker < globalLock; i++)
+                SetImage(ref iconsLocker, localQueue.Dequeue());
         }
 
         public void UserUpdate(UpdateParams up)

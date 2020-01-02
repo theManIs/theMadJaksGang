@@ -14,7 +14,7 @@ namespace Assets.TeamProjects.GamePrimal.Proxies
         private static ControllerCharacterMovement _cCMov;
         private static ControllerFocusSubject _cFs;
         private static ControllerPathFinding _cPF;
-        private static bool _debugFlag = true;
+        private static bool _debugFlag = false;
         private static bool _theFirstCall = true;
 
         #region TheFirstCall

@@ -118,7 +118,11 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
 
         protected override void FollowTarget(float deltaTime)
         {
-            if (m_Target == null || Vertical != 0 || Horizontal != 0) return;
+            if (!Horizontal.Equals(0.0f) || !Vertical.Equals(0.0f))
+                SetTarget(null);
+
+            if (m_Target == null) return;
+
             // Move the rig towards target position.
 //            Quaternion rotToward = Quaternion.FromToRotation(transform.forward, m_Target.position.normalized);
             transform.position = Vector3.Lerp(transform.position, m_Target.position, deltaTime * FollowTargetSpeed);

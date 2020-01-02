@@ -22,7 +22,8 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         private readonly int _frameThrottle = 25;
         private Transform _whoseTurn;
 
-        public Queue<Transform> GetDrum() => new Queue<Transform>(_theDrum);
+        public Queue<Transform> ActualDrum => new Queue<Transform>(_theDrum);
+        public Queue<Transform> DrumBlank => SpinTheDrum();
         public Transform GetWhoseTurn() => _whoseTurn;
 
         public ControllerDrumSpinner()

@@ -3,15 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Image))]
 public class EasyGradient : MonoBehaviour
 {
-    void Start() => StartCoroutine(fadeColor(gameObject, Color.black, 2));
+    public Color StartColor = Color.white;
+    public Color EndColor = Color.black;
+    public Color DecommissionColor = Color.cyan;
+    public int FadeTime = 2;
+    public bool Decommission = false;
 
-    IEnumerator fadeColor(GameObject objectToFade, Color newColor, float fadeTime = 3)
+    private void OnEnable()
+    {
+        gameObject.GetComponent<Image>().color = StartColor;
+
+        StartCoroutine(FadeColor(gameObject, EndColor, FadeTime));
+    }
+
+    private void LateUpdate()
+    {
+        if (Decommission == true)
+        {
+            gameObject.GetComponent<Image>().color = EndColor;
+
+            StartCoroutine(FadeColor(gameObject, DecommissionColor, FadeTime));
+
+            Decommission = false;
+        }
+    }
+
+    IEnumerator FadeColor(GameObject objectToFade, Color newColor, float fadeTime = 3)
     {
         Image tempImage = objectToFade.GetComponent<Image>();
         Color currentColor = tempImage.color;
-        newColor.a = 0.8f;
         float counter = 0;
 
         while (counter < fadeTime)

@@ -19,7 +19,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
         private InitiativeHolder _initiativeHolder;
         private ControllerDrumSpinner _cDrupSpinner;
         private ExperienceHolder _expHolder;
-        private bool _debugFlag = true;
+        private bool _debugFlag = false;
 
         public HudViewer UserAwakeInstantiator(ref AwakeParams ap)
         {

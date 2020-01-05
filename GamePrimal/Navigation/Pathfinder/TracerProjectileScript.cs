@@ -82,7 +82,7 @@ namespace Assets.TeamProjects.GamePrimal.Navigation.Pathfinder
         public void UserUpdate(UpdateParams up)
         {
             SetNavAgent(up.ActualInvoker);
-
+//            Debug.Log(_NavMeshAgentFollow + " " + Engaged);
             if (!_NavMeshAgentFollow || !Engaged) return;
 
             Vector3[] corners = _NavMeshAgentFollow.path.corners;

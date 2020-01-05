@@ -31,6 +31,14 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         public void UserAwake(AwakeParams ap)
         {
             _animator = ap.AnimatorComponent;
+
+            if (!_animator)
+            {
+                Engaged = false;
+
+                return;
+            }
+
             _transform = _animator.transform;
             _dmLogger = ap.DamageLoggerComponent;
             _navMeshAgent = ap.NavMeshAgentComponent;
@@ -40,6 +48,8 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 
         public void  UserStart(StartParams sp)
         {
+            if (!Engaged) return;
+
             Engaged = _animator && _navMeshAgent && _dmLogger;
             _navMeshAgent.speed = sp.NavMeshSpeed;
 //            Debug.Log(sp.NavMeshSpeed);

@@ -25,6 +25,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
             MonoAmplifierRpg monoAmp = focusedObject?.GetComponent<MonoAmplifierRpg>();
             
             if (DebugFlag) Debug.Log(focusedObject);
+            if (DebugFlag) Debug.Log(monoAmp);
 
             if (focusedObject && monoAmp)
                 _tracerProjectile.UserUpdate(new UpdateParams()

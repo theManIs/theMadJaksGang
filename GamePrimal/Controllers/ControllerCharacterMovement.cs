@@ -63,7 +63,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         {
             MonoMechanicus mop = focusedObject?.GetComponent<MonoMechanicus>();
 
-            if (mop && doMove && mop._monoAmplifierRpg.GetTurnPoints() > 0)
+            if (mop && doMove && (mop._monoAmplifierRpg.GetTurnPoints() > 0 || mop.InfiniteMoving))
                 this.MoveAnyMesh(focusedObject, this.GetClickPoint());
         }
     }

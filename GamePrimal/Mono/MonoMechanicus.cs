@@ -13,6 +13,8 @@ using UnityEngine.AI;
 namespace Assets.GamePrimal.Mono
 {
     [RequireComponent(typeof(MonoAmplifierRpg))]
+    [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(ClickToMove))]
     public class MonoMechanicus : MonoBehaviourBaseClass
     {
         public bool _iAmMoving = false;

@@ -26,4 +26,4 @@ MonoBehaviour:
   ExperienceActual: 0
   ExperienceMax: 0
   PreferredProjectile: {fileID: 0}
-  MoveSpeed: 0
+  MoveSpeed: 3

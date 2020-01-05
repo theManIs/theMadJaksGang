@@ -28,6 +28,9 @@ namespace Assets.TeamProjects.GamePrimal.Editor
         [MenuItem("Assets/Add/Cameras/GlobalMapCamera")]
         private static void GlobalMapCamera() => AddPrefab<FreeLookCamWithUserInput>(ResourcesList.GlobalMapCamera, true);
 
+        [MenuItem("Assets/Add/Characters/FelineGargoil")]
+        private static void AddGargoil() => AddPrefab<GameObject>(ResourcesList.FelineGargoil, false);
+
         [MenuItem("Assets/Add/HeadUpDisplay")]
         private static void AddHud() => AddPrefab<GameObject>(ResourcesList.HeadUpDisplay);
 

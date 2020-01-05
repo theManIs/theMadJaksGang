@@ -11246,7 +11246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.119, y: 0.6627422}
   m_AnchorMax: {x: 0.8814601, y: 0.8312867}
-  m_AnchoredPosition: {x: -0, y: -0.0006}
+  m_AnchoredPosition: {x: -0, y: -0.0006000027}
   m_SizeDelta: {x: 0.0005, y: -0.0014}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &528562814
@@ -11379,6 +11379,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901d737e812bbd44b86bc19f1f60721f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ColorInitial: {r: 1, g: 1, b: 1, a: 1}
+  ColorToward: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!65 &528562817
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24473,7 +24475,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6217b7e11307ad64884406331d3ca2ce, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c38ca97079e339f4fb2b5fbc9c312c76, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -51651,7 +51653,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1993568872}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1729331068}
@@ -51660,7 +51662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.124832995, y: 0.15089986}
   m_AnchorMax: {x: 0.8814601, y: 0.32639325}
-  m_AnchoredPosition: {x: 0.000407964, y: 0.000495255}
+  m_AnchoredPosition: {x: 0, y: 0.003}
   m_SizeDelta: {x: -0.00035725906, y: 0.00024881132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1993568874
@@ -51793,6 +51795,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901d737e812bbd44b86bc19f1f60721f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ColorInitial: {r: 1, g: 1, b: 1, a: 1}
+  ColorToward: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!65 &1993568877
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55613,6 +55617,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901d737e812bbd44b86bc19f1f60721f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ColorInitial: {r: 1, g: 1, b: 1, a: 1}
+  ColorToward: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!65 &2125774461
 BoxCollider:
   m_ObjectHideFlags: 0

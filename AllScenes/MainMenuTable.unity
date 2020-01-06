@@ -45516,6 +45516,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2834451433244580762, guid: e9ded170d640a6e4299a7ff48f700f10,
+        type: 3}
+      propertyPath: AllowStartScreen
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2834451433244580763, guid: e9ded170d640a6e4299a7ff48f700f10,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -80286,40 +80291,3 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!1 &8296172668682354280 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8585602471307717546, guid: 852268b5a3cbee8458f29cba187036df,
-    type: 3}
-  m_PrefabInstance: {fileID: 290414984911820226}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &8296172668682354281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8296172668682354280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 001f689bdc7476d4fa8c0453efa6bcee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mbc: []
-  _initPos: {x: 0, y: 0, z: 0}
-  _onLoose: 0
-  _possibleRot: {x: 0, y: 0, z: 0, w: 0}
-  _candleHolder: []
---- !u!136 &8296172668682354282
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8296172668682354280}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.08590199
-  m_Height: 2.2251773
-  m_Direction: 1
-  m_Center: {x: -0.216766, y: 1.1232904, z: -0.19733179}

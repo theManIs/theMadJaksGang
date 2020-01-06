@@ -555,6 +555,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4719057921853741497}
+  - component: {fileID: 8296172668682354282}
+  - component: {fileID: 8296172668682354281}
   m_Layer: 0
   m_Name: dagger
   m_TagString: Untagged
@@ -569,7 +571,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8585602471307717546}
-  m_LocalRotation: {x: 0.00017120957, y: -0.10968997, z: -0.0015514299, w: 0.9939647}
+  m_LocalRotation: {x: 0.00017134486, y: -0.10969089, z: -0.0015526423, w: 0.99396455}
   m_LocalPosition: {x: 21.987, y: -3.212, z: 16.391}
   m_LocalScale: {x: 0.15845, y: 0.15845, z: 0.15845}
   m_Children:
@@ -583,3 +585,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -12.595, z: -0.179}
+--- !u!136 &8296172668682354282
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8585602471307717546}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.08590199
+  m_Height: 2.2251773
+  m_Direction: 1
+  m_Center: {x: -0.216766, y: 1.1232904, z: -0.19733179}
+--- !u!114 &8296172668682354281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8585602471307717546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4a5292f808ee9b4ab8085df0c4ff499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

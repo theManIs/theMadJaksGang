@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.TeamProjects.GamePrimal.Proxies;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,24 +12,41 @@ public class EasyGradient : MonoBehaviour
     public Color EndColor = Color.black;
     public Color DecommissionColor = Color.cyan;
     public int FadeTime = 2;
-    public bool Decommission = false;
 
     private void OnEnable()
     {
         gameObject.GetComponent<Image>().color = StartColor;
 
-        StartCoroutine(FadeColor(gameObject, EndColor, FadeTime));
+        foreach (var img in GetComponentsInChildren<Image>())
+            StartCoroutine(FadeColor(img.gameObject, EndColor, FadeTime));
     }
 
-    private void LateUpdate()
+    private void OnDisable()
     {
-        if (Decommission == true)
+        gameObject.GetComponent<Image>().color = EndColor;
+
+            foreach (Image img in GetComponentsInChildren<Image>())
+                if (gameObject.activeInHierarchy)
+                    StartCoroutine(FadeColor(img.gameObject, DecommissionColor, FadeTime));
+
+            foreach (TextMeshProUGUI text in GetComponentsInChildren<TextMeshProUGUI>())
+                if (gameObject.activeInHierarchy)
+                    StartCoroutine(FadeColorText(text.gameObject, DecommissionColor, FadeTime));
+
+    }
+
+    IEnumerator FadeColorText(GameObject objectToFade, Color newColor, float fadeTime = 3)
+    {
+        TextMeshProUGUI tempImage = objectToFade.GetComponent<TextMeshProUGUI>();
+        Color currentColor = tempImage.color;
+        float counter = 0;
+
+        while (counter < fadeTime)
         {
-            gameObject.GetComponent<Image>().color = EndColor;
+            counter += Time.deltaTime;
+            tempImage.color = Color.Lerp(currentColor, newColor, counter / fadeTime);
 
-            StartCoroutine(FadeColor(gameObject, DecommissionColor, FadeTime));
-
-            Decommission = false;
+            yield return null;
         }
     }
 

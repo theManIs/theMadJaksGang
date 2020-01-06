@@ -12,14 +12,15 @@ public class BurnFontLine : MonoBehaviour
     public float LetterDelayTime = .02f;
     public Color FallBackColor = Color.white;
     public float CoolTime = 3f;
-    [SerializeField] public Queue<Transform> NextLine = new Queue<Transform>();
     public bool MotherScript = true;
+    public Queue<Transform> NextLine = new Queue<Transform>();
+    public Transform TheFirstElement = null;
 
     private string _textToShow;
     private TextMeshProUGUI _textMesh;
     private bool _lineIsDone = false;
 
-    void Start()
+    private void Start()
     {
         if (MotherScript)
             if (NextLine.Count == 0)
@@ -31,7 +32,7 @@ public class BurnFontLine : MonoBehaviour
                     t.GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, 0);
                 }
 
-                NextLine.Dequeue();
+                TheFirstElement = NextLine.Dequeue();
             }
 
         _textMesh = GetComponent<TextMeshProUGUI>();
@@ -77,6 +78,7 @@ public class BurnFontLine : MonoBehaviour
         }
 
         textMeshPro.enableVertexGradient = false;
+        textMeshPro.color = FallBackColor;
         _lineIsDone = true;
     }
 
@@ -93,6 +95,7 @@ public class BurnFontLine : MonoBehaviour
             bfl.FallBackColor = actualBfl.FallBackColor;
             bfl.NextLine = actualBfl.NextLine;
             bfl.MotherScript = false;
+            bfl.TheFirstElement = actualBfl.TheFirstElement;
 
             Destroy(actualBfl);
         } else if (_lineIsDone && NextLine.Count == 0) {
@@ -101,6 +104,17 @@ public class BurnFontLine : MonoBehaviour
                 FindObjectOfType<EasyGradient>().enabled = false;
 
                 Destroy(gameObject.GetComponent<BurnFontLine>());
+
+//                BurnFontLine actualBfl = gameObject.GetComponent<BurnFontLine>();
+//                BurnFontLine bfl = TheFirstElement.gameObject.AddComponent<BurnFontLine>();
+//                bfl.CoolTime = actualBfl.CoolTime;
+//                bfl.LetterDelayTime = actualBfl.LetterDelayTime;
+//                bfl.TopGradient = actualBfl.TopGradient;
+//                bfl.BottomGradient = actualBfl.BottomGradient;
+//                bfl.FallBackColor = actualBfl.FallBackColor;
+//                bfl.NextLine = actualBfl.NextLine;
+//                bfl.MotherScript = false;
+//                bfl.TheFirstElement = actualBfl.TheFirstElement;
             }
         }
     }

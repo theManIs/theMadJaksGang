@@ -27,43 +27,43 @@ namespace Assets.TeamProjects.GamePrimal.Editor
 
             if (EditorApplication.isPlaying) return;
 
-            bool hasCameraRig = DoesScriptExist<FreeLookCamWithUserInput>();
-            bool hasSceneShift = DoesScriptExist<ControllerSceneShift>();
-            bool hasMainScene = DoesScriptExist<MainScene.MainScene>();
+//            bool hasCameraRig = DoesScriptExist<FreeLookCamWithUserInput>();
+//            bool hasSceneShift = DoesScriptExist<ControllerSceneShift>();
+//            bool hasMainScene = DoesScriptExist<MainScene.MainScene>();
+//
+//            GUILayout.Space(10);
+//            GUILayout.BeginHorizontal();
+//            GUILayout.Label("Free camera rig");
+//
+//            _isPressedCameraRig = GUILayout.Button(!hasCameraRig ? "Add" : "Remove");
+//            
+//
+//            GUILayout.EndHorizontal();
+//
+//            GUILayout.Space(10);
+//            GUILayout.BeginHorizontal();
+//            GUILayout.Label("Scene shift");
+//
+//            _isPressedSceneShift = GUILayout.Button(hasSceneShift ? "Remove": "Add");
+//
+//            GUILayout.EndHorizontal();
+//
+//            GUILayout.Space(10);
+//            GUILayout.BeginHorizontal();
+//            GUILayout.Label("Main Scene");
+//
+//            _isMainScenePressed = GUILayout.Button(hasMainScene ? "Remove" : "Add");
+//
+//            GUILayout.EndHorizontal();
 
-            GUILayout.Space(10);
-            GUILayout.BeginHorizontal();
-            GUILayout.Label("Free camera rig");
 
-            _isPressedCameraRig = GUILayout.Button(!hasCameraRig ? "Add" : "Remove");
-            
-
-            GUILayout.EndHorizontal();
-
-            GUILayout.Space(10);
-            GUILayout.BeginHorizontal();
-            GUILayout.Label("Scene shift");
-
-            _isPressedSceneShift = GUILayout.Button(hasSceneShift ? "Remove": "Add");
-
-            GUILayout.EndHorizontal();
-
-            GUILayout.Space(10);
-            GUILayout.BeginHorizontal();
-            GUILayout.Label("Main Scene");
-
-            _isMainScenePressed = GUILayout.Button(hasMainScene ? "Remove" : "Add");
-
-            GUILayout.EndHorizontal();
-
-
-            bool isAddDrakePressed = AddButton("Treacherous Drake", false);
-            bool isPreposterousSkeletonPressed = AddButton("Preposterous Skeleton", false);
-            bool isHeartlessVampire = AddButton("HeartlessVampire", false);
-            bool isFemaleSwordsman = AddButton("FemaleSwordsman", false);
-            bool isFearsomeParasite = AddButton("FearsomeParasite", false);
-            bool isMeleeAxeFighter = AddButton("MeleeAxeFighter", false);
-            bool isAkaiArcher = AddButton("AkaiArcher", false);
+//            bool isAddDrakePressed = AddButton("Treacherous Drake", false);
+//            bool isPreposterousSkeletonPressed = AddButton("Preposterous Skeleton", false);
+//            bool isHeartlessVampire = AddButton("HeartlessVampire", false);
+//            bool isFemaleSwordsman = AddButton("FemaleSwordsman", false);
+//            bool isFearsomeParasite = AddButton("FearsomeParasite", false);
+//            bool isMeleeAxeFighter = AddButton("MeleeAxeFighter", false);
+//            bool isAkaiArcher = AddButton("AkaiArcher", false);
 
 //            CameraRigPressed(_isPressedCameraRig, hasCameraRig);
 //            CreateAndAddPressed<ControllerSceneShift>("SceneShift", _isPressedSceneShift, hasSceneShift);
@@ -71,7 +71,7 @@ namespace Assets.TeamProjects.GamePrimal.Editor
 //            CreateAndAddCharacter("TreacherousDrake", isAddDrakePressed);
 //            CreateAndAddCharacter("PreposterousSkeleton", isPreposterousSkeletonPressed);
 //            CreateAndAddCharacter("HeartlessVampire", isHeartlessVampire);
-            CreateAndAddCharacter("FemaleSwordsman", isFemaleSwordsman);
+//            CreateAndAddCharacter("FemaleSwordsman", isFemaleSwordsman);
 //            CreateAndAddCharacter("FearsomeParasite", isFearsomeParasite);
 //            CreateAndAddCharacter("MeleeAxeFighter", isMeleeAxeFighter);
 //            CreateAndAddCharacter("AkaiArcher", isAkaiArcher);

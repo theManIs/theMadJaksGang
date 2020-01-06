@@ -1221,6 +1221,7 @@ GameObject:
   - component: {fileID: 114094119361286325}
   - component: {fileID: -566884212896585297}
   - component: {fileID: 6189395161976932545}
+  - component: {fileID: 1343607617725885291}
   m_Layer: 0
   m_Name: MeleeAxeFighter
   m_TagString: Untagged
@@ -1368,7 +1369,7 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  CharacterFeatures: {fileID: 11400000, guid: b3a22b4b40505f4449e1398b87691e72, type: 2}
+  CharacterFeatures: {fileID: 11400000, guid: 90a80a41a0e258747b4b7cd971be0ca5, type: 2}
   MaxTurnPoints: 0
   TurnPoints: 0
   InitialTurnPoints: 0
@@ -1377,6 +1378,22 @@ MonoBehaviour:
   ExperienceActual: 0
   ExperienceMax: 0
   WeaponProjectile: {fileID: 0}
+  MoveSpeed: 0
+--- !u!114 &1343607617725885291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971557286522304464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644f2c1740495ae46a38759b6404efb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _iAmMoving: 0
+  InfiniteMoving: 0
+  _monoAmplifierRpg: {fileID: 0}
 --- !u!1 &4089596951873394531
 GameObject:
   m_ObjectHideFlags: 0

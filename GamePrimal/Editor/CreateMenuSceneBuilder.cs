@@ -31,6 +31,21 @@ namespace Assets.TeamProjects.GamePrimal.Editor
         [MenuItem("Assets/Add/Characters/FelineGargoil")]
         private static void AddGargoil() => AddPrefab<GameObject>(ResourcesList.FelineGargoil, false);
 
+        [MenuItem("Assets/Add/Characters/AkaiArcher")]
+        private static void AddAkaiArcher() => AddPrefab<GameObject>(ResourcesList.AkaiArcherCharacter, false);
+
+        [MenuItem("Assets/Add/Characters/FearsomeParasite")]
+        private static void AddFearsomeParasite() => AddPrefab<GameObject>(ResourcesList.FearsomeParasiteCharacter, false);
+
+        [MenuItem("Assets/Add/Characters/HeartlessVampire")]
+        private static void AddHeartlessVampire() => AddPrefab<GameObject>(ResourcesList.HeartlessVampireCharacter, false);
+
+        [MenuItem("Assets/Add/Characters/MeleeAxeFighter")]
+        private static void AddMeleeAxeFighter() => AddPrefab<GameObject>(ResourcesList.MeleeAxeFighterCharacter, false);
+
+        [MenuItem("Assets/Add/Characters/FemaleSwordsman")]
+        private static void AddMFemaleSwordsman() => AddPrefab<GameObject>(ResourcesList.FemaleSwordsmanCharacter, false);
+
         [MenuItem("Assets/Add/HeadUpDisplay")]
         private static void AddHud() => AddPrefab<GameObject>(ResourcesList.HeadUpDisplay);
 

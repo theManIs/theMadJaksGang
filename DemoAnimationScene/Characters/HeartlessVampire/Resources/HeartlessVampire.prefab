@@ -1941,6 +1941,7 @@ GameObject:
   - component: {fileID: 1591926567644471795}
   - component: {fileID: 2305311634168607524}
   - component: {fileID: 3479911513055163862}
+  - component: {fileID: 5551009861287108634}
   m_Layer: 0
   m_Name: HeartlessVampire
   m_TagString: Untagged
@@ -2088,7 +2089,7 @@ MonoBehaviour:
   Damage: 0
   Initiative: 0
   WeaponRange: 4
-  CharacterFeatures: {fileID: 11400000, guid: 0c7a0a9f274634749ba3b84e7678f59b, type: 2}
+  CharacterFeatures: {fileID: 11400000, guid: 00671bc090a2d2c41b86d333f1206aa3, type: 2}
   MaxTurnPoints: 0
   TurnPoints: 0
   InitialTurnPoints: 0
@@ -2098,6 +2099,21 @@ MonoBehaviour:
   ExperienceMax: 0
   WeaponProjectile: {fileID: 0}
   MoveSpeed: 0
+--- !u!114 &5551009861287108634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8368396772581234920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644f2c1740495ae46a38759b6404efb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _iAmMoving: 0
+  InfiniteMoving: 0
+  _monoAmplifierRpg: {fileID: 0}
 --- !u!1 &8607537705644250409
 GameObject:
   m_ObjectHideFlags: 0

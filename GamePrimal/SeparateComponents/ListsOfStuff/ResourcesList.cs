@@ -9,7 +9,16 @@
         public const string ArrowProjectile = "ArrowProjectile_16716";
         public const string FreeLookCameraRig = "FreeLookCameraRig_14626";
         public const string GlobalMapCamera = "GlobalMapCamera_-32866";
+
+        /// <summary>
+        /// Characters
+        /// </summary>
         public const string FelineGargoil = "FelineGargoil-73604";
+        public const string AkaiArcherCharacter = "AkaiArcher";
+        public const string FearsomeParasiteCharacter = "FearsomeParasite";
+        public const string HeartlessVampireCharacter = "HeartlessVampire";
+        public const string MeleeAxeFighterCharacter = "MeleeAxeFighter";
+        public const string FemaleSwordsmanCharacter = "FemaleSwordsman";
 
         /// <summary>
         /// Scenes

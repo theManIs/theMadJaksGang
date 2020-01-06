@@ -65,16 +65,16 @@ namespace Assets.TeamProjects.GamePrimal.Editor
             bool isMeleeAxeFighter = AddButton("MeleeAxeFighter", false);
             bool isAkaiArcher = AddButton("AkaiArcher", false);
 
-            CameraRigPressed(_isPressedCameraRig, hasCameraRig);
-            CreateAndAddPressed<ControllerSceneShift>("SceneShift", _isPressedSceneShift, hasSceneShift);
-            CreateAndAddPressed<MainScene.MainScene>("MainScene", _isMainScenePressed, hasMainScene);
-            CreateAndAddCharacter("TreacherousDrake", isAddDrakePressed);
-            CreateAndAddCharacter("PreposterousSkeleton", isPreposterousSkeletonPressed);
-            CreateAndAddCharacter("HeartlessVampire", isHeartlessVampire);
+//            CameraRigPressed(_isPressedCameraRig, hasCameraRig);
+//            CreateAndAddPressed<ControllerSceneShift>("SceneShift", _isPressedSceneShift, hasSceneShift);
+//            CreateAndAddPressed<MainScene.MainScene>("MainScene", _isMainScenePressed, hasMainScene);
+//            CreateAndAddCharacter("TreacherousDrake", isAddDrakePressed);
+//            CreateAndAddCharacter("PreposterousSkeleton", isPreposterousSkeletonPressed);
+//            CreateAndAddCharacter("HeartlessVampire", isHeartlessVampire);
             CreateAndAddCharacter("FemaleSwordsman", isFemaleSwordsman);
-            CreateAndAddCharacter("FearsomeParasite", isFearsomeParasite);
-            CreateAndAddCharacter("MeleeAxeFighter", isMeleeAxeFighter);
-            CreateAndAddCharacter("AkaiArcher", isAkaiArcher);
+//            CreateAndAddCharacter("FearsomeParasite", isFearsomeParasite);
+//            CreateAndAddCharacter("MeleeAxeFighter", isMeleeAxeFighter);
+//            CreateAndAddCharacter("AkaiArcher", isAkaiArcher);
         }
 
         private void CreateAndAddCharacter(string gameObjectName, bool isPressed)

@@ -101,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8697812661152052248}
-  - component: {fileID: 8697812661151931783}
+  - component: {fileID: 3545309540614905137}
   m_Layer: 0
   m_Name: RustyKnife
   m_TagString: Untagged
@@ -124,7 +124,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 178, y: 90, z: -95}
---- !u!114 &8697812661151931783
+--- !u!114 &3545309540614905137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,8 +133,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8697812661151931782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4723798e66ee564e97a6c62e6e5076e, type: 3}
+  m_Script: {fileID: 11500000, guid: b8ff2ce519f3ebd42accf235cdc2484a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponRange: 1.5
+  WeaponRange: 2
   WeaponType: 1
+  isRanged: 0
+  SpawnPoint: {fileID: 0}

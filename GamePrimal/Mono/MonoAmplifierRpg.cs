@@ -21,9 +21,9 @@ namespace Assets.GamePrimal.Mono
         [SerializeField] private float WeaponRange;
         [SerializeField] private CharacterFeatures CharacterFeatures;
         [SerializeField] private int MaxTurnPoints;
-        [SerializeField] private int TurnPoints;
         [SerializeField] private int InitialTurnPoints;
         [SerializeField] private Sprite CharacterPortrait;
+        public int TurnPoints;
         public int MaxHealth;
         public int ExperienceActual;
         public int ExperienceMax;
@@ -54,24 +54,19 @@ namespace Assets.GamePrimal.Mono
 
         private void OnEnable()
         {
-            _damageLogger.EHitDetected.HitDetectedEvent += HitCapturedHandler;
+//            _damageLogger.EHitDetected.HitDetectedEvent += HitCapturedHandler;
             StaticProxyEvent.ETurnWasFound.Event += TurnWasFoundHandler;
         }
 
         private void OnDisable()
         {
-            _damageLogger.EHitDetected.HitDetectedEvent += HitCapturedHandler;
+//            _damageLogger.EHitDetected.HitDetectedEvent += HitCapturedHandler;
             StaticProxyEvent.ETurnWasFound.Event -= TurnWasFoundHandler;
         }
 
         private void TurnWasFoundHandler(EventTurnWasFoundParams acp)
         {
             TurnPoints = InitialTurnPoints;
-        }
-
-        private void HitCapturedHandler(EventParamsBase epb)
-        {
-            TurnPoints -= 2;
         }
 
         public bool CanAct(int actionCost)
@@ -97,8 +92,8 @@ namespace Assets.GamePrimal.Mono
                 CharacterPortrait = af.CharacterPortrait;
                 ExperienceActual = (int)(Random.value * 10);
                 ExperienceMax = (int)(Random.value * 10) + ExperienceActual;
-                WeaponProjectile = af.PreferredProjectile ? af.PreferredProjectile : 
-                    Resources.Load<GameObject>(ArrowProjectile)?.transform;
+//                WeaponProjectile = af.PreferredProjectile ? af.PreferredProjectile : 
+//                    Resources.Load<GameObject>(ArrowProjectile)?.transform;
             }
         }
 
@@ -119,6 +114,10 @@ namespace Assets.GamePrimal.Mono
             {
                 WieldingWeapon = Instantiate(WieldingWeapon, _weaponPoint.transform);
                 WeaponRange = WieldingWeapon.WeaponRange;
+                WeaponProjectile = WieldingWeapon.DefaultProjectile;
+
+                if (WeaponProjectile)
+                    WieldingWeapon.SpawnProjectile(WeaponProjectile);
             }
         }
 

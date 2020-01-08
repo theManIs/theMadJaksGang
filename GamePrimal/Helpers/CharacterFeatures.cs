@@ -19,7 +19,8 @@ namespace Assets.TeamProjects.GamePrimal.Helpers
         public Sprite CharacterPortrait;
         public int ExperienceActual;
         public int ExperienceMax;
-        public Transform PreferredProjectile;
+//        public Transform PreferredProjectile;
         public int MoveSpeed;
+        public string AbilitiesSet;
     }
 }

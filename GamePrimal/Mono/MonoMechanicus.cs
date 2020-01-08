@@ -4,6 +4,7 @@ using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Proxies;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
@@ -19,13 +20,16 @@ namespace Assets.GamePrimal.Mono
     {
         public bool _iAmMoving = false;
         public bool InfiniteMoving = false;
+        public bool InfiniteAction = false;
 
         private ControllerDrumSpinner _cDrumSpinner;
         private CharacterAnimator _characterAnimator;
         private DamageLogger _damageLogger;
         private Rigidbody _rb;
         public MonoAmplifierRpg _monoAmplifierRpg;
-//        private HudViewer _hudViwer;
+        public EventHitDetected EHitDetected = new EventHitDetected();
+
+        public void HitDetectedHandler(AnimationEvent ae) => _characterAnimator.HitDetectedHandler();
 
         private void Awake()
         {
@@ -92,13 +96,21 @@ namespace Assets.GamePrimal.Mono
         private void OnEnable()
         {
             _characterAnimator.UserEnable();
+
+            EHitDetected.HitDetectedEvent += HitCapturedHandler;
         }
 
         private void OnDisable()
         {
             _characterAnimator.UserDisable();
+
+            EHitDetected.HitDetectedEvent -= HitCapturedHandler;
         }
 
-        public void HitDetectedHandler(AnimationEvent ae) => _characterAnimator.HitDetectedHandler();
+        private void HitCapturedHandler(EventParamsBase epb)
+        {
+            if (!InfiniteAction)
+                _monoAmplifierRpg.TurnPoints -= 2;
+        }
     }
 }

@@ -2130,6 +2130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iAmMoving: 0
   InfiniteMoving: 1
+  InfiniteAction: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &153067838
 MonoBehaviour:
@@ -2149,9 +2150,9 @@ MonoBehaviour:
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 00671bc090a2d2c41b86d333f1206aa3, type: 2}
   MaxTurnPoints: 0
-  TurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  TurnPoints: 0
   MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
@@ -2565,6 +2566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iAmMoving: 0
   InfiniteMoving: 1
+  InfiniteAction: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &176971600
 MonoBehaviour:
@@ -2659,9 +2661,9 @@ MonoBehaviour:
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 1211dd8352bfb6e438978ce18a046340, type: 2}
   MaxTurnPoints: 0
-  TurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  TurnPoints: 0
   MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
@@ -4133,6 +4135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iAmMoving: 0
   InfiniteMoving: 1
+  InfiniteAction: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &296174797
 MonoBehaviour:
@@ -4227,9 +4230,9 @@ MonoBehaviour:
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 1211dd8352bfb6e438978ce18a046340, type: 2}
   MaxTurnPoints: 0
-  TurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  TurnPoints: 0
   MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
@@ -4446,6 +4449,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iAmMoving: 0
   InfiniteMoving: 1
+  InfiniteAction: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &307051582
 MonoBehaviour:
@@ -4540,9 +4544,9 @@ MonoBehaviour:
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 7efb8c3f2776df54bac1468927c9f830, type: 2}
   MaxTurnPoints: 0
-  TurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  TurnPoints: 0
   MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
@@ -5282,6 +5286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iAmMoving: 0
   InfiniteMoving: 1
+  InfiniteAction: 1
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &367439133
 MonoBehaviour:
@@ -5376,9 +5381,9 @@ MonoBehaviour:
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 4f847b331bdae794ab8b8e48e793e457, type: 2}
   MaxTurnPoints: 0
-  TurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  TurnPoints: 0
   MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
@@ -8418,6 +8423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iAmMoving: 0
   InfiniteMoving: 1
+  InfiniteAction: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &630981825
 MonoBehaviour:
@@ -8437,9 +8443,9 @@ MonoBehaviour:
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 90a80a41a0e258747b4b7cd971be0ca5, type: 2}
   MaxTurnPoints: 0
-  TurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  TurnPoints: 0
   MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
@@ -9282,6 +9288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iAmMoving: 0
   InfiniteMoving: 1
+  InfiniteAction: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &705760765
 MonoBehaviour:
@@ -9301,9 +9308,9 @@ MonoBehaviour:
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 90a80a41a0e258747b4b7cd971be0ca5, type: 2}
   MaxTurnPoints: 0
-  TurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  TurnPoints: 0
   MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
@@ -10084,50 +10091,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7313184354910036405, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7313184355065927809, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7313184355082782078, guid: 895bbc438d7e13b46b9906d8fa55044d,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.23999023
-      objectReference: {fileID: 0}
-    - target: {fileID: 7313184355092428570, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 1.1999512
-      objectReference: {fileID: 0}
-    - target: {fileID: 7313184355154238348, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7313184355312945048, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7313184355452055733, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7313184355902358763, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7313184356032747729, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
+      propertyPath: m_AnchoredPosition.y
+      value: -0.17993164
       objectReference: {fileID: 0}
     - target: {fileID: 7313184356091760248, guid: 895bbc438d7e13b46b9906d8fa55044d,
         type: 3}
@@ -10139,16 +10106,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7313184356153653801, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7313184356153653806, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.8999939
-      objectReference: {fileID: 0}
     - target: {fileID: 7313184356284029775, guid: 895bbc438d7e13b46b9906d8fa55044d,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -10159,15 +10116,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7313184356475123197, guid: 895bbc438d7e13b46b9906d8fa55044d,
+    - target: {fileID: 7313184356457928573, guid: 895bbc438d7e13b46b9906d8fa55044d,
         type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.89990234
-      objectReference: {fileID: 0}
-    - target: {fileID: 7313184356543091208, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
+      propertyPath: m_AnchoredPosition.y
+      value: 1.4055176
       objectReference: {fileID: 0}
     - target: {fileID: 7313184356549618811, guid: 895bbc438d7e13b46b9906d8fa55044d,
         type: 3}
@@ -10279,25 +10231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hud_-106844
       objectReference: {fileID: 0}
-    - target: {fileID: 7313184356620106886, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7313184356620106887, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.040008545
-      objectReference: {fileID: 0}
     - target: {fileID: 8311838400158978288, guid: 895bbc438d7e13b46b9906d8fa55044d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2.5000534
-      objectReference: {fileID: 0}
-    - target: {fileID: 8311838400158978288, guid: 895bbc438d7e13b46b9906d8fa55044d,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -1.0800781
+      value: -2.5000496
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 895bbc438d7e13b46b9906d8fa55044d, type: 3}
@@ -13899,24 +13836,6 @@ Transform:
   m_Father: {fileID: 264445996}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1069314716 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7313184355530788251, guid: 895bbc438d7e13b46b9906d8fa55044d,
-    type: 3}
-  m_PrefabInstance: {fileID: 751996231}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1069314718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069314716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b92ff692a73077f4aa94ea230b60c70f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1071683356
 GameObject:
   m_ObjectHideFlags: 0
@@ -17646,6 +17565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iAmMoving: 0
   InfiniteMoving: 1
+  InfiniteAction: 1
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &1396428749
 MonoBehaviour:
@@ -17740,9 +17660,9 @@ MonoBehaviour:
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 4f847b331bdae794ab8b8e48e793e457, type: 2}
   MaxTurnPoints: 0
-  TurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  TurnPoints: 0
   MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
@@ -23843,6 +23763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iAmMoving: 0
   InfiniteMoving: 1
+  InfiniteAction: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &1909644131
 MonoBehaviour:
@@ -23937,9 +23858,9 @@ MonoBehaviour:
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 7efb8c3f2776df54bac1468927c9f830, type: 2}
   MaxTurnPoints: 0
-  TurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  TurnPoints: 0
   MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
@@ -24866,79 +24787,6 @@ Transform:
   m_Father: {fileID: 1275462412}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1983500907 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7313184355131214231, guid: 895bbc438d7e13b46b9906d8fa55044d,
-    type: 3}
-  m_PrefabInstance: {fileID: 751996231}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1983500909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983500907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b92ff692a73077f4aa94ea230b60c70f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1983500910 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7313184355131214225, guid: 895bbc438d7e13b46b9906d8fa55044d,
-    type: 3}
-  m_PrefabInstance: {fileID: 751996231}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983500907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1983500912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1983500907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1983500910}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1983636007
 GameObject:
   m_ObjectHideFlags: 0
@@ -25692,6 +25540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iAmMoving: 0
   InfiniteMoving: 1
+  InfiniteAction: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &2030863136
 MonoBehaviour:
@@ -25711,9 +25560,9 @@ MonoBehaviour:
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 00671bc090a2d2c41b86d333f1206aa3, type: 2}
   MaxTurnPoints: 0
-  TurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  TurnPoints: 0
   MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0

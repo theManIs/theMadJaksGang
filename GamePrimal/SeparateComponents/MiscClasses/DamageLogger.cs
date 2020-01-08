@@ -20,7 +20,6 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         public event HitReaction ReactOnHit;
         public event HitReaction AttackStarted;
         public event HitReactionFinished HitEndReached;
-        public EventHitDetected EHitDetected = new EventHitDetected();
         public EventHitFinished EHitFinished = new EventHitFinished();
 
         //        private NavMeshAgent _navMeshAgent;
@@ -36,16 +35,17 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         private NavMeshAgent _navMeshAgent;
         private bool _attacking = false;
         private readonly int _autoAttackCost = 2;
+        private MonoMechanicus _monomech;
 
         public void Start()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _animator = GetComponent<Animator>();
             _capsuleCollider = GetComponent<CapsuleCollider>();
-//            _manMainScene = Object.FindObjectOfType<MainScene.MainScene>();
             _ce = StaticProxyRouter.GetControllerEvent();
             _amplifier = GetComponent<MonoAmplifierRpg>();
             _cAttackCapture = StaticProxyRouter.GetControllerAttackCapture();
+            _monomech = GetComponent<MonoMechanicus>();
 
             ControllerFloatingText.Initialize();
         }
@@ -57,18 +57,12 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             int damageAmount = enemy.GetComponent<MonoAmplifierRpg>().CalcDamage();
 
             _amplifier.SubtractHealth(damageAmount);
-//            _animator.SetTrigger(_amplifier.HasDied() ? "Died" : "Hit");
             ReactOnHit?.Invoke(new AttackCaptureParams() { Source = enemy, Target = ally, HasDied = _amplifier.HasDied() });
             ControllerFloatingText.CreateFloatingText(damageAmount.ToString(), transform);
 
             if (_amplifier.HasDied())
                 _capsuleCollider.enabled = false;
         }
-
-//        public void ImpactStage()
-//        {
-//            HitApply();
-//        }
 
         public void OnEnable()
         {
@@ -83,6 +77,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         }
 
         public void HitDetectedHandler(AnimationEvent ae) => _ce.HitAppliedHandlerInvoke(lastEnemy, lastAlly);
+        
 
         public void AttackTheEnemy(AttackCaptureParams acp)
         {
@@ -94,56 +89,21 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             if (Vector3.Distance(enemy.position, transform.position) < _amplifier.GetMeleeRange() && _amplifier.CanAct(_autoAttackCost))
             {
                 _cAttackCapture.LockTarget();
-//                _animator.StopPlayback();
-//                _animator.SetTrigger("Attacking");
-//                transform.LookAt(enemy);
 
-//                _attacking = true;
                 lastAlly = ally;
                 lastEnemy = enemy;
 
                 AttackStarted?.Invoke(acp);
-//                Invoke(nameof(HitApply), 1f);
-//                Invoke(nameof(HitEndedHandler), 2);
 
-                EHitDetected.Invoke(new HitDetectedParams() {HasDied = acp.HasDied, HasHit = acp.HasHit, Source = acp.Source, Target = acp.Target});
+                _monomech.EHitDetected.Invoke(new HitDetectedParams() {HasDied = acp.HasDied, HasHit = acp.HasHit, Source = acp.Source, Target = acp.Target});
             }
         }
 
         public void HitEndedHandler(AnimationEvent ae)
         {
-//            DebugInfo.Log("Release lock");
             _cAttackCapture.ReleaseFixated();
             EHitFinished.Invoke(new EventParamsBase());
 
-//            _attacking = false;
-        }
-
-//        public void HitApply()
-//        {
-//            _ce.HitAppliedHandlerInvoke(lastEnemy, lastAlly);
-//        }
-
-        // Update is called once per frame
-        public void Update()
-        {
-//            if (_attacking)
-//                gameObject.transform.LookAt(lastEnemy);
-
-//            if (!_isBlip && _navMeshAgent.hasPath)
-//            {
-//                _isBlip = true;
-//                _animator.SetBool("IsStoped", false);
-//            }
-//            else if (_isBlip && !_navMeshAgent.hasPath)
-//            {
-//                _isBlip = false;
-//                _animator.SetBool("IsStoped", true);
-//            }
-
-//            if (Input.GetKeyDown(KeyCode.H))
-//                if (_manMainScene.GetFocus().gameObject.GetInstanceID() == gameObject.GetInstanceID())
-//                    _animator.SetTrigger("Attacking");
         }
     }
 }

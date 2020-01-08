@@ -19,6 +19,7 @@ namespace Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScri
         public Transform SpawnPoint;
         public int ShootPower = 30;
         public bool PauseAfterShoot = false;
+        public Transform DefaultProjectile;
 
         private Transform _lastProjectile;
 

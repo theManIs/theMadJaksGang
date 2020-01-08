@@ -4760,7 +4760,7 @@ GameObject:
   - component: {fileID: 8462965412159833895}
   - component: {fileID: 8464455300772361143}
   m_Layer: 0
-  m_Name: IceLance
+  m_Name: IceShard_12746
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4792,7 +4792,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8625786697970933809}
   serializedVersion: 6
-  lengthInSec: 2
+  lengthInSec: 30
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 3
@@ -4920,7 +4920,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5036,8 +5036,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 2
+      scalar: 1
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5498,7 +5498,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1.0582733
+      value: 0.01
       mode: 0
       spread: 0
       speed:
@@ -6828,7 +6828,7 @@ ParticleSystem:
     speedModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.2
       minScalar: 1
       maxCurve:
         serializedVersion: 2

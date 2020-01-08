@@ -1386,7 +1386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b92ff692a73077f4aa94ea230b60c70f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AbilityName: AutoAttackRanged
+  AbilityName: IceShard
 --- !u!1 &7313184355551175597
 GameObject:
   m_ObjectHideFlags: 0

@@ -54,7 +54,7 @@ namespace Assets.GamePrimal.Mono
                 DamageLoggerComponent = GetComponent<DamageLogger>(), 
                 NavMeshAgentComponent = GetComponent<NavMeshAgent>(),
 //                MeshSpeed = _monoAmplifierRpg.MeshSpeed,
-                WieldingWeapon = _monoAmplifierRpg.WieldingWeapon
+//                WieldingWeapon = _monoAmplifierRpg.WieldingWeapon
 
             });
 

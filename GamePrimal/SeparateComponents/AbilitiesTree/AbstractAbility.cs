@@ -6,6 +6,5 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.AbilitiesTree
     public abstract class AbstractAbility
     {
         public abstract bool IsWeaponBased();
-        public abstract bool HasProjectiles();
     }
 }

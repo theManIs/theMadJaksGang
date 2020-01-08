@@ -9,6 +9,7 @@ using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
 using UnityEngine.AI;
+using Object = UnityEngine.Object;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 {
@@ -53,7 +54,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 
             Engaged = _animator && _navMeshAgent && _dmLogger;
             _navMeshAgent.speed = sp.NavMeshSpeed;
-//            Debug.Log(sp.NavMeshSpeed);
+            _wieldingWeapon = _monoAmplifierRpg.WieldingWeapon;
             _baseMeshSpeed = sp.NavMeshSpeed;
             _animator.SetInteger("WeaponType", (int)sp.WeaponType);
         }
@@ -134,6 +135,8 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 
         public void HitDetectedHandler()
         {
+            _transform.GetComponent<CapsuleCollider>().enabled = true;
+
             if (_monoAmplifierRpg.WeaponProjectile)
                 _monoAmplifierRpg.WieldingWeapon.ShootAnyProjectile(_lastEnemy);
         }
@@ -145,9 +148,17 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             _lastAttackCapture = acp;
             _attacking = true;
             _lastEnemy = acp.Source;
+            AbstractAbility ability = _monoAmplifierRpg.GetActualAbility();
 
             if (_monoAmplifierRpg.WieldingWeapon.isRanged && !_monoAmplifierRpg.WieldingWeapon.HasLastProjectile())
                 _monoAmplifierRpg.WieldingWeapon.SpawnProjectile(_monoAmplifierRpg.WeaponProjectile);
+
+            if (ability != null && !ability.IsWeaponBased() && ability is AbstractMagicBased amb)
+            {
+                amb.SpawnWithEnemyDirection(_transform, _lastEnemy);
+                _transform.GetComponent<CapsuleCollider>().enabled = false;
+            }
+
 
 //            AnimatorClipInfo[] animatorClipInfo = _animator.GetCurrentAnimatorClipInfo(0);
 //

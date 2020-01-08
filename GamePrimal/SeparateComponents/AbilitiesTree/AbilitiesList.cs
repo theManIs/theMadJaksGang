@@ -4,10 +4,11 @@
     {
         public const string AutoAttackRanged = "AutoAttackRanged";
         public const string PoisonArrow = "PoisonArrow";
+        public const string IceShard = "IceShard";
 
         public static string[] GetAbilities()
         {
-            string[] localString = {AutoAttackRanged, PoisonArrow};
+            string[] localString = {AutoAttackRanged, PoisonArrow, IceShard};
 
             return localString;
         }

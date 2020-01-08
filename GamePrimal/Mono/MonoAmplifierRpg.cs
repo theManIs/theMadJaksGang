@@ -54,7 +54,7 @@ namespace Assets.GamePrimal.Mono
 
             foreach (string s in AbilitiesSet)  //todo This has to be type AbstractAbility
             {
-//                Debug.Log(s + " == " + abilityToUseActual + " = " + s.Equals(abilityToUseActual) + " " + Time.time);
+                Debug.Log(s + " == " + abilityToUseActual + " = " + s.Equals(abilityToUseActual) + " " + Time.time);
                 if (s.Equals(abilityToUseActual))
                 {
                     localAbilityWasSet = true;
@@ -81,10 +81,14 @@ namespace Assets.GamePrimal.Mono
                 _abilityToUse = new PoisonArrow();
 //                Debug.Log(_abilityToUse + " " + Time.time);
             } 
+            else if (abilityName == AbilitiesList.IceShard)
+            {
+                _abilityToUse = new IceShard();
+            }
             else
                 _abilityToUse = _autoAttack;
 
-//            Debug.Log(_abilityToUse + " " + Time.time);
+            Debug.Log(_abilityToUse + " " + Time.time);
         }
 
         private void SetRangedAutoAttack()

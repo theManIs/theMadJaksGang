@@ -8,6 +8,7 @@
         public const string RegularWayPoint = "WayPointWhite_11970";
         public const string ArrowProjectile = "ArrowProjectile_-405228";
         public const string PoisonArrowProjectile = "PoisonArrow_12868";
+        public const string IceShardEffect = "IceShard_12746";
         public const string FreeLookCameraRig = "FreeLookCameraRig_14626";
         public const string GlobalMapCamera = "GlobalMapCamera_-32866";
         public const string StartDisplay = "StartCanvas-342144";

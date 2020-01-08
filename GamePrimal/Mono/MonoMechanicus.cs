@@ -16,7 +16,7 @@ namespace Assets.GamePrimal.Mono
     [RequireComponent(typeof(MonoAmplifierRpg))]
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(ClickToMove))]
-    public class MonoMechanicus : MonoBehaviourBaseClass
+    public class MonoMechanicus : MonoBehaviourBaseClass, IHitEndedHandler
     {
         public bool _iAmMoving = false;
         public bool InfiniteMoving = false;
@@ -118,17 +118,28 @@ namespace Assets.GamePrimal.Mono
             Transform hardFoucus = StaticProxyRouter.GetControllerFocusSubject().GetHardFocus();
 
             if (!hardFoucus) return;
-            if (!acp.AbilityInLockMode) return;
             if (hardFoucus && hardFoucus.GetInstanceID() != transform.GetInstanceID()) return;
 
-            _monoAmplifierRpg.SetActiveAbility(acp.AbilityName);
-            _characterAnimator.SpawnSpecialProjectile(_monoAmplifierRpg.GetActualAbility());
+            if (!acp.AbilityInLockMode)
+            {
+                _monoAmplifierRpg.ResetActiveAbility();
+            }
+            else
+            {
+                _monoAmplifierRpg.SetActiveAbility(acp.AbilityName);
+                _characterAnimator.SpawnSpecialProjectile(_monoAmplifierRpg.GetActualAbility());
+            }
         }
 
         private void HitCapturedHandler(EventParamsBase epb)
         {
             if (!InfiniteAction)
                 _monoAmplifierRpg.TurnPoints -= 2;
+        }
+
+        public void HitEndedHandler(AnimationEvent ae)
+        {
+            _monoAmplifierRpg.ResetActiveAbility();
         }
     }
 }

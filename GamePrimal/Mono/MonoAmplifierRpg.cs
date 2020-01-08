@@ -63,13 +63,10 @@ namespace Assets.GamePrimal.Mono
             }
 
             if (!localAbilityWasSet)
-                SetAnyAbility(null);
+                SetAnyAbility(AutoAttack);
         }
 
-        public void ResetActiveAbility()
-        {
-            AbilityToUse = AutoAttack; //todo This has to be type AutoAttack
-        }
+        public void ResetActiveAbility() => SetAnyAbility(AutoAttack);
 
         private void SetAnyAbility(string abilityName)
         {
@@ -95,6 +92,12 @@ namespace Assets.GamePrimal.Mono
         {
             AutoAttack = AbilitiesList.AutoAttackRanged;
             _autoAttack = new AutoAttackRanged();
+        }
+
+        private void SetMeleeAutoAttack()
+        {
+            AutoAttack = AbilitiesList.AutoAttackMelee;
+            _autoAttack = new AutoAttackMelee();
         }
 
         private void Awake()
@@ -173,8 +176,10 @@ namespace Assets.GamePrimal.Mono
 //                if (WeaponProjectile)
 //                    WieldingWeapon.SpawnProjectile(WeaponProjectile);
 
-                if (AbilitiesSet.Length > 0 && WeaponProjectile) 
+                if (WeaponProjectile && WieldingWeapon.isRanged) 
                     SetRangedAutoAttack();
+                else
+                    SetMeleeAutoAttack();
 
             }
         }

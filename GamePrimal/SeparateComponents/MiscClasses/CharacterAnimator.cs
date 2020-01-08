@@ -156,7 +156,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             if (ability != null && !ability.IsWeaponBased() && ability is AbstractMagicBased amb)
             {
                 amb.SpawnWithEnemyDirection(_transform, _lastEnemy);
-                _transform.GetComponent<CapsuleCollider>().enabled = false;
+                _transform.GetComponent<CapsuleCollider>().enabled = false; //todo Make it from Monomechanicus
             }
 
 

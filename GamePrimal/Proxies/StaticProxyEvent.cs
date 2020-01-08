@@ -9,9 +9,10 @@ namespace Assets.TeamProjects.GamePrimal.Proxies
     {
         public static EventEndOfRound EEndOfRound = new EventEndOfRound();
         public static EventTurnWasFound ETurnWasFound = new EventTurnWasFound();
+        public static EventActiveAbilityChanged EActiveAbilityChanged = new EventActiveAbilityChanged();
     }
 
-    public class ControllerEvent
+    public class ControllerEvent  //todo dissolve this class
     {
         public delegate void HitDetected(AttackCaptureParams acp);
         public static event HitDetected HitDetectedHandler;

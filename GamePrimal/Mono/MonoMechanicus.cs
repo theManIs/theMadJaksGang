@@ -31,6 +31,10 @@ namespace Assets.GamePrimal.Mono
 
         public void HitDetectedHandler(AnimationEvent ae) => _characterAnimator.HitDetectedHandler();
 
+        public void SetActiveAbility(string abilityName) => _monoAmplifierRpg.SetActiveAbility(abilityName);
+
+        public void ResetCurrentAbility() => _monoAmplifierRpg.ResetActiveAbility();
+
         private void Awake()
         {
             _cDrumSpinner = StaticProxyRouter.GetControllerDrumSpinner();
@@ -98,6 +102,7 @@ namespace Assets.GamePrimal.Mono
             _characterAnimator.UserEnable();
 
             EHitDetected.HitDetectedEvent += HitCapturedHandler;
+            StaticProxyEvent.EActiveAbilityChanged.Event += ChangeActiveAbility;
         }
 
         private void OnDisable()
@@ -105,6 +110,19 @@ namespace Assets.GamePrimal.Mono
             _characterAnimator.UserDisable();
 
             EHitDetected.HitDetectedEvent -= HitCapturedHandler;
+            StaticProxyEvent.EActiveAbilityChanged.Event -= ChangeActiveAbility;
+        }
+
+        private void ChangeActiveAbility(EventActiveAbilityChangedParams acp)
+        {
+            Transform hardFoucus = StaticProxyRouter.GetControllerFocusSubject().GetHardFocus();
+
+            if (!hardFoucus) return;
+            if (!acp.AbilityInLockMode) return;
+            if (hardFoucus && hardFoucus.GetInstanceID() != transform.GetInstanceID()) return;
+
+            _monoAmplifierRpg.SetActiveAbility(acp.AbilityName);
+            _characterAnimator.SpawnSpecialProjectile(_monoAmplifierRpg.GetActualAbility());
         }
 
         private void HitCapturedHandler(EventParamsBase epb)

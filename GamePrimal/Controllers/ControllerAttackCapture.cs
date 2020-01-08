@@ -38,15 +38,18 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
             Transform focused = _cFocusSubject.GetHardFocus();
             Transform captured = _cFocusSubject.GetSoftFocus();
 
-            if (Input.GetKeyDown(KeyCode.Mouse0) && focused && captured && captured.GetComponent<MonoMechanicus>())
-                if (focused.GetInstanceID() != captured.GetInstanceID())
-                {
-                    AttackCaptureParams acp = new AttackCaptureParams() { Source = captured, Target = focused, HasHit = HasHit };
+            if (!StaticProxyStateHolder.UserOnUi)
+                if (Input.GetKeyDown(KeyCode.Mouse0) && focused && captured && captured.GetComponent<MonoMechanicus>())
+                    if (focused.GetInstanceID() != captured.GetInstanceID())
+                    {
+                        AttackCaptureParams acp = new AttackCaptureParams() { Source = captured, Target = focused, HasHit = HasHit };
 
-                    StaticProxyRouter.GetControllerEvent().HitDetectedInvoke(acp);
-//                    Debug.Log("Locked " + Time.time);
-                    HitFixated = true;
-                }
+                        StaticProxyRouter.GetControllerEvent().HitDetectedInvoke(acp);
+    //                    Debug.Log("Locked " + Time.time);
+                        HitFixated = true;
+
+                        StaticProxyStateHolder.LockModeOn = false;
+                    }
         }
     }
 }

@@ -1,14 +1,11 @@
-﻿using Assets.GamePrimal.Controllers;
-using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
-using Assets.TeamProjects.GamePrimal.Controllers;
+﻿using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
 using Assets.TeamProjects.GamePrimal.Helpers;
 using Assets.TeamProjects.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Proxies;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.AbilitiesTree;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using UnityEngine;
-using UnityScript.Steps;
-using static Assets.TeamProjects.GamePrimal.SeparateComponents.ListsOfStuff.ResourcesList;
 
 namespace Assets.GamePrimal.Mono
 {
@@ -29,6 +26,12 @@ namespace Assets.GamePrimal.Mono
         public int ExperienceMax;
         public Transform WeaponProjectile;
         public int MoveSpeed;
+        public string AutoAttack;
+        private AbstractWeaponBased _autoAttack; //todo Shadow field because of string value AutoAttack
+        public string[] AbilitiesSet;
+        public string AbilityToUse;   //todo Make this field typed as its purpose
+        private AbstractAbility _abilityToUse;   //todo Shadow field because of string value AbilityToUse
+        public AbstractAbility GetActualAbility() => _abilityToUse;
 
         private DamageLogger _damageLogger;
 
@@ -45,6 +48,51 @@ namespace Assets.GamePrimal.Mono
         public int GetTurnPoints() => TurnPoints;
         public Sprite GetCharacterPortrait() => CharacterPortrait;
 
+        public void SetActiveAbility(string abilityToUseActual)
+        {
+            bool localAbilityWasSet = false;
+
+            foreach (string s in AbilitiesSet)  //todo This has to be type AbstractAbility
+            {
+//                Debug.Log(s + " == " + abilityToUseActual + " = " + s.Equals(abilityToUseActual) + " " + Time.time);
+                if (s.Equals(abilityToUseActual))
+                {
+                    localAbilityWasSet = true;
+                    SetAnyAbility(abilityToUseActual);
+                }
+            }
+
+            if (!localAbilityWasSet)
+                SetAnyAbility(null);
+        }
+
+        public void ResetActiveAbility()
+        {
+            AbilityToUse = AutoAttack; //todo This has to be type AutoAttack
+        }
+
+        private void SetAnyAbility(string abilityName)
+        {
+            AbilityToUse = abilityName;
+
+//            Debug.Log(abilityName + " " + AbilitiesList.PoisonArrow + " " + Time.time);
+            if (abilityName == AbilitiesList.PoisonArrow) //todo move Abilities list to monomech
+            {
+                _abilityToUse = new PoisonArrow();
+//                Debug.Log(_abilityToUse + " " + Time.time);
+            } 
+            else
+                _abilityToUse = _autoAttack;
+
+//            Debug.Log(_abilityToUse + " " + Time.time);
+        }
+
+        private void SetRangedAutoAttack()
+        {
+            AutoAttack = AbilitiesList.AutoAttackRanged;
+            _autoAttack = new AutoAttackRanged();
+        }
+
         private void Awake()
         {
             _damageLogger = GetComponent<DamageLogger>();
@@ -57,6 +105,7 @@ namespace Assets.GamePrimal.Mono
 //            _damageLogger.EHitDetected.HitDetectedEvent += HitCapturedHandler;
             StaticProxyEvent.ETurnWasFound.Event += TurnWasFoundHandler;
         }
+
 
         private void OnDisable()
         {
@@ -92,6 +141,7 @@ namespace Assets.GamePrimal.Mono
                 CharacterPortrait = af.CharacterPortrait;
                 ExperienceActual = (int)(Random.value * 10);
                 ExperienceMax = (int)(Random.value * 10) + ExperienceActual;
+                AbilitiesSet = af.AbilitiesSet;
 //                WeaponProjectile = af.PreferredProjectile ? af.PreferredProjectile : 
 //                    Resources.Load<GameObject>(ArrowProjectile)?.transform;
             }
@@ -115,9 +165,13 @@ namespace Assets.GamePrimal.Mono
                 WieldingWeapon = Instantiate(WieldingWeapon, _weaponPoint.transform);
                 WeaponRange = WieldingWeapon.WeaponRange;
                 WeaponProjectile = WieldingWeapon.DefaultProjectile;
+//
+//                if (WeaponProjectile)
+//                    WieldingWeapon.SpawnProjectile(WeaponProjectile);
 
-                if (WeaponProjectile)
-                    WieldingWeapon.SpawnProjectile(WeaponProjectile);
+                if (AbilitiesSet.Length > 0 && WeaponProjectile) 
+                    SetRangedAutoAttack();
+
             }
         }
 
@@ -127,12 +181,6 @@ namespace Assets.GamePrimal.Mono
 
             if (targetElement)
                 _weaponPoint = targetElement.GetComponent<WeaponPosition>();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
         }
     }
 }

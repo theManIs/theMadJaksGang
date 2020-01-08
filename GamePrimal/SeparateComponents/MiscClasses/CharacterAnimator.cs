@@ -4,6 +4,7 @@ using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.AbilitiesTree;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
@@ -110,6 +111,25 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         private void HitFinished(EventParamsBase epb)
         {
             _attacking = false;
+
+//            if (_monoAmplifierRpg.WeaponProjectile)
+//                _monoAmplifierRpg.WieldingWeapon.SpawnProjectile(_monoAmplifierRpg.WeaponProjectile);
+
+        }
+
+        public void SpawnSpecialProjectile(AbstractAbility ability)
+        {
+            if (ability == null) return;
+
+            if (ability.IsWeaponBased())
+            {
+//                Debug.Log(ability);
+
+                if (ability is AbstractWeaponBasedRanged attackAbility && attackAbility.HasProjectiles())
+//                    Debug.Log(attackAbility);
+
+                _monoAmplifierRpg.WieldingWeapon.SpawnProjectile(attackAbility.GetProjectile());
+            }
         }
 
         public void HitDetectedHandler()
@@ -126,11 +146,8 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             _attacking = true;
             _lastEnemy = acp.Source;
 
-            if (_monoAmplifierRpg.WeaponProjectile)
+            if (_monoAmplifierRpg.WieldingWeapon.isRanged && !_monoAmplifierRpg.WieldingWeapon.HasLastProjectile())
                 _monoAmplifierRpg.WieldingWeapon.SpawnProjectile(_monoAmplifierRpg.WeaponProjectile);
-
-//            if (_monoAmplifierRpg.WieldingWeapon.isRanged)
-//                _monoAmplifierRpg.WieldingWeapon.ShootAnyProjectile(_monoAmplifierRpg.WeaponProjectile.transform, acp.Source);
 
 //            AnimatorClipInfo[] animatorClipInfo = _animator.GetCurrentAnimatorClipInfo(0);
 //

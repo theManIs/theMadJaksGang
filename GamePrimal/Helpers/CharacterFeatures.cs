@@ -1,5 +1,5 @@
-﻿using Assets.GamePrimal.Mono;
-using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
+﻿using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.AbilitiesTree;
 using UnityEngine;
 
 namespace Assets.TeamProjects.GamePrimal.Helpers
@@ -21,6 +21,6 @@ namespace Assets.TeamProjects.GamePrimal.Helpers
         public int ExperienceMax;
 //        public Transform PreferredProjectile;
         public int MoveSpeed;
-        public string AbilitiesSet;
+        public string[] AbilitiesSet = AbilitiesList.GetAbilities(); //todo such a bound has to be dismissed
     }
 }

@@ -129,7 +129,7 @@ MonoBehaviour:
   SpawnPoint: {fileID: 5280153184506186213}
   ShootPower: 30
   PauseAfterShoot: 0
-  defaultProjectile: {fileID: 5778737227384876002, guid: 4bd3827b56e696144a91b75942ed4c9a,
+  DefaultProjectile: {fileID: 5778737227384876002, guid: 4bd3827b56e696144a91b75942ed4c9a,
     type: 3}
 --- !u!1 &5282659608898979557
 GameObject:

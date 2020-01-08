@@ -29,14 +29,14 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
             _subjectFocus.UserUpdate(localMouseInput, Camera.main.ScreenPointToRay(localMouseInput.MousePosition));
 
-            ReleaseLockMode();
+//            ReleaseLockMode();
         }
 
-        private void ReleaseLockMode()
-        {
-            if (StaticProxyInput.RightMouse && StaticProxyStateHolder.LockModeOn)
-                StaticProxyStateHolder.LockModeOn = false;
-        }
+//        private void ReleaseLockMode()
+//        {
+//            if (StaticProxyInput.RightMouse && StaticProxyStateHolder.LockModeOn)
+//                StaticProxyStateHolder.LockModeOn = false;
+//        }
 
         public bool HasFocused() => _subjectFocus.HasFocused();
         public Transform GetFocus() => _subjectFocus.GetFocus();

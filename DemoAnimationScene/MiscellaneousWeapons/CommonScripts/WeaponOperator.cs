@@ -20,11 +20,15 @@ namespace Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScri
         public int ShootPower = 30;
         public bool PauseAfterShoot = false;
         public Transform DefaultProjectile;
+        public bool HasLastProjectile() => _lastProjectile;
 
         private Transform _lastProjectile;
 
         public void SpawnProjectile(Transform projectile)
         {
+            if (_lastProjectile)
+                Destroy(_lastProjectile.gameObject);
+
             GameObject newProjectile = Instantiate(projectile.gameObject);
             newProjectile.transform.position = SpawnPoint.position;
             newProjectile.transform.rotation = SpawnPoint.rotation;
@@ -35,12 +39,13 @@ namespace Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScri
                 Destroy(newProjectile.GetComponent<Rigidbody>());
         }
 
-        public void ShootAnyProjectile(Transform enemy) 
+        public void ShootAnyProjectile(Transform enemy)
         {
-//            transform.LookAt(enemy);
+            if (!_lastProjectile) return;
 
             Rigidbody rb = _lastProjectile.gameObject.AddComponent<Rigidbody>();
             rb.velocity = _lastProjectile.transform.forward * ShootPower;
+            _lastProjectile = null;
 
             if (PauseAfterShoot)
                 EditorApplication.isPaused = true;

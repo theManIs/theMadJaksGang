@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.AbilitiesTree
 {
-    public class AutoAttackRanged : AbstractWeaponBasedRanged
+    public class PoisonArrow : AbstractWeaponBasedRanged
     {
-        public Transform ActualProjectile = Resources.Load<Transform>(ResourcesList.ArrowProjectile);
+        public Transform ActualProjectile = Resources.Load<Transform>(ResourcesList.PoisonArrowProjectile);
         public override bool HasProjectiles() => true;
         public override Transform GetProjectile() => ActualProjectile;
     }

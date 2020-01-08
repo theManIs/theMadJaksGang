@@ -98,5 +98,7 @@ namespace Assets.GamePrimal.Mono
         {
             _characterAnimator.UserDisable();
         }
+
+        public void HitDetectedHandler(AnimationEvent ae) => _characterAnimator.HitDetectedHandler();
     }
 }

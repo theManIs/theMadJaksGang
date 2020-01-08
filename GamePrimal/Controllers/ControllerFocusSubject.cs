@@ -24,8 +24,18 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
             if (_recentFrame == Time.frameCount) return;
 
             _recentFrame = Time.frameCount;
+            MouseInput localMouseInput = StaticProxyInput.MouseInput;
+            localMouseInput.RightMouse = localMouseInput.RightMouse && !StaticProxyStateHolder.LockModeOn;
 
-            _subjectFocus.UserUpdate();
+            _subjectFocus.UserUpdate(localMouseInput, Camera.main.ScreenPointToRay(localMouseInput.MousePosition));
+
+            ReleaseLockMode();
+        }
+
+        private void ReleaseLockMode()
+        {
+            if (StaticProxyInput.RightMouse && StaticProxyStateHolder.LockModeOn)
+                StaticProxyStateHolder.LockModeOn = false;
         }
 
         public bool HasFocused() => _subjectFocus.HasFocused();

@@ -33,7 +33,7 @@ namespace Assets.GamePrimal.Mono
         private DamageLogger _damageLogger;
 
         public float MeshSpeed { get; private set; } = 4f;
-        public WeaponOperator WieldingWeapon { get; private set; }
+        public WeaponOperator WieldingWeapon;
         public WeaponPosition _weaponPoint { get; private set; }
 
         public void SubtractHealth(int amount) => Health -= amount;

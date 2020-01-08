@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Assets.GamePrimal;
 using Assets.TeamProjects.GamePrimal.MainScene;
+using Assets.TeamProjects.GamePrimal.Proxies;
 
 namespace Assets.GamePrimal.Navigation.HighlightFrame
 {
@@ -36,9 +37,9 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
             return _raycastCaptured;
         }
 
-        public void UserUpdate()
+        public void UserUpdate(MouseInput mi, Ray ray)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+//            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             _hasThisFrameFocused = true;
 
 //            SetDefaultCursor();
@@ -54,7 +55,8 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
 //                    else
 //                        SetPickCursor();
 
-                    if (Input.GetMouseButton(0))
+//                    if (Input.GetMouseButton(0))
+                    if (mi.LeftMouse)
                     {
 //                        if (_hardFocus != null)
 //                            _hardFocus.GetComponent<ClickToMove>().IsActive = false;
@@ -74,7 +76,8 @@ namespace Assets.GamePrimal.Navigation.HighlightFrame
                 }
             }
 
-            if (Input.GetMouseButton(1) && _hardFocus != null)
+//            if (Input.GetMouseButton(1) && _hardFocus != null)
+            if (mi.RightMouse && _hardFocus != null)
             {
                 _hardFocus.GetComponent<ClickToMove>().IsActive = false;
                 _hardFocus = null;

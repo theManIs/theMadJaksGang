@@ -27,9 +27,10 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
             if (DebugFlag) Debug.Log(focusedObject);
             if (DebugFlag) Debug.Log(monoAmp);
 
-            if (focusedObject && monoAmp)
-                _tracerProjectile.UserUpdate(new UpdateParams()
-                    {ActualInvoker = focusedObject, AmplifierRpg = monoAmp});
+            if (!StaticProxyStateHolder.UserOnUi && !StaticProxyStateHolder.LockModeOn)
+                if (focusedObject && monoAmp)
+                    _tracerProjectile.UserUpdate(new UpdateParams()
+                        {ActualInvoker = focusedObject, AmplifierRpg = monoAmp});
 
         }
     }

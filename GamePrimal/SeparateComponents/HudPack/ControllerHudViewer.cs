@@ -3,10 +3,12 @@ using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Mono;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static Assets.TeamProjects.GamePrimal.Proxies.StaticProxyRouter;
 using static Assets.TeamProjects.GamePrimal.SeparateComponents.ListsOfStuff.ResourcesList;
@@ -14,7 +16,7 @@ using static UnityEngine.Resources;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack
 {
-    public class ControllerHudViewer : MonoBehaviourBaseClass
+    public class ControllerHudViewer : MonoBehaviourBaseClass, IPointerEnterHandler, IPointerExitHandler
     {
         private ExperienceHolder _expHolder;
         private HealthHolder _healthHolder;
@@ -99,5 +101,15 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack
         private void LoadExperience(Transform someHolder, string spriteName) => 
             someHolder.GetComponent<Image>().sprite = Load<Sprite>(spriteName);
         #endregion
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            StaticProxyStateHolder.UserOnUi = true;
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            StaticProxyStateHolder.UserOnUi = false;
+        }
     }
 }

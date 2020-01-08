@@ -18,17 +18,31 @@ namespace Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScri
         public bool isRanged;
         public Transform SpawnPoint;
         public int ShootPower = 30;
+        public bool PauseAfterShoot = false;
 
-        public void ShootAnyProjectile(Transform projectile, Transform enemy)
+        private Transform _lastProjectile;
+
+        public void SpawnProjectile(Transform projectile)
         {
-            transform.LookAt(enemy);
-
             GameObject newProjectile = Instantiate(projectile.gameObject);
-            Rigidbody rb = newProjectile.GetComponent<Rigidbody>();
             newProjectile.transform.position = SpawnPoint.position;
             newProjectile.transform.rotation = SpawnPoint.rotation;
-            rb.velocity = newProjectile.transform.forward * ShootPower;
-//            EditorApplication.isPaused = true;
+            newProjectile.transform.parent = SpawnPoint.transform;
+            _lastProjectile = newProjectile.transform;
+
+            if (newProjectile.GetComponent<Rigidbody>())
+                Destroy(newProjectile.GetComponent<Rigidbody>());
+        }
+
+        public void ShootAnyProjectile(Transform enemy) 
+        {
+//            transform.LookAt(enemy);
+
+            Rigidbody rb = _lastProjectile.gameObject.AddComponent<Rigidbody>();
+            rb.velocity = _lastProjectile.transform.forward * ShootPower;
+
+            if (PauseAfterShoot)
+                EditorApplication.isPaused = true;
         }
     }
 }

@@ -112,6 +112,12 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             _attacking = false;
         }
 
+        public void HitDetectedHandler()
+        {
+            if (_monoAmplifierRpg.WeaponProjectile)
+                _monoAmplifierRpg.WieldingWeapon.ShootAnyProjectile(_lastEnemy);
+        }
+
         private void AttackStarted(AttackCaptureParams acp)
         {
             _animator.SetTrigger("Attacking");
@@ -119,6 +125,9 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             _lastAttackCapture = acp;
             _attacking = true;
             _lastEnemy = acp.Source;
+
+            if (_monoAmplifierRpg.WeaponProjectile)
+                _monoAmplifierRpg.WieldingWeapon.SpawnProjectile(_monoAmplifierRpg.WeaponProjectile);
 
 //            if (_monoAmplifierRpg.WieldingWeapon.isRanged)
 //                _monoAmplifierRpg.WieldingWeapon.ShootAnyProjectile(_monoAmplifierRpg.WeaponProjectile.transform, acp.Source);

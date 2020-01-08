@@ -1,6 +1,7 @@
 ﻿using System;
 using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using UnityEngine;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
@@ -55,10 +56,20 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
                 SetDefaultCursor();
         }
 
+        public void SetCursorIfOnUi(Transform softFocus, Transform hardFocus, StatesList states)
+        {
+            if (states.UserOnUi && !states.LockModeOn)
+                SetDefaultCursor();
+            else if (states.LockModeOn)
+                SetAggressiveCursor();
+            else
+                SetCursor(softFocus, hardFocus);
+        }
+
         private void SetShootCursor() => SetAnyCursor(_cursorShoot);
         private void SetMoveCursor() => SetAnyCursor(_moveCursor);
         public void SetChooseCursor() => SetAnyCursor(_pickCursor);
-        public void SetDefaultCursor() => Cursor.SetCursor(_baseCursor, Vector2.zero, CursorMode.Auto);
+        public void SetDefaultCursor() => Cursor.SetCursor(_baseCursor, new Vector2(75,20), CursorMode.Auto);
         public void SetAggressiveCursor() => Cursor.SetCursor(_cursorTexture, Vector2.zero, CursorMode.Auto);
 
         private void SetAnyCursor(Texture2D cursorTexture) =>

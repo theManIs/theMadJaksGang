@@ -2,6 +2,7 @@
 using UnityEngine;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using static Assets.TeamProjects.GamePrimal.Proxies.StaticProxyRouter;
 
@@ -68,7 +69,8 @@ namespace Assets.GamePrimal.Controllers
             _subjectFocus.UpdateOnce();
             _controllerMainCamera.UserUpdate();
             _cMovementCharacter.FixedUpdate(_subjectFocus.GetFocus(), _subjectFocus.HasFocused());
-            _cursorChanger.SetCursor(_subjectFocus.GetSoftFocus(), _subjectFocus.GetHardFocus());
+//            _cursorChanger.SetCursor(_subjectFocus.GetSoftFocus(), _subjectFocus.GetHardFocus());
+            _cursorChanger.SetCursorIfOnUi(_subjectFocus.GetSoftFocus(), _subjectFocus.GetHardFocus(), StaticProxyStateHolder.GetStatesList());
         }
 
     }

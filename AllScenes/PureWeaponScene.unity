@@ -1833,7 +1833,7 @@ GameObject:
   - component: {fileID: 153067838}
   - component: {fileID: 153067837}
   m_Layer: 0
-  m_Name: HeartlessVampire(Clone)
+  m_Name: HeartlessVampire(Blue)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1854,6 +1854,7 @@ MonoBehaviour:
   _iAmMoving: 0
   InfiniteMoving: 1
   InfiniteAction: 0
+  AiImproved: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &153067838
 MonoBehaviour:
@@ -1867,16 +1868,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlueRedTeam: 0
   Health: 0
+  MaxHealth: 0
   Damage: 0
   Initiative: 0
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 00671bc090a2d2c41b86d333f1206aa3, type: 2}
-  MaxTurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  MaxTurnPoints: 0
   TurnPoints: 0
-  MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
   WeaponProjectile: {fileID: 0}
@@ -2000,15 +2002,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 153067836}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.71, y: -0.58279014, z: 3.78}
+  m_LocalRotation: {x: -0, y: 0.18343282, z: -0, w: 0.9830322}
+  m_LocalPosition: {x: -8.46, y: -0.58279014, z: 6.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 23097214}
   - {fileID: 2067568518}
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 21.140001, z: 0}
 --- !u!1 &153806845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,7 +2244,7 @@ GameObject:
   - component: {fileID: 176971600}
   - component: {fileID: 176971599}
   m_Layer: 0
-  m_Name: FearsomeParasite(Clone)
+  m_Name: FearsomeParasite(Blue)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2263,6 +2265,7 @@ MonoBehaviour:
   _iAmMoving: 0
   InfiniteMoving: 1
   InfiniteAction: 0
+  AiImproved: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &176971600
 MonoBehaviour:
@@ -2351,16 +2354,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlueRedTeam: 0
   Health: 0
+  MaxHealth: 0
   Damage: 0
   Initiative: 0
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 1211dd8352bfb6e438978ce18a046340, type: 2}
-  MaxTurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  MaxTurnPoints: 0
   TurnPoints: 0
-  MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
   WeaponProjectile: {fileID: 0}
@@ -2379,10 +2383,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.25427192
   m_Height: 2.9256878
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9628439, z: 0}
+  m_Center: {x: -7.833112e-10, y: 0.9628439, z: -0.035829373}
 --- !u!95 &176971605
 Animator:
   serializedVersion: 3
@@ -2409,15 +2413,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176971598}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.09, y: -0.58279014, z: 2.33}
+  m_LocalRotation: {x: -0, y: 0.18343282, z: -0, w: 0.9830322}
+  m_LocalPosition: {x: -6.08, y: -0.58279014, z: 5.1000004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 747905465}
   - {fileID: 956659945}
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 21.140001, z: 0}
 --- !u!1 &177082471
 GameObject:
   m_ObjectHideFlags: 0
@@ -3483,7 +3487,7 @@ GameObject:
   - component: {fileID: 296174797}
   - component: {fileID: 296174796}
   m_Layer: 0
-  m_Name: FearsomeParasite(Clone)
+  m_Name: FearsomeParasite(Blue)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3504,6 +3508,7 @@ MonoBehaviour:
   _iAmMoving: 0
   InfiniteMoving: 1
   InfiniteAction: 0
+  AiImproved: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &296174797
 MonoBehaviour:
@@ -3592,16 +3597,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlueRedTeam: 0
   Health: 0
+  MaxHealth: 0
   Damage: 0
   Initiative: 0
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 1211dd8352bfb6e438978ce18a046340, type: 2}
-  MaxTurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  MaxTurnPoints: 0
   TurnPoints: 0
-  MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
   WeaponProjectile: {fileID: 0}
@@ -3650,15 +3656,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296174795}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.99, y: -0.58279014, z: 0.31}
+  m_LocalRotation: {x: -0, y: 0.18343282, z: -0, w: 0.9830322}
+  m_LocalPosition: {x: -13.16, y: -0.58279014, z: 3.0800002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 463330709}
   - {fileID: 443501033}
   m_Father: {fileID: 0}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 21.140001, z: 0}
 --- !u!1 &299185673
 GameObject:
   m_ObjectHideFlags: 0
@@ -3800,7 +3806,7 @@ GameObject:
   - component: {fileID: 307051582}
   - component: {fileID: 307051581}
   m_Layer: 0
-  m_Name: FemaleSwordsman(Clone)
+  m_Name: FemaleSwordsman(Red)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3821,6 +3827,7 @@ MonoBehaviour:
   _iAmMoving: 0
   InfiniteMoving: 1
   InfiniteAction: 0
+  AiImproved: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &307051582
 MonoBehaviour:
@@ -3909,16 +3916,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlueRedTeam: 1
   Health: 0
+  MaxHealth: 0
   Damage: 0
   Initiative: 0
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 7efb8c3f2776df54bac1468927c9f830, type: 2}
-  MaxTurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  MaxTurnPoints: 0
   TurnPoints: 0
-  MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
   WeaponProjectile: {fileID: 0}
@@ -3968,7 +3976,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 307051580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.67, y: -0.58279014, z: -2}
+  m_LocalPosition: {x: 15.2, y: -0.58279014, z: 9.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1329200192}
@@ -4455,7 +4463,7 @@ GameObject:
   - component: {fileID: 367439133}
   - component: {fileID: 367439132}
   m_Layer: 0
-  m_Name: AkaiArcher(Clone)
+  m_Name: AkaiArcher(Red)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4476,6 +4484,7 @@ MonoBehaviour:
   _iAmMoving: 0
   InfiniteMoving: 1
   InfiniteAction: 1
+  AiImproved: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &367439133
 MonoBehaviour:
@@ -4564,16 +4573,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlueRedTeam: 1
   Health: 0
+  MaxHealth: 0
   Damage: 0
   Initiative: 0
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 4f847b331bdae794ab8b8e48e793e457, type: 2}
-  MaxTurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  MaxTurnPoints: 0
   TurnPoints: 0
-  MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
   WeaponProjectile: {fileID: 0}
@@ -4593,9 +4603,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 3.3051167
+  m_Height: 1.904119
   m_Direction: 1
-  m_Center: {x: 0, y: 1.1525583, z: 0}
+  m_Center: {x: 0, y: 0.95837235, z: 0}
 --- !u!95 &367439138
 Animator:
   serializedVersion: 3
@@ -4623,7 +4633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367439131}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.85, y: -0.58279014, z: -0.08}
+  m_LocalPosition: {x: 11.19, y: -0.58279014, z: 1.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1902737748}
@@ -6919,7 +6929,7 @@ GameObject:
   - component: {fileID: 630981825}
   - component: {fileID: 630981824}
   m_Layer: 0
-  m_Name: MeleeAxeFighter(Clone)
+  m_Name: MeleeAxeFighter(Red)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6940,6 +6950,7 @@ MonoBehaviour:
   _iAmMoving: 0
   InfiniteMoving: 1
   InfiniteAction: 1
+  AiImproved: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &630981825
 MonoBehaviour:
@@ -6953,16 +6964,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlueRedTeam: 1
   Health: 0
+  MaxHealth: 0
   Damage: 0
   Initiative: 0
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 90a80a41a0e258747b4b7cd971be0ca5, type: 2}
-  MaxTurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  MaxTurnPoints: 0
   TurnPoints: 0
-  MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
   WeaponProjectile: {fileID: 0}
@@ -7087,7 +7099,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630981823}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.478, y: -0.58279014, z: -7.421}
+  m_LocalPosition: {x: 13.39, y: -0.58279014, z: 5.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1985312460}
@@ -8198,22 +8210,22 @@ PrefabInstance:
     - target: {fileID: 7313184356091760248, guid: 895bbc438d7e13b46b9906d8fa55044d,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7313184356091760248, guid: 895bbc438d7e13b46b9906d8fa55044d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7313184356284029775, guid: 895bbc438d7e13b46b9906d8fa55044d,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7313184356284029775, guid: 895bbc438d7e13b46b9906d8fa55044d,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7313184356549618811, guid: 895bbc438d7e13b46b9906d8fa55044d,
         type: 3}
@@ -8324,6 +8336,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hud_-106844
+      objectReference: {fileID: 0}
+    - target: {fileID: 7313184356549618812, guid: 895bbc438d7e13b46b9906d8fa55044d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 895bbc438d7e13b46b9906d8fa55044d, type: 3}
@@ -14061,7 +14078,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1412533991}
   m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4678410}
@@ -15013,7 +15030,7 @@ MonoBehaviour:
     Min: 7
     Max: 17
   TiltClampVector3:
-    Init: 35
+    Init: 30
     Min: 30
     Max: 45
   FollowTargetSpeed: 1
@@ -15021,7 +15038,7 @@ MonoBehaviour:
   AngleRotationSpeed: 1.5
   m_TurnSmoothing: 0
   m_LockCursor: 0
-  FallowThreshold: 8
+  FallowThreshold: 0
   MaxRaycastDistance: 100
 --- !u!54 &1526765837
 Rigidbody:
@@ -18629,7 +18646,7 @@ GameObject:
   - component: {fileID: 1909644131}
   - component: {fileID: 1909644130}
   m_Layer: 0
-  m_Name: FemaleSwordsman(Clone)
+  m_Name: FemaleSwordsman(Red)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18650,6 +18667,7 @@ MonoBehaviour:
   _iAmMoving: 0
   InfiniteMoving: 1
   InfiniteAction: 0
+  AiImproved: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &1909644131
 MonoBehaviour:
@@ -18738,16 +18756,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlueRedTeam: 1
   Health: 0
+  MaxHealth: 0
   Damage: 0
   Initiative: 0
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 7efb8c3f2776df54bac1468927c9f830, type: 2}
-  MaxTurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  MaxTurnPoints: 0
   TurnPoints: 0
-  MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
   WeaponProjectile: {fileID: 0}
@@ -18797,7 +18816,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909644129}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.87, y: -0.58279014, z: -1.34}
+  m_LocalPosition: {x: 10.74, y: -0.58279014, z: 7.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 31364013}
@@ -20077,7 +20096,7 @@ GameObject:
   - component: {fileID: 2030863136}
   - component: {fileID: 2030863135}
   m_Layer: 0
-  m_Name: HeartlessVampire(Clone)
+  m_Name: HeartlessVampire(Blue)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20098,6 +20117,7 @@ MonoBehaviour:
   _iAmMoving: 0
   InfiniteMoving: 1
   InfiniteAction: 0
+  AiImproved: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &2030863136
 MonoBehaviour:
@@ -20111,16 +20131,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlueRedTeam: 0
   Health: 0
+  MaxHealth: 0
   Damage: 0
   Initiative: 0
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 00671bc090a2d2c41b86d333f1206aa3, type: 2}
-  MaxTurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  MaxTurnPoints: 0
   TurnPoints: 0
-  MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
   WeaponProjectile: {fileID: 0}
@@ -20244,15 +20265,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2030863134}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.14, y: -0.58279014, z: 4.06}
+  m_LocalRotation: {x: -0, y: 0.18343282, z: -0, w: 0.9830322}
+  m_LocalPosition: {x: -11.31, y: -0.58279014, z: 6.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 582264666}
   - {fileID: 1851030623}
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 21.140001, z: 0}
 --- !u!1 &2032583506
 GameObject:
   m_ObjectHideFlags: 0

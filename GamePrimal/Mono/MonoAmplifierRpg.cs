@@ -12,16 +12,17 @@ namespace Assets.GamePrimal.Mono
     [RequireComponent(typeof(CapsuleCollider))]
     public class MonoAmplifierRpg : MonoBehaviourBaseClass
     {
+        public bool BlueRedTeam;
         [SerializeField] private int Health;
+        public int MaxHealth;
         [SerializeField] private int Damage;
         [SerializeField] private int Initiative;
         [SerializeField] private float WeaponRange;
         [SerializeField] private CharacterFeatures CharacterFeatures;
-        [SerializeField] private int MaxTurnPoints;
         [SerializeField] private int InitialTurnPoints;
         [SerializeField] private Sprite CharacterPortrait;
+        public int MaxTurnPoints;
         public int TurnPoints;
-        public int MaxHealth;
         public int ExperienceActual;
         public int ExperienceMax;
         public Transform WeaponProjectile;
@@ -158,7 +159,7 @@ namespace Assets.GamePrimal.Mono
         void Start()
         {
             Initiative = (int)(Random.value * 10);
-            Health = Health != 0 ? Health : (int)(Random.value * 200);
+            MaxHealth = Health = Health != 0 ? Health : (int)(Random.value * 200);
             Damage = Damage != 0 ? Damage : (int)(Random.value * 100);
 
             FindWeaponPosition();

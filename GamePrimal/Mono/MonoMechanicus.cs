@@ -4,6 +4,7 @@ using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Proxies;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligence;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
@@ -21,6 +22,7 @@ namespace Assets.GamePrimal.Mono
         public bool _iAmMoving = false;
         public bool InfiniteMoving = false;
         public bool InfiniteAction = false;
+        public bool AiImproved = false;
 
         private ControllerDrumSpinner _cDrumSpinner;
         private CharacterAnimator _characterAnimator;
@@ -28,6 +30,7 @@ namespace Assets.GamePrimal.Mono
         private Rigidbody _rb;
         public MonoAmplifierRpg _monoAmplifierRpg;
         public EventHitDetected EHitDetected = new EventHitDetected();
+        public IArtificial Ai; 
 
         public void HitDetectedHandler(AnimationEvent ae) => _characterAnimator.HitDetectedHandler();
 
@@ -59,6 +62,8 @@ namespace Assets.GamePrimal.Mono
             });
 
 //            _hudViwer.UserAwake(new AwakeParams());
+
+            Ai = AiFrameBuilder.BuildAiFrame(AiImproved, transform, this);
         }
 
         // Start is called before the first frame update
@@ -97,12 +102,14 @@ namespace Assets.GamePrimal.Mono
 //            _hudViwer.UserUpdate(new UpdateParams() {ActualInvoker = transform, AmplifierRpg = _monoAmplifierRpg});
         }
 
+        #region Subscribers
         private void OnEnable()
         {
             _characterAnimator.UserEnable();
 
             EHitDetected.HitDetectedEvent += HitCapturedHandler;
             StaticProxyEvent.EActiveAbilityChanged.Event += ChangeActiveAbility;
+            StaticProxyEvent.ETurnWasFound.Event += TurnWasFoundHandler;
         }
 
         private void OnDisable()
@@ -111,6 +118,17 @@ namespace Assets.GamePrimal.Mono
 
             EHitDetected.HitDetectedEvent -= HitCapturedHandler;
             StaticProxyEvent.EActiveAbilityChanged.Event -= ChangeActiveAbility;
+            StaticProxyEvent.ETurnWasFound.Event -= TurnWasFoundHandler;
+        }
+
+        #endregion
+
+        private void TurnWasFoundHandler(EventTurnWasFoundParams acp)
+        {
+            if (acp.TurnApplicant != transform)
+                return;
+
+            Ai.SeekTarget();
         }
 
         private void ChangeActiveAbility(EventActiveAbilityChangedParams acp)

@@ -42,6 +42,12 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
                 if (Input.GetKeyDown(KeyCode.Mouse0) && focused && captured && captured.GetComponent<MonoMechanicus>())
                     if (focused.GetInstanceID() != captured.GetInstanceID())
                     {
+                        MonoMechanicus focusedMonomech = focused.GetComponent<MonoMechanicus>();
+                        MonoMechanicus capturedMonomech = captured.GetComponent<MonoMechanicus>();
+
+                        if (focusedMonomech._monoAmplifierRpg.BlueRedTeam == capturedMonomech._monoAmplifierRpg.BlueRedTeam)
+                            return;
+
                         AttackCaptureParams acp = new AttackCaptureParams() { Source = captured, Target = focused, HasHit = HasHit };
 
                         StaticProxyRouter.GetControllerEvent().HitDetectedInvoke(acp);

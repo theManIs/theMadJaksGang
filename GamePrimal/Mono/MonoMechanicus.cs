@@ -23,11 +23,15 @@ namespace Assets.GamePrimal.Mono
         public bool InfiniteMoving = false;
         public bool InfiniteAction = false;
         public bool AiImproved = false;
+        public bool BlueRedTeam = false;
 
         private ControllerDrumSpinner _cDrumSpinner;
         private CharacterAnimator _characterAnimator;
         private DamageLogger _damageLogger;
         private Rigidbody _rb;
+
+        private readonly int _autoAttackCost = 2;
+
         public MonoAmplifierRpg _monoAmplifierRpg;
         public EventHitDetected EHitDetected = new EventHitDetected();
         public IArtificial Ai; 
@@ -129,6 +133,10 @@ namespace Assets.GamePrimal.Mono
                 return;
 
             Ai.SeekTarget();
+            Ai.SetActionPoints(_monoAmplifierRpg.GetTurnPoints());
+            Ai.SetMovementSpeed(_monoAmplifierRpg.MoveSpeed);
+            Ai.SetAutoAttackCost(_autoAttackCost);
+            Ai.FilterWithinAttack();
         }
 
         private void ChangeActiveAbility(EventActiveAbilityChangedParams acp)
@@ -152,7 +160,7 @@ namespace Assets.GamePrimal.Mono
         private void HitCapturedHandler(EventParamsBase epb)
         {
             if (!InfiniteAction)
-                _monoAmplifierRpg.TurnPoints -= 2;
+                _monoAmplifierRpg.TurnPoints -= _autoAttackCost;
         }
 
         public void HitEndedHandler(AnimationEvent ae)

@@ -37,12 +37,13 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         public void SetCursor(Transform softFocus, Transform hardFocus)
         {
             MonoMechanicus monomech = softFocus ? softFocus.GetComponent<MonoMechanicus>() : null;
+            MonoMechanicus monomechHard = hardFocus ? hardFocus.GetComponent<MonoMechanicus>() : null;
             MonoAmplifierRpg monoRpg = hardFocus ? hardFocus.GetComponent<MonoAmplifierRpg>() : null;
             bool isRanged = monoRpg && monoRpg.WieldingWeapon && monoRpg.WieldingWeapon.isRanged;
             float attackRange = monoRpg && monoRpg.WieldingWeapon ? monoRpg.WieldingWeapon.WeaponRange : default;
             bool isWithinRange = softFocus && hardFocus && attackRange > Vector3.Distance(softFocus.position, hardFocus.position);
 
-            if (monoRpg && monomech && monoRpg.BlueRedTeam == monomech._monoAmplifierRpg.BlueRedTeam)
+            if (monomechHard && monomech && monomechHard.BlueRedTeam == monomech.BlueRedTeam)
                 SetAnyCursor(_allyCursor);
             else if (softFocus && hardFocus && hardFocus != softFocus && monomech && isRanged && !isWithinRange)
                 SetAnyCursor(_outOfRangeRanged);

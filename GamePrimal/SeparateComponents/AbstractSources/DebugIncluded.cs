@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.AbstractSources
 {
-    public abstract class EnableIncluded : DebugIncluded
+    public abstract class DebugIncluded
     {
-        public bool Enabled = true;
+        protected bool DebugFlag = false;
+        protected bool DevelopFlag = true;
     }
 }

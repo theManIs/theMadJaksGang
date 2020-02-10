@@ -11,6 +11,6 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
     public class AiFrameBuilder
     {
         public static AiFrame BuildAiFrame(bool enabled = true, Transform transform = null, MonoMechanicus monomech = null) => 
-            new AiFrame {Enabled = enabled, CurrentTransform = transform, monomech = monomech};
+            new AiFrame {Enabled = enabled, CurrentTransform = transform, Monomech = monomech};
     }
 }

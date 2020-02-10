@@ -8,6 +8,11 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
 {
     public interface IArtificial
     {
-        void SeekTarget();
+        AiFrame SeekTarget();
+        AiFrame SetActionPoints(int actionPoints);
+        AiFrame SetMovementSpeed(int movementSpeed);
+        AiFrame SetAutoAttackCost(int autoAttackCost);
+        AiFrame FilterWithinReach();
+        AiFrame FilterWithinAttack();
     }
 }

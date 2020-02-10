@@ -12,7 +12,6 @@ namespace Assets.GamePrimal.Mono
     [RequireComponent(typeof(CapsuleCollider))]
     public class MonoAmplifierRpg : MonoBehaviourBaseClass
     {
-        public bool BlueRedTeam;
         [SerializeField] private int Health;
         public int MaxHealth;
         [SerializeField] private int Damage;

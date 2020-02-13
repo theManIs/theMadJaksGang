@@ -1855,6 +1855,7 @@ MonoBehaviour:
   InfiniteMoving: 1
   InfiniteAction: 0
   AiImproved: 0
+  BlueRedTeam: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &153067838
 MonoBehaviour:
@@ -1868,7 +1869,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlueRedTeam: 0
   Health: 0
   MaxHealth: 0
   Damage: 0
@@ -2266,6 +2266,7 @@ MonoBehaviour:
   InfiniteMoving: 1
   InfiniteAction: 0
   AiImproved: 0
+  BlueRedTeam: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &176971600
 MonoBehaviour:
@@ -2354,7 +2355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlueRedTeam: 0
   Health: 0
   MaxHealth: 0
   Damage: 0
@@ -2414,7 +2414,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176971598}
   m_LocalRotation: {x: -0, y: 0.18343282, z: -0, w: 0.9830322}
-  m_LocalPosition: {x: -6.08, y: -0.58279014, z: 5.1000004}
+  m_LocalPosition: {x: 7.73, y: -0.58279014, z: 5.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 747905465}
@@ -3509,6 +3509,7 @@ MonoBehaviour:
   InfiniteMoving: 1
   InfiniteAction: 0
   AiImproved: 0
+  BlueRedTeam: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &296174797
 MonoBehaviour:
@@ -3597,7 +3598,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlueRedTeam: 0
   Health: 0
   MaxHealth: 0
   Damage: 0
@@ -3825,9 +3825,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
-  InfiniteMoving: 1
+  InfiniteMoving: 0
   InfiniteAction: 0
   AiImproved: 0
+  BlueRedTeam: 1
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &307051582
 MonoBehaviour:
@@ -3916,7 +3917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlueRedTeam: 1
   Health: 0
   MaxHealth: 0
   Damage: 0
@@ -4485,6 +4485,7 @@ MonoBehaviour:
   InfiniteMoving: 1
   InfiniteAction: 1
   AiImproved: 0
+  BlueRedTeam: 1
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &367439133
 MonoBehaviour:
@@ -4573,7 +4574,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlueRedTeam: 1
   Health: 0
   MaxHealth: 0
   Damage: 0
@@ -6951,6 +6951,7 @@ MonoBehaviour:
   InfiniteMoving: 1
   InfiniteAction: 1
   AiImproved: 0
+  BlueRedTeam: 1
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &630981825
 MonoBehaviour:
@@ -6964,7 +6965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlueRedTeam: 1
   Health: 0
   MaxHealth: 0
   Damage: 0
@@ -18665,9 +18665,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
-  InfiniteMoving: 1
+  InfiniteMoving: 0
   InfiniteAction: 0
   AiImproved: 0
+  BlueRedTeam: 1
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &1909644131
 MonoBehaviour:
@@ -18756,7 +18757,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlueRedTeam: 1
   Health: 0
   MaxHealth: 0
   Damage: 0
@@ -20118,6 +20118,7 @@ MonoBehaviour:
   InfiniteMoving: 1
   InfiniteAction: 0
   AiImproved: 0
+  BlueRedTeam: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &2030863136
 MonoBehaviour:
@@ -20131,7 +20132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c7a5bed6c159047bc66bc529bfcfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BlueRedTeam: 0
   Health: 0
   MaxHealth: 0
   Damage: 0

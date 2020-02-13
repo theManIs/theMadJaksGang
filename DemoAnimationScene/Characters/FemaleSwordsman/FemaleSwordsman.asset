@@ -25,5 +25,8 @@ MonoBehaviour:
   CharacterPortrait: {fileID: 21300000, guid: e5689e6abe09cde4f872a2af915c88a2, type: 3}
   ExperienceActual: 0
   ExperienceMax: 0
-  PreferredProjectile: {fileID: 0}
-  MoveSpeed: 2
+  MoveSpeed: 4
+  AbilitiesSet:
+  - AutoAttackRanged
+  - PoisonArrow
+  - IceShard

@@ -109,7 +109,8 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
         private void ConnectVector(MonoMechanicus oppose)
         {
             Vector3 normalVector = oppose.transform.position - Monomech.transform.position;
-
+            float realDistance = Vector3.Distance(oppose.transform.position, Monomech.transform.position);
+            Vector3 correctNormal = normalVector * ((realDistance - _hardCodeCharacterRadius) / realDistance);
         }
     }
 }

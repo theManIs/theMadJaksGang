@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System.Collections;
+using System.IO;
 using Assets.GamePrimal.Controllers;
+using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
@@ -29,8 +31,11 @@ namespace Assets.GamePrimal.Mono
         private CharacterAnimator _characterAnimator;
         private DamageLogger _damageLogger;
         private Rigidbody _rb;
+        private MeshRenderer _mr;
+        private NavMeshAgent _navMeshAgent;
 
         private readonly int _autoAttackCost = 2;
+        private float _meshWidth;
 
         public MonoAmplifierRpg _monoAmplifierRpg;
         public EventHitDetected EHitDetected = new EventHitDetected();
@@ -47,6 +52,8 @@ namespace Assets.GamePrimal.Mono
             _cDrumSpinner = StaticProxyRouter.GetControllerDrumSpinner();
             _characterAnimator = new CharacterAnimator();
             _damageLogger = gameObject.AddComponent<DamageLogger>();
+            _mr = GetComponent<MeshRenderer>();
+            _navMeshAgent = GetComponent<NavMeshAgent>();
 
             _rb = AddAndGetRigidbody(transform);
             _rb.isKinematic = true;
@@ -73,6 +80,8 @@ namespace Assets.GamePrimal.Mono
         // Start is called before the first frame update
         void Start()
         {
+            _meshWidth = _navMeshAgent.radius;
+
             if (_monoAmplifierRpg.WieldingWeapon)
                 _characterAnimator.UserStart(new StartParams()
                 {
@@ -136,7 +145,25 @@ namespace Assets.GamePrimal.Mono
             Ai.SetActionPoints(_monoAmplifierRpg.GetTurnPoints());
             Ai.SetMovementSpeed(_monoAmplifierRpg.MoveSpeed);
             Ai.SetAutoAttackCost(_autoAttackCost);
+            Ai.SetFightDistance(_monoAmplifierRpg.WieldingWeapon.WeaponRange);
             Ai.FilterWithinAttack();
+            Ai.SetMeshRadius(_meshWidth);
+
+            Ai.SetDestination(_navMeshAgent);
+            StartCoroutine(HitTargetAfterMoving());
+        }
+
+        private IEnumerator HitTargetAfterMoving()
+        {
+            Debug.Log(_navMeshAgent.pathStatus);
+            while (_navMeshAgent.hasPath)
+                yield return null;
+
+            yield return new WaitForSeconds(1);
+            Debug.Log(_navMeshAgent.pathStatus);
+
+            while (!Ai.HitTarget())
+                yield return null;
         }
 
         private void ChangeActiveAbility(EventActiveAbilityChangedParams acp)

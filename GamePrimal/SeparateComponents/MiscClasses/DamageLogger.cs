@@ -81,11 +81,15 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
 
         public void AttackTheEnemy(AttackCaptureParams acp)
         {
+
             if (acp.Target != transform || acp.Target == acp.Source || acp.HasHit) return;
             
             Transform enemy = acp.Source;
             Transform ally = acp.Target;
 
+            Debug.Log("AttackTheEnemy " + acp.Source.gameObject.name + " " + acp.Target.gameObject.name + " " + acp.HasHit);
+            Debug.Log("_autoAttackCost " + _amplifier.CanAct(_autoAttackCost));
+            Debug.Log("GetMeleeRange " + Vector3.Distance(enemy.position, transform.position) + " " + _amplifier.GetMeleeRange() + " " + (Vector3.Distance(enemy.position, transform.position) < _amplifier.GetMeleeRange()));
             if (Vector3.Distance(enemy.position, transform.position) < _amplifier.GetMeleeRange() && _amplifier.CanAct(_autoAttackCost))
             {
                 _cAttackCapture.LockTarget();

@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.AbstractSources;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.UserMath;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligence
 {
@@ -19,8 +21,9 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
         private int _movementSpeed;
         private SortedDictionary<float, MonoMechanicus> _enemiesWithinReach = new SortedDictionary<float, MonoMechanicus>();
         private int _autoAttackCost;
-
-        private readonly int _hardCodeCharacterRadius = 1;
+        private float _fightDistance;
+        private float _meshError;
+        private MonoMechanicus _pickedEnemy;
 
         private MonoMechanicus[] GetAllMonomechs() => Object.FindObjectsOfType<MonoMechanicus>(); //todo move to smart proxy
 
@@ -48,6 +51,22 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
         public AiFrame SetAutoAttackCost(int autoAttackCost)
         {
             _autoAttackCost = autoAttackCost;
+
+            return this;
+        }
+
+        public AiFrame SetMeshRadius(float meshError)
+        {
+            Debug.Log($"_meshError {_meshError}");
+            _meshError = MovementMath.CalcRadiusError(meshError);
+            Debug.Log($"_meshError {_meshError}");
+
+            return this;
+        }
+
+        public AiFrame SetFightDistance(float fightDistance)
+        {
+            _fightDistance = fightDistance;
 
             return this;
         }
@@ -106,11 +125,45 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
             return this;
         }
 
-        private void ConnectVector(MonoMechanicus oppose)
+        private Vector3 ConnectVector(MonoMechanicus oppose)
         {
-            Vector3 normalVector = oppose.transform.position - Monomech.transform.position;
             float realDistance = Vector3.Distance(oppose.transform.position, Monomech.transform.position);
-            Vector3 correctNormal = normalVector * ((realDistance - _hardCodeCharacterRadius) / realDistance);
+            float correctNormal = MovementMath.AttackVectorCoercion(realDistance, _fightDistance, _meshError);
+
+            if (DevelopFlag)
+                Debug.Log($"_fightDistance {_fightDistance} _meshError {_meshError} correctNormal: {correctNormal} realDistance {realDistance} distance {realDistance - correctNormal * realDistance}");
+
+            return Vector3.Lerp(Monomech.transform.position, oppose.transform.position, correctNormal);
+        }
+
+        public AiFrame SetDestination(NavMeshAgent nvm)
+        {
+            if (!PickFirstEnemyToAttack())
+                return this;
+
+            nvm.SetDestination(ConnectVector(PickFirstEnemyToAttack()));
+
+            return this;
+        }
+
+        private void PickEnemyForThisTurn() => _pickedEnemy = _pickedEnemy ?? PickFirstEnemyToAttack();
+        private void ReleaseEnemyForThisTurn() => _pickedEnemy = null;
+
+        public bool HitTarget()
+        {
+            PickEnemyForThisTurn();
+
+            if (_pickedEnemy && DevelopFlag)
+                Debug.Log("Versus " + Monomech.gameObject.name + " " + _pickedEnemy.gameObject.name);
+
+            if (_pickedEnemy && Vector3.Distance(Monomech.transform.position, _pickedEnemy.transform.position) > _fightDistance)
+                return false;
+            else if (_pickedEnemy) 
+                DamageLoggerAdapter.AttackCapture(Monomech, _pickedEnemy);
+
+            ReleaseEnemyForThisTurn();
+
+            return true;
         }
     }
 }

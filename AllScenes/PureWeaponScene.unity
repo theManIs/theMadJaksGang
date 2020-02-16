@@ -242,7 +242,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4678409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -14.33}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1412533992}
@@ -1622,7 +1622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &153067837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2198,7 +2198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 176971598}
   m_LocalRotation: {x: -0, y: 0.18343282, z: -0, w: 0.9830322}
-  m_LocalPosition: {x: 7.73, y: -0.58279014, z: 5.93}
+  m_LocalPosition: {x: 7.03, y: -0.58279014, z: 7.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 747905465}
@@ -3664,7 +3664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &367439132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3678,8 +3678,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
-  InfiniteMoving: 1
-  InfiniteAction: 1
+  InfiniteMoving: 0
+  InfiniteAction: 0
   AiImproved: 0
   BlueRedTeam: 1
   _monoAmplifierRpg: {fileID: 0}
@@ -6006,7 +6006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &630981824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13141,8 +13141,8 @@ MonoBehaviour:
     Min: 7
     Max: 17
   TiltClampVector3:
-    Init: 30
-    Min: 30
+    Init: 45
+    Min: 45
     Max: 45
   FollowTargetSpeed: 1
   CameraMovementSpeed: 0.2
@@ -16579,7 +16579,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909644129}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.54, y: -0.58279014, z: 8.04}
+  m_LocalPosition: {x: 8.69, y: -0.58279014, z: 13.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 31364013}

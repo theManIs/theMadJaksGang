@@ -39,7 +39,7 @@ namespace Assets.GamePrimal.Mono
 
         public MonoAmplifierRpg _monoAmplifierRpg;
         public EventHitDetected EHitDetected = new EventHitDetected();
-        public IArtificial Ai; 
+        public IArtificial Ai = new AiFrameBuilderNullObject();
 
         public void HitDetectedHandler(AnimationEvent ae) => _characterAnimator.HitDetectedHandler();
 
@@ -112,6 +112,7 @@ namespace Assets.GamePrimal.Mono
             _characterAnimator.UserUpdate(new UpdateParams());
 
 //            _hudViwer.UserUpdate(new UpdateParams() {ActualInvoker = transform, AmplifierRpg = _monoAmplifierRpg});
+            Ai.DoAny();
         }
 
         #region Subscribers
@@ -156,10 +157,12 @@ namespace Assets.GamePrimal.Mono
                 GetTurnPointsDelegate = _monoAmplifierRpg.GetTurnPoints,
                 StartCoroutine = StartCoroutine
             });
+            
+            Ai.StartAssault();
                 
-            Ai.MoveToTarget();
-
-            StartCoroutine(Ai.HitTargetAsSoonAsPossible());
+//            Ai.MoveToTarget();
+//
+//            StartCoroutine(Ai.HitTargetAsSoonAsPossible());
         }
 
         private void ChangeActiveAbility(EventActiveAbilityChangedParams acp)

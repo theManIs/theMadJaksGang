@@ -1,6 +1,8 @@
-﻿using Assets.GamePrimal.Mono;
+﻿using System;
+using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.GravediggerClasses
 {

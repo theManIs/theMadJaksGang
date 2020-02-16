@@ -10,7 +10,10 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
 {
     public interface IArtificial
     {
-        IEnumerator HitTargetAsSoonAsPossible();
-        AiFrame MoveToTarget();
+//        IEnumerator HitTargetAsSoonAsPossible();
+//        IArtificial MoveToTarget();
+
+        void DoAny();
+        void StartAssault();
     }
 }

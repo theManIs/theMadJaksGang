@@ -25,6 +25,6 @@ MonoBehaviour:
   CharacterPortrait: {fileID: 21300000, guid: 620ec7d0d20ff02419f9735cd6dc5f30, type: 3}
   ExperienceActual: 0
   ExperienceMax: 0
-  MoveSpeed: 0
+  MoveSpeed: 4
   AbilitiesSet:
   - IceShard

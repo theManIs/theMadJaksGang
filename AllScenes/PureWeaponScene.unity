@@ -1636,9 +1636,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
-  InfiniteMoving: 1
+  InfiniteMoving: 0
   InfiniteAction: 0
-  AiImproved: 0
+  AiImproved: 1
   BlueRedTeam: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &153067838
@@ -1787,13 +1787,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 153067836}
   m_LocalRotation: {x: -0, y: 0.18343282, z: -0, w: 0.9830322}
-  m_LocalPosition: {x: -8.46, y: -0.58279014, z: 6.55}
+  m_LocalPosition: {x: 11.38, y: -0.58279014, z: 12.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 23097214}
   - {fileID: 2067568518}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 21.140001, z: 0}
 --- !u!1 &153806845
 GameObject:
@@ -2047,9 +2047,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
-  InfiniteMoving: 1
+  InfiniteMoving: 0
   InfiniteAction: 0
-  AiImproved: 0
+  AiImproved: 1
   BlueRedTeam: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &176971600
@@ -2204,7 +2204,7 @@ Transform:
   - {fileID: 747905465}
   - {fileID: 956659945}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 21.140001, z: 0}
 --- !u!1 &177082471
 GameObject:
@@ -3116,7 +3116,7 @@ Transform:
   - {fileID: 463330709}
   - {fileID: 443501033}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 21.140001, z: 0}
 --- !u!1 &299185673
 GameObject:
@@ -3664,7 +3664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &367439132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6006,7 +6006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &630981824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6020,9 +6020,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
-  InfiniteMoving: 1
-  InfiniteAction: 1
-  AiImproved: 0
+  InfiniteMoving: 0
+  InfiniteAction: 0
+  AiImproved: 1
   BlueRedTeam: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &630981825
@@ -16430,7 +16430,7 @@ MonoBehaviour:
   _iAmMoving: 0
   InfiniteMoving: 0
   InfiniteAction: 0
-  AiImproved: 0
+  AiImproved: 1
   BlueRedTeam: 1
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &1909644131
@@ -16548,10 +16548,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.8350067
+  m_Radius: 0.27303952
+  m_Height: 1.7915008
   m_Direction: 1
-  m_Center: {x: 0, y: 0.91750336, z: 0}
+  m_Center: {x: 0, y: 0.7365302, z: 0}
 --- !u!95 &1909644136
 Animator:
   serializedVersion: 3
@@ -17912,7 +17912,7 @@ Transform:
   - {fileID: 582264666}
   - {fileID: 1851030623}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 21.140001, z: 0}
 --- !u!1 &2032583506
 GameObject:

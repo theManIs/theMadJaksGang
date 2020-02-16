@@ -74,7 +74,6 @@ namespace Assets.GamePrimal.Mono
 
 //            _hudViwer.UserAwake(new AwakeParams());
 
-            Ai = AiFrameBuilder.BuildAiFrame(AiImproved, transform, this);
         }
 
         // Start is called before the first frame update
@@ -141,29 +140,26 @@ namespace Assets.GamePrimal.Mono
             if (acp.TurnApplicant != transform)
                 return;
 
-            Ai.SeekTarget();
-            Ai.SetActionPoints(_monoAmplifierRpg.GetTurnPoints());
-            Ai.SetMovementSpeed(_monoAmplifierRpg.MoveSpeed);
-            Ai.SetAutoAttackCost(_autoAttackCost);
-            Ai.SetFightDistance(_monoAmplifierRpg.WieldingWeapon.WeaponRange);
-            Ai.FilterWithinAttack();
-            Ai.SetMeshRadius(_meshWidth);
+            Debug.Log("TurnWasFoundHandler " + acp.TurnApplicant.gameObject.name);
 
-            Ai.SetDestination(_navMeshAgent);
-            StartCoroutine(HitTargetAfterMoving());
-        }
+            Ai = new AiFrameBuilder(new AiFrameParams()
+            {
+                Enabled = AiImproved,
+                CurrentTransform = transform,
+                Monomech = this,
+                ActionPoints = _monoAmplifierRpg.GetTurnPoints(),
+                MovementSpeed = _monoAmplifierRpg.MoveSpeed,
+                AutoAttackCost = _autoAttackCost,
+                FightDistance = _monoAmplifierRpg.WieldingWeapon.WeaponRange,
+                MeshError = _meshWidth,
+                Nma = _navMeshAgent,
+                GetTurnPointsDelegate = _monoAmplifierRpg.GetTurnPoints,
+                StartCoroutine = StartCoroutine
+            });
+                
+            Ai.MoveToTarget();
 
-        private IEnumerator HitTargetAfterMoving()
-        {
-            Debug.Log(_navMeshAgent.pathStatus);
-            while (_navMeshAgent.hasPath)
-                yield return null;
-
-            yield return new WaitForSeconds(1);
-            Debug.Log(_navMeshAgent.pathStatus);
-
-            while (!Ai.HitTarget())
-                yield return null;
+            StartCoroutine(Ai.HitTargetAsSoonAsPossible());
         }
 
         private void ChangeActiveAbility(EventActiveAbilityChangedParams acp)

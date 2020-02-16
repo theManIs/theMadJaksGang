@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,13 @@ using UnityEngine;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligence
 {
-    public class AiFrameBuilder
+    public class AiFrameBuilder : IArtificial
     {
-        public static AiFrame BuildAiFrame(bool enabled = true, Transform transform = null, MonoMechanicus monomech = null) => 
-            new AiFrame {Enabled = enabled, CurrentTransform = transform, Monomech = monomech};
+        private readonly AiFrame _internalAiFrame;
+        public AiFrameBuilder(AiFrameParams afp)  => _internalAiFrame = new AiFrame {Attr = afp};
+
+        public IEnumerator HitTargetAsSoonAsPossible() => _internalAiFrame.ConsumeActionPoints();
+
+        public AiFrame MoveToTarget() => _internalAiFrame.MoveToTarget();
     }
 }

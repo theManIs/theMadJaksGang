@@ -1,169 +1,124 @@
-﻿
-
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Assets.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.AbstractSources;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.UserMath;
 using UnityEngine;
 using UnityEngine.AI;
+using Object = System.Object;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligence
 {
-    public class AiFrame : EnableIncluded, IArtificial
+    public struct AiFrameParams
     {
+        public bool Enabled;
         public Transform CurrentTransform;
         public MonoMechanicus Monomech;
+        public int AutoAttackCost;
+        public float FightDistance;
+        public float MeshError;
+        public int ActionPoints;
+        public int MovementSpeed;
+        public NavMeshAgent Nma;
+        public Func<int> GetTurnPointsDelegate;
+        public Func<IEnumerator, Coroutine> StartCoroutine;
+    }
 
-        private SortedDictionary<float, MonoMechanicus> _seekTargets = new SortedDictionary<float, MonoMechanicus>();
-        private int _actionPoints;
-        private int _movementSpeed;
-        private SortedDictionary<float, MonoMechanicus> _enemiesWithinReach = new SortedDictionary<float, MonoMechanicus>();
-        private int _autoAttackCost;
-        private float _fightDistance;
-        private float _meshError;
+    public class AiFrame : EnableIncluded, IArtificial
+    {
+        public AiFrameParams Attr;
+
         private MonoMechanicus _pickedEnemy;
+        private bool _returnControl = false;
 
-        private MonoMechanicus[] GetAllMonomechs() => Object.FindObjectsOfType<MonoMechanicus>(); //todo move to smart proxy
-
-        private MonoMechanicus PickFirstEnemyToAttack() =>
-            _enemiesWithinReach.Count > 0 ? _enemiesWithinReach.First().Value : null;
-
+        private MonoMechanicus[] GetAllMonomechs() => StaticProxyObjectFinder.FindObjectOfType<MonoMechanicus>();
+        private MonoMechanicus PickFirstEnemyToAttack() => FilterWithinAttack().Count > 0 ? FilterWithinAttack().First().Value : null;
+        private void PickEnemyForThisTurn() => _pickedEnemy = _pickedEnemy ?? PickFirstEnemyToAttack();
+        private void ReleaseEnemyForThisTurn() => _pickedEnemy = null;
         private MonoMechanicus[] GetEnemies() => GetAllMonomechs()
-            .Where(c => c.BlueRedTeam != Monomech.BlueRedTeam).ToArray();
+            .Where(c => c.BlueRedTeam != Attr.Monomech.BlueRedTeam).ToArray();
 
-        #region Setter
-        public AiFrame SetActionPoints(int actionPoints)
-        {
-            _actionPoints = actionPoints;
+        private SortedDictionary<float, MonoMechanicus> ResolveEnemies() =>
+            GetEnemies().Aggregate(new SortedDictionary<float, MonoMechanicus>(), (carrier, monomech) =>
+            {
+                carrier.Add(Vector3.Distance(monomech.transform.position, Attr.Monomech.transform.position), monomech);
 
-            return this;
-        }
+                return carrier;
+            });
 
-        public AiFrame SetMovementSpeed(int movementSpeed)
-        {
-            _movementSpeed = movementSpeed;
+        private SortedDictionary<float, MonoMechanicus> FilterWithinAttack() =>
+            ResolveEnemies().Aggregate(new SortedDictionary<float, MonoMechanicus>(), (carrier, monomech) =>
+            {
+                if (MovementMath.CalcHitRange(Attr.ActionPoints - Attr.AutoAttackCost, Attr.MovementSpeed, Attr.FightDistance) >= monomech.Key)
+                    carrier.Add(Vector3.Distance(monomech.Value.transform.position, Attr.Monomech.transform.position), monomech.Value);
 
-            return this;
-        }
-
-        public AiFrame SetAutoAttackCost(int autoAttackCost)
-        {
-            _autoAttackCost = autoAttackCost;
-
-            return this;
-        }
-
-        public AiFrame SetMeshRadius(float meshError)
-        {
-            Debug.Log($"_meshError {_meshError}");
-            _meshError = MovementMath.CalcRadiusError(meshError);
-            Debug.Log($"_meshError {_meshError}");
-
-            return this;
-        }
-
-        public AiFrame SetFightDistance(float fightDistance)
-        {
-            _fightDistance = fightDistance;
-
-            return this;
-        }
-
-        #endregion
-
-        public AiFrame SeekTarget()
-        {
-            SortedDictionary<float, MonoMechanicus> sd = new SortedDictionary<float, MonoMechanicus>();
-
-            foreach (var monomechEnemy in GetEnemies())
-                sd.Add(Vector3.Distance(monomechEnemy.transform.position, Monomech.transform.position), monomechEnemy);
-
-            if (DevelopFlag)
-                foreach (KeyValuePair<float, MonoMechanicus> kvp in sd)
-                    UnityEngine.Debug.Log("Total distance " + kvp.Value.gameObject.name + " " + kvp.Key);
-
-            _seekTargets = sd;
-
-            return this;
-        }
-
-        public AiFrame FilterWithinReach()
-        {
-            if (_actionPoints == 0 || _movementSpeed == 0 || _seekTargets.Count == 0)
-                return this;
-
-            _enemiesWithinReach = new SortedDictionary<float, MonoMechanicus>();
-
-            foreach (KeyValuePair<float, MonoMechanicus> obj in _seekTargets)
-                if (MovementMath.CalcMovementLength(_actionPoints, _movementSpeed) >= obj.Key)
-                    _enemiesWithinReach.Add(obj.Key, obj.Value);
-
-            if (DevelopFlag)
-                foreach (KeyValuePair<float, MonoMechanicus> kvp in _enemiesWithinReach)
-                    UnityEngine.Debug.Log("Within range distance " + kvp.Value.gameObject.name + " " + kvp.Key);
-
-            return this;
-        }
-
-        public AiFrame FilterWithinAttack()
-        {
-            if (_actionPoints == 0 || _movementSpeed == 0 || _autoAttackCost == 0 || _seekTargets.Count == 0)
-                return this;
-
-            _enemiesWithinReach = new SortedDictionary<float, MonoMechanicus>();
-
-            foreach (KeyValuePair<float, MonoMechanicus> obj in _seekTargets)
-                if (MovementMath.CalcMovementLength(_actionPoints - _autoAttackCost, _movementSpeed) >= obj.Key)
-                    _enemiesWithinReach.Add(obj.Key, obj.Value);
-
-            if (DevelopFlag)
-                foreach (KeyValuePair<float, MonoMechanicus> kvp in _enemiesWithinReach)
-                    UnityEngine.Debug.Log("Within range distance " + kvp.Value.gameObject.name + " " + kvp.Key);
-
-            return this;
-        }
+                return carrier;
+            });
 
         private Vector3 ConnectVector(MonoMechanicus oppose)
         {
-            float realDistance = Vector3.Distance(oppose.transform.position, Monomech.transform.position);
-            float correctNormal = MovementMath.AttackVectorCoercion(realDistance, _fightDistance, _meshError);
+            float realDistance = Vector3.Distance(oppose.transform.position, Attr.Monomech.transform.position);
+            float correctNormal = MovementMath.AttackVectorCoercion(realDistance, Attr.FightDistance, Attr.MeshError);
 
             if (DevelopFlag)
-                Debug.Log($"_fightDistance {_fightDistance} _meshError {_meshError} correctNormal: {correctNormal} realDistance {realDistance} distance {realDistance - correctNormal * realDistance}");
+                Debug.Log($"_fightDistance {Attr.FightDistance} _meshError {Attr.MeshError} correctNormal: {correctNormal} realDistance {realDistance} distance {realDistance - correctNormal * realDistance}");
 
-            return Vector3.Lerp(Monomech.transform.position, oppose.transform.position, correctNormal);
+            return Vector3.Lerp(Attr.Monomech.transform.position, oppose.transform.position, correctNormal);
         }
 
-        public AiFrame SetDestination(NavMeshAgent nvm)
+        public AiFrame MoveToTarget()
         {
             if (!PickFirstEnemyToAttack())
                 return this;
 
-            nvm.SetDestination(ConnectVector(PickFirstEnemyToAttack()));
+            Attr.Nma.SetDestination(ConnectVector(PickFirstEnemyToAttack()));
 
             return this;
         }
 
-        private void PickEnemyForThisTurn() => _pickedEnemy = _pickedEnemy ?? PickFirstEnemyToAttack();
-        private void ReleaseEnemyForThisTurn() => _pickedEnemy = null;
-
-        public bool HitTarget()
+        private bool HitTarget()
         {
             PickEnemyForThisTurn();
 
-            if (_pickedEnemy && DevelopFlag)
-                Debug.Log("Versus " + Monomech.gameObject.name + " " + _pickedEnemy.gameObject.name);
-
-            if (_pickedEnemy && Vector3.Distance(Monomech.transform.position, _pickedEnemy.transform.position) > _fightDistance)
+            if (_pickedEnemy && Vector3.Distance(Attr.Monomech.transform.position, _pickedEnemy.transform.position) > Attr.FightDistance)
                 return false;
             else if (_pickedEnemy) 
-                DamageLoggerAdapter.AttackCapture(Monomech, _pickedEnemy);
+                DamageLoggerAdapter.AttackCapture(Attr.Monomech, _pickedEnemy);
 
             ReleaseEnemyForThisTurn();
 
             return true;
+        }
+
+        public IEnumerator HitTargetAsSoonAsPossible()
+        {
+            while (Attr.Nma.hasPath)
+                yield return null;
+
+//            yield return new WaitForSeconds(1);
+
+            while (!HitTarget())
+                yield return null;
+
+            _returnControl = true;
+        }
+
+        public IEnumerator ConsumeActionPoints()
+        {
+
+            Debug.Log("ConsumeActionPoints " + Attr.GetTurnPointsDelegate());
+            Attr.StartCoroutine(HitTargetAsSoonAsPossible());
+
+            while (!_returnControl)
+                yield return new WaitForSeconds(1);
+
+            Debug.Log("ConsumeActionPoints " + Attr.GetTurnPointsDelegate());
+//            Attr.Monomech._monoAmplifierRpg.ca
+            yield return null;
         }
     }
 }

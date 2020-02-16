@@ -6001,7 +6001,7 @@ GameObject:
   - component: {fileID: 630981825}
   - component: {fileID: 630981824}
   m_Layer: 0
-  m_Name: MeleeAxeFighter(Red)
+  m_Name: MeleeAxeFighter(Blue)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6023,7 +6023,7 @@ MonoBehaviour:
   InfiniteMoving: 1
   InfiniteAction: 1
   AiImproved: 0
-  BlueRedTeam: 1
+  BlueRedTeam: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &630981825
 MonoBehaviour:

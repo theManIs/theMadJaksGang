@@ -5,6 +5,7 @@ using Assets.GamePrimal.TextDamage;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.GravediggerClasses;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using UnityEngine;
 using UnityEngine.AI;
@@ -61,7 +62,8 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             ControllerFloatingText.CreateFloatingText(damageAmount.ToString(), transform);
 
             if (_amplifier.HasDied())
-                _capsuleCollider.enabled = false;
+                new Gravedigger().SomeoneDied(_monomech);
+//                _capsuleCollider.enabled = false;
         }
 
         public void OnEnable()
@@ -87,9 +89,9 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             Transform enemy = acp.Source;
             Transform ally = acp.Target;
 
-            Debug.Log("AttackTheEnemy " + acp.Source.gameObject.name + " " + acp.Target.gameObject.name + " " + acp.HasHit);
-            Debug.Log("_autoAttackCost " + _amplifier.CanAct(_autoAttackCost));
-            Debug.Log("GetMeleeRange " + Vector3.Distance(enemy.position, transform.position) + " " + _amplifier.GetMeleeRange() + " " + (Vector3.Distance(enemy.position, transform.position) < _amplifier.GetMeleeRange()));
+//            Debug.Log("AttackTheEnemy " + acp.Source.gameObject.name + " " + acp.Target.gameObject.name + " " + acp.HasHit);
+//            Debug.Log("_autoAttackCost " + _amplifier.CanAct(_autoAttackCost));
+//            Debug.Log("GetMeleeRange " + Vector3.Distance(enemy.position, transform.position) + " " + _amplifier.GetMeleeRange() + " " + (Vector3.Distance(enemy.position, transform.position) < _amplifier.GetMeleeRange()));
             if (Vector3.Distance(enemy.position, transform.position) < _amplifier.GetMeleeRange() && _amplifier.CanAct(_autoAttackCost))
             {
                 _cAttackCapture.LockTarget();

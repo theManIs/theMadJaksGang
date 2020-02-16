@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
 {
     public interface IArtificial
     {
-        AiFrame SeekTarget();
-        AiFrame SetActionPoints(int actionPoints);
-        AiFrame SetMovementSpeed(int movementSpeed);
-        AiFrame SetAutoAttackCost(int autoAttackCost);
-        AiFrame SetMeshRadius(float meshError);
-        AiFrame FilterWithinReach();
-        AiFrame FilterWithinAttack();
-        AiFrame SetDestination(NavMeshAgent nvm);
-        AiFrame SetFightDistance(float fightDistance);
-        bool HitTarget();
+        IEnumerator HitTargetAsSoonAsPossible();
+        AiFrame MoveToTarget();
     }
 }

@@ -103,10 +103,10 @@ namespace Assets.GamePrimal.Mono
                 _iAmMoving = true;
             }
             
-            if (_iAmMoving)
-                if (Input.GetKeyDown(KeyCode.Space))
-                    if (_cDrumSpinner.ReleaseRound())
-                        _iAmMoving = false;
+//            if (_iAmMoving)
+//                if (Input.GetKeyDown(KeyCode.Space))
+//                    if (_cDrumSpinner.ReleaseRound())
+//                        _iAmMoving = false;
 
 
             _characterAnimator.UserUpdate(new UpdateParams());

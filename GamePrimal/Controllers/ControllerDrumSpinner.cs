@@ -39,16 +39,21 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
             return !_roundIsFilled;
         }
 
+        public void RemoveBody() => _theDrum = new Queue<Transform>
+            (_theDrum.ToArray().Where(participant => participant.GetComponent<MonoMechanicus>()));
+
         public bool DoIMove(Transform applicant)
         {
             if (_roundIsFilled) return false;
 //            Debug.Log(_theDrum.Count + " " + Time.time);
+            RemoveBody();
             FillTheDrum();
 
             int whoIsNext = _theDrum.Peek().GetInstanceID();
             int applicantId = applicant.GetInstanceID();
+            Debug.Log($"whoIsNext {whoIsNext} _theDrum {_theDrum.Count} applicantId {applicantId}");
             bool doIMove = whoIsNext == applicantId;
-//            Debug.Log(whoIsNext + " == " + applicantId + " = " + doIMove);
+            //            Debug.Log(whoIsNext + " == " + applicantId + " = " + doIMove);
             MarkThisRoundFilled(doIMove);
 
             if (doIMove)
@@ -64,6 +69,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
         private void ReleaseFrame()
         {
+            //Debug.Log(Time.frameCount + " " + _frameCount + " " + _frameThrottle);
             if (Time.frameCount - _frameCount > _frameThrottle)
             {
                 _roundIsFilled = false;

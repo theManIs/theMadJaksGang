@@ -24,6 +24,7 @@ namespace Assets.GamePrimal.Controllers
         private ControllerCharacterMovement _cMovementCharacter;
         private ControllerFocusSubject _subjectFocus;
         private CursorChanger _cursorChanger;
+        private ControllerDrumSpinner _cDrumSpinner;
 
         public ControllerInput UserAwake()
         {
@@ -31,6 +32,7 @@ namespace Assets.GamePrimal.Controllers
             _cMovementCharacter = GetControllerCharacterMovement();
             _subjectFocus = GetControllerFocusSubject();
             _cursorChanger = new CursorChanger();
+            _cDrumSpinner = GetControllerDrumSpinner();
 
             return this;
         }
@@ -71,6 +73,9 @@ namespace Assets.GamePrimal.Controllers
             _cMovementCharacter.FixedUpdate(_subjectFocus.GetFocus(), _subjectFocus.HasFocused());
 //            _cursorChanger.SetCursor(_subjectFocus.GetSoftFocus(), _subjectFocus.GetHardFocus());
             _cursorChanger.SetCursorIfOnUi(_subjectFocus.GetSoftFocus(), _subjectFocus.GetHardFocus(), StaticProxyStateHolder.GetStatesList());
+
+            if (StaticProxyInput.Space)
+                _cDrumSpinner.ReleaseRound();
         }
 
     }

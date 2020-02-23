@@ -73,9 +73,7 @@ namespace Assets.GamePrimal.Controllers
             _cMovementCharacter.FixedUpdate(_subjectFocus.GetFocus(), _subjectFocus.HasFocused());
 //            _cursorChanger.SetCursor(_subjectFocus.GetSoftFocus(), _subjectFocus.GetHardFocus());
             _cursorChanger.SetCursorIfOnUi(_subjectFocus.GetSoftFocus(), _subjectFocus.GetHardFocus(), StaticProxyStateHolder.GetStatesList());
-
-            if (StaticProxyInput.Space)
-                _cDrumSpinner.ReleaseRound();
+            _cDrumSpinner.UserUpdate();
         }
 
     }

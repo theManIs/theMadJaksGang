@@ -92,25 +92,12 @@ namespace Assets.GamePrimal.Mono
         {
             if (!enabled) return;
 
-            bool doIReallyMove = _cDrumSpinner.DoIMove(transform);
-//            Debug.Log(doIReallyMove + " " + nameof(_cDrumSpinner));
-//            if (doIReallyMove)
-//            {
-////                Debug.Log(Time.time + " " + gameObject.name + " " + GetComponent<MonoAmplifierRpg>().GetInitiative());
-//
-//                _iAmMoving = true;
-//            }
-            
-//            if (_iAmMoving)
-//                if (Input.GetKeyDown(KeyCode.Space))
-//                    if (_cDrumSpinner.ReleaseRound())
-//                        _iAmMoving = false;
-
-
             _characterAnimator.UserUpdate(new UpdateParams());
 
-//            _hudViwer.UserUpdate(new UpdateParams() {ActualInvoker = transform, AmplifierRpg = _monoAmplifierRpg});
             Ai.DoAny();
+
+            if (Ai.CanNotDoAnyAction())
+                _cDrumSpinner.ReleaseRoundUnconditional();
         }
 
         #region Subscribers
@@ -139,8 +126,6 @@ namespace Assets.GamePrimal.Mono
             if (acp.TurnApplicant != transform)
                 return;
 
-            //Debug.Log("TurnWasFoundHandler " + acp.TurnApplicant.gameObject.name + $"AiImproved {AiImproved}");
-
             Ai = new AiFrameBuilder(new AiFrameParams()
             {
                 Enabled = AiImproved,
@@ -157,10 +142,6 @@ namespace Assets.GamePrimal.Mono
             });
             
             Ai.StartAssault();
-                
-//            Ai.MoveToTarget();
-//
-//            StartCoroutine(Ai.HitTargetAsSoonAsPossible());
         }
 
         private void ChangeActiveAbility(EventActiveAbilityChangedParams acp)

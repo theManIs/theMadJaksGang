@@ -34,6 +34,11 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
         public bool ReleaseRound()
         {
+            return ReleaseRoundUnconditional();
+        }
+
+        public bool ReleaseRoundUnconditional()
+        {
             ReleaseFrame();
 
             return !_roundIsFilled;
@@ -41,6 +46,21 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
         public void RemoveBody() => _theDrum = new Queue<Transform>
             (_theDrum.ToArray().Where(participant => participant.GetComponent<MonoMechanicus>()));
+
+        private void ResolveWhoseTurn()
+        {
+            if (!_roundIsFilled)
+                foreach (MonoMechanicus m in StaticProxyObjectFinder.FindObjectOfType<MonoMechanicus>())
+                    DoIMove(m.transform);
+        }
+
+        public void UserUpdate()
+        {
+            ResolveWhoseTurn();
+
+            if (StaticProxyInput.Space)
+                ReleaseRound();
+        }
 
         public bool DoIMove(Transform applicant)
         {
@@ -51,7 +71,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
             int whoIsNext = _theDrum.Peek().GetInstanceID();
             int applicantId = applicant.GetInstanceID();
-            Debug.Log($"whoIsNext {whoIsNext} _theDrum {_theDrum.Count} applicantId {applicantId}");
+//            Debug.Log($"whoIsNext {whoIsNext} _theDrum {_theDrum.Count} applicantId {applicantId}");
             bool doIMove = whoIsNext == applicantId;
             //            Debug.Log(whoIsNext + " == " + applicantId + " = " + doIMove);
             MarkThisRoundFilled(doIMove);

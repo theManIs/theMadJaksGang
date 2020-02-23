@@ -85,7 +85,7 @@ namespace Assets.GamePrimal.Mono
             else
                 _abilityToUse = _autoAttack;
 
-            Debug.Log(_abilityToUse + " " + Time.time);
+//            Debug.Log(_abilityToUse + " " + Time.time);
         }
 
         private void SetRangedAutoAttack()

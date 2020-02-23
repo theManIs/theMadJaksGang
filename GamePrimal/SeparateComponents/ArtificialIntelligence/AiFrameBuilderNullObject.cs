@@ -17,5 +17,6 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
 
         public void DoAny() { }
         public void StartAssault() { }
+        public bool CanNotDoAnyAction() => false;
     }
 }

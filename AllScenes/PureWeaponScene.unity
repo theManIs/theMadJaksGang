@@ -2945,7 +2945,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &296174796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2959,9 +2959,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iAmMoving: 0
-  InfiniteMoving: 1
+  InfiniteMoving: 0
   InfiniteAction: 0
-  AiImproved: 0
+  AiImproved: 1
   BlueRedTeam: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!114 &296174797
@@ -3110,7 +3110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296174795}
   m_LocalRotation: {x: -0, y: 0.18343282, z: -0, w: 0.9830322}
-  m_LocalPosition: {x: -13.16, y: -0.58279014, z: 3.0800002}
+  m_LocalPosition: {x: 16.38, y: -0.58279014, z: 10.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 463330709}

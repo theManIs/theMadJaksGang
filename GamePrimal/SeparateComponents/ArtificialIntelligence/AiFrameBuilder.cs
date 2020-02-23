@@ -15,5 +15,6 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
         public AiFrameBuilder(AiFrameParams afp)  => _internalAiFrame = new AiFrame {Attr = afp};
         public void DoAny() => _internalAiFrame.DoAny();
         public void StartAssault() => _internalAiFrame.StartAssault();
+        public bool CanNotDoAnyAction() => _internalAiFrame.CanNotDoAnyAction();
     }
 }

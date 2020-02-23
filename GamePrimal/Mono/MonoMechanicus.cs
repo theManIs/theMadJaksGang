@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.IO;
 using Assets.GamePrimal.Controllers;
-using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
@@ -89,19 +88,18 @@ namespace Assets.GamePrimal.Mono
                 });
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (!enabled) return;
 
             bool doIReallyMove = _cDrumSpinner.DoIMove(transform);
 //            Debug.Log(doIReallyMove + " " + nameof(_cDrumSpinner));
-            if (doIReallyMove)
-            {
-//                Debug.Log(Time.time + " " + gameObject.name + " " + GetComponent<MonoAmplifierRpg>().GetInitiative());
-
-                _iAmMoving = true;
-            }
+//            if (doIReallyMove)
+//            {
+////                Debug.Log(Time.time + " " + gameObject.name + " " + GetComponent<MonoAmplifierRpg>().GetInitiative());
+//
+//                _iAmMoving = true;
+//            }
             
 //            if (_iAmMoving)
 //                if (Input.GetKeyDown(KeyCode.Space))
@@ -141,7 +139,7 @@ namespace Assets.GamePrimal.Mono
             if (acp.TurnApplicant != transform)
                 return;
 
-            Debug.Log("TurnWasFoundHandler " + acp.TurnApplicant.gameObject.name);
+            //Debug.Log("TurnWasFoundHandler " + acp.TurnApplicant.gameObject.name + $"AiImproved {AiImproved}");
 
             Ai = new AiFrameBuilder(new AiFrameParams()
             {
@@ -151,7 +149,7 @@ namespace Assets.GamePrimal.Mono
                 ActionPoints = _monoAmplifierRpg.GetTurnPoints(),
                 MovementSpeed = _monoAmplifierRpg.MoveSpeed,
                 AutoAttackCost = _autoAttackCost,
-                FightDistance = _monoAmplifierRpg.WieldingWeapon.WeaponRange,
+                FightDistance = _monoAmplifierRpg.WieldingWeapon ? _monoAmplifierRpg.WieldingWeapon.WeaponRange : 0,
                 MeshError = _meshWidth,
                 Nma = _navMeshAgent,
                 GetTurnPointsDelegate = _monoAmplifierRpg.GetTurnPoints,

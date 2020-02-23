@@ -1,5 +1,5 @@
-﻿using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
-using Assets.TeamProjects.GamePrimal.SeparateComponents.AbilitiesTree;
+﻿using Assets.TeamProjects.GamePrimal.SeparateComponents.AbilitiesTree;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.WeaponOrigins;
 using UnityEngine;
 
 namespace Assets.TeamProjects.GamePrimal.Helpers

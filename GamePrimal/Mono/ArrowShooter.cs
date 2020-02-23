@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.WeaponOrigins;
 using UnityEditor;
 using UnityEngine;
 

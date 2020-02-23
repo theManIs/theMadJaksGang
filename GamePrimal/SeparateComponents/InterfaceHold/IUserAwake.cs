@@ -1,8 +1,8 @@
 ﻿using Assets.GamePrimal.TextDamage;
-using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.WeaponOrigins;
 using UnityEngine;
 using UnityEngine.AI;
 

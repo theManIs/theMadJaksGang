@@ -88,10 +88,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8488152998251271999}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ff2ce519f3ebd42accf235cdc2484a, type: 3}
+  m_Script: {fileID: 11500000, guid: 353cc48218f27bd4aa50c6d3ba9f51be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponRange: 20
+  WeaponRange: 12
   WeaponType: 4
   isRanged: 0
   SpawnPoint: {fileID: 0}

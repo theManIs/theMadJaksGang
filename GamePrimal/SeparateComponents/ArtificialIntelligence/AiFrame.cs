@@ -28,7 +28,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
         public Func<IEnumerator, Coroutine> StartCoroutine;
     }
 
-    public class AiFrame : EnableIncluded, IArtificial
+    public class AiFrame : IArtificial
     {
         public AiFrameParams Attr;
 
@@ -224,13 +224,12 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
 
         public void DoAny()
         {
-//            if (IsControlBlocked())
-//                Debug.Log("ConsumeActionPoints " + Attr.GetTurnPointsDelegate());
+            if (!Attr.Enabled)
+                return;
+
+//            Debug.Log($"gameObject " + );
 
             InternalDoAnyLogic();
-
-//            if (IsControlBlocked())
-//                Debug.Log("ConsumeActionPoints " + Attr.GetTurnPointsDelegate());
         }
 
         private void InternalDoAnyLogic()

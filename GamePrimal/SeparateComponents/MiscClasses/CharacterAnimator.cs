@@ -1,12 +1,12 @@
 ﻿using System;
 using Assets.GamePrimal.Controllers;
 using Assets.GamePrimal.Mono;
-using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.AbilitiesTree;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.WeaponOrigins;
 using UnityEngine;
 using UnityEngine.AI;
 using Object = UnityEngine.Object;
@@ -21,7 +21,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
         private NavMeshAgent _navMeshAgent;
         private bool _isBlip = false;
         private Transform _transform;
-        private WeaponOperator _wieldingWeapon;
+        private WeaponOperatorAbstract _wieldingWeapon;
         private AttackCaptureParams _lastAttackCapture;
         private float _baseMeshSpeed;
         private readonly float _minNavMeshSpeed = 0.04f;

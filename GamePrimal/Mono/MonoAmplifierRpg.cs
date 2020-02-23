@@ -1,10 +1,10 @@
-﻿using Assets.TeamProjects.DemoAnimationScene.MiscellaneousWeapons.CommonScripts;
-using Assets.TeamProjects.GamePrimal.Helpers;
+﻿using Assets.TeamProjects.GamePrimal.Helpers;
 using Assets.TeamProjects.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.AbilitiesTree;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.WeaponOrigins;
 using UnityEngine;
 
 namespace Assets.GamePrimal.Mono
@@ -36,7 +36,7 @@ namespace Assets.GamePrimal.Mono
         private DamageLogger _damageLogger;
 
         public float MeshSpeed { get; private set; } = 4f;
-        public WeaponOperator WieldingWeapon;
+        public WeaponOperatorAbstract WieldingWeapon;
         public WeaponPosition _weaponPoint { get; private set; }
 
         public void SubtractHealth(int amount) => Health -= amount;
@@ -136,7 +136,7 @@ namespace Assets.GamePrimal.Mono
         {
             if (CharacterFeatures)
             {
-                WieldingWeapon = af.StartWeapon;
+                WieldingWeapon = af.StartWeapon ? (WeaponOperatorAbstract) af.StartWeapon : new ZeroWeapon();
                 Health = af.StartHealth;
                 MaxHealth = af.MaxHealth;
                 Initiative = af.Initiative;

@@ -4,10 +4,13 @@ using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
+
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.GravediggerClasses
 {
     public class Gravedigger : AbstractGravedigger
     {
+        #region AbstractGravedigger
+
         public override void SomeoneDied(MonoMechanicus monomech)
         {
             Collider collider = monomech.GetComponent<Collider>();
@@ -20,6 +23,8 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.GravediggerClasses
             Object.Destroy(damageLogger);
             Object.Destroy(collider);
             Object.Destroy(clickToMove);
-        }
+        } 
+
+        #endregion
     }
 }

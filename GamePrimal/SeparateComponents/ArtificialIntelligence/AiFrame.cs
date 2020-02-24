@@ -1,47 +1,54 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.GamePrimal.Mono;
 using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.UserMath;
 using UnityEngine;
-using UnityEngine.AI;
+
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligence
 {
-    public struct AiFrameParams
-    {
-        public bool Enabled;
-        public Transform CurrentTransform;
-        public MonoMechanicus Monomech;
-        public int AutoAttackCost;
-        public float FightDistance;
-        public float MeshError;
-        public int ActionPoints;
-        public int MovementSpeed;
-        public NavMeshAgent Nma;
-        public Func<int> GetTurnPointsDelegate;
-        public Func<IEnumerator, Coroutine> StartCoroutine;
-    }
-
     public class AiFrame : IArtificial
     {
+        #region Fields
+
         public AiFrameParams Attr;
 
         private MonoMechanicus _pickedEnemy;
+
         private bool _movementLocker = false;
+
         private bool _isControlBlocked;
-        private Vector3 _lastDestination;
-        private bool[] _lock = new bool[3];
-        private int _visibleRange = 10;
+
+        private readonly int _visibleRange = 10;
+
         private bool _hasControlBlocked;
+
         private bool _controlStateWasReleased;
+
         private bool _controlAndTurnEnded;
+
+        #endregion
+
+
+        #region IArtificial
 
         public void StartAssault() => _isControlBlocked = true;
         public bool CanNotDoAnyAction() => _controlAndTurnEnded;
+
+        public void DoAny()
+        {
+            if (!Attr.Enabled)
+                return;
+
+            ControlChangeStage();
+        }
+
+        #endregion
+
+
+        #region Methods
 
         private MonoMechanicus[] GetAllMonomechs() => StaticProxyObjectFinder.FindObjectOfType<MonoMechanicus>();
         private void PickEnemyForThisTurn()
@@ -108,7 +115,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
         {
             if (_pickedEnemy)
             {
-                Attr.Nma.SetDestination(ConnectVector(_pickedEnemy));
+                Attr.Nma.SetDestination(ConnectVector(_pickedEnemy)); // todo put in some NavMeshAgentWrapper
 
                 _movementLocker = true;
             }
@@ -130,14 +137,6 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
 
         private bool HitIsInProgress => StaticProxyRouter.GetControllerAttackCapture().HasHit;
         private bool MoveInProgress => _movementLocker;
-
-        public void DoAny()
-        {
-            if (!Attr.Enabled)
-                return;
-
-            ControlChangeStage();
-        }
 
         private void ControlChangeStage()
         {
@@ -182,5 +181,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
                 if (HitTarget())
                     ReleaseEnemyForThisTurn();
         }
+
+        #endregion
     }
 }

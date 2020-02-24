@@ -697,19 +697,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 0
+  MaxHealth: 0
   Damage: 0
   Initiative: 0
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 7efb8c3f2776df54bac1468927c9f830, type: 2}
-  MaxTurnPoints: 0
-  TurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
-  MaxHealth: 0
+  MaxTurnPoints: 0
+  TurnPoints: 0
   ExperienceActual: 0
   ExperienceMax: 0
   WeaponProjectile: {fileID: 0}
   MoveSpeed: 0
+  AutoAttack: 
+  AbilitiesSet: []
+  AbilityToUse: 
+  WieldingWeapon: {fileID: 0}
 --- !u!23 &6999939526292001601
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -799,6 +803,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iAmMoving: 0
   InfiniteMoving: 0
+  InfiniteAction: 0
+  AiImproved: 0
+  BlueRedTeam: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!1 &2766433633464829830
 GameObject:
@@ -2196,7 +2203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 279509828582188699}
-  - component: {fileID: 2430434549571720103}
+  - component: {fileID: 8367929182426408824}
   m_Layer: 0
   m_Name: WeaponPoint
   m_TagString: Untagged
@@ -2219,7 +2226,7 @@ Transform:
   m_Father: {fileID: 6094129948991092562}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2430434549571720103
+--- !u!114 &8367929182426408824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2228,7 +2235,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8083707685798631788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
+  m_Script: {fileID: 11500000, guid: 64625f706c6b76c41861ae40d93e84f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8100943370353850686

@@ -1,11 +1,14 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.WeaponOrigins
 {
     public class WeaponOperator : WeaponOperatorAbstract
     {
         private Transform _lastProjectile;
+
+        #region WeaponOperatorAbstract
 
         public override bool HasLastProjectile() => _lastProjectile;
 
@@ -35,5 +38,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.WeaponOrigins
             if (PauseAfterShoot)
                 EditorApplication.isPaused = true;
         }
+
+        #endregion
     }
 }

@@ -537,7 +537,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3285205636210816546}
-  - component: {fileID: 3248271731159075585}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -562,21 +561,10 @@ Transform:
   - {fileID: 4949442567788451997}
   - {fileID: 163098168711574752}
   - {fileID: 328463532569447511}
+  - {fileID: 8676826995784940170}
   m_Father: {fileID: 8129895436884545131}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3248271731159075585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2451159211739153513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e54e4a1b8b92f614484797acb5427f0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2451635818295519419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1459,6 +1447,49 @@ Transform:
   m_Father: {fileID: 6480569266729320657}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5901991933798502580
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8676826995784940170}
+  - component: {fileID: 6633132032932718389}
+  m_Layer: 0
+  m_Name: WeaponPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8676826995784940170
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5901991933798502580}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3285205636210816546}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6633132032932718389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5901991933798502580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64625f706c6b76c41861ae40d93e84f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5964571940353427451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1760,15 +1791,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 0
+  MaxHealth: 0
   Damage: 0
   Initiative: 0
   WeaponRange: 4
   CharacterFeatures: {fileID: 11400000, guid: 4f847b331bdae794ab8b8e48e793e457, type: 2}
-  MaxTurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
+  MaxTurnPoints: 0
   TurnPoints: 0
-  MaxHealth: 0
   ExperienceActual: 0
   ExperienceMax: 0
   WeaponProjectile: {fileID: 0}
@@ -1867,6 +1898,8 @@ MonoBehaviour:
   _iAmMoving: 0
   InfiniteMoving: 0
   InfiniteAction: 0
+  AiImproved: 0
+  BlueRedTeam: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!1 &6872932027919189750
 GameObject:

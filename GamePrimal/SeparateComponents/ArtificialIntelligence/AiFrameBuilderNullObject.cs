@@ -1,10 +1,12 @@
 ﻿using System.Collections;
-using UnityEngine;
+
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligence
 {
     public class AiFrameBuilderNullObject : IArtificial
     {
+        #region Methods
+
         public IEnumerator HitTargetAsSoonAsPossible()
         {
             throw new System.NotImplementedException();
@@ -17,6 +19,8 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
 
         public void DoAny() { }
         public void StartAssault() { }
-        public bool CanNotDoAnyAction() => false;
+        public bool CanNotDoAnyAction() => false; 
+
+        #endregion
     }
 }

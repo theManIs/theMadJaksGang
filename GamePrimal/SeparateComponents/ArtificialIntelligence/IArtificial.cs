@@ -5,8 +5,12 @@
         #region Methods
 
         void DoAny();
+
         void StartAssault();
-        bool CanNotDoAnyAction(); 
+
+        bool CanNotDoAnyAction();
+
+        void ClearControlAndTurnEnded();
 
         #endregion
     }

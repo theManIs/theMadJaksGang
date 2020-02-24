@@ -5,21 +5,24 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
 {
     public class AiFrameBuilderNullObject : IArtificial
     {
-        #region Methods
+        #region IArtificial
 
-        public IEnumerator HitTargetAsSoonAsPossible()
+        public void DoAny()
         {
-            throw new System.NotImplementedException();
+            return;
         }
 
-        public IArtificial MoveToTarget()
+        public void StartAssault()
         {
-            throw new System.NotImplementedException();
+            return;
         }
 
-        public void DoAny() { }
-        public void StartAssault() { }
-        public bool CanNotDoAnyAction() => false; 
+        public bool CanNotDoAnyAction() => false;
+
+        public void ClearControlAndTurnEnded()
+        {
+            return;
+        }
 
         #endregion
     }

@@ -10,6 +10,7 @@ using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -97,7 +98,11 @@ namespace Assets.GamePrimal.Mono
             Ai.DoAny();
 
             if (Ai.CanNotDoAnyAction())
+            {
                 _cDrumSpinner.ReleaseRoundUnconditional();
+                Ai.ClearControlAndTurnEnded();
+            }
+                
         }
 
         #region Subscribers
@@ -171,6 +176,15 @@ namespace Assets.GamePrimal.Mono
         public void HitEndedHandler(AnimationEvent ae)
         {
             _monoAmplifierRpg.ResetActiveAbility();
+        }
+
+        public void OnDrawGizmos()
+        {
+            if (_navMeshAgent != null && _navMeshAgent.hasPath)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawSphere(_navMeshAgent.destination, 1);
+            }
         }
     }
 }

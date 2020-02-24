@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: AkaiArcher
   m_EditorClassIdentifier: 
   ObjectName: AkaiArcher
-  StartHealth: 0
+  StartHealth: 150
   MaxHealth: 0
-  Damage: 0
+  Damage: 50
   Initiative: 14
   NavMeshSpeed: 4
   TurnPoints: 4

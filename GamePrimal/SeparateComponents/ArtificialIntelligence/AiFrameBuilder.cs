@@ -21,6 +21,7 @@
         public void DoAny() => _internalAiFrame.DoAny();
         public void StartAssault() => _internalAiFrame.StartAssault();
         public bool CanNotDoAnyAction() => _internalAiFrame.CanNotDoAnyAction();
+        public void ClearControlAndTurnEnded() => _internalAiFrame.ClearControlAndTurnEnded();
 
         #endregion
     }

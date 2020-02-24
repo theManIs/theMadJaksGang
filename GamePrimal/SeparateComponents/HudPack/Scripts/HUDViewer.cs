@@ -78,11 +78,10 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.HudPack.Scripts
         {
             Transform nthChild = _initiativeHolder.transform.GetChild(childNum);
             Image nthImage = nthChild.GetComponent<Image>();
-            nthImage.sprite = focusPoint == null ? null : focusPoint.GetComponent<MonoAmplifierRpg>().GetCharacterPortrait();
+            nthImage.sprite = !focusPoint || !focusPoint.GetComponent<MonoAmplifierRpg>() ?
+                null : focusPoint.GetComponent<MonoAmplifierRpg>().GetCharacterPortrait();
 
-            if (focusPoint is null)
-                nthImage.sprite = null;
-            else
+            if (nthImage.sprite)
             {
                 Sprite portraitSprite = focusPoint.GetComponent<MonoAmplifierRpg>().GetCharacterPortrait();
 

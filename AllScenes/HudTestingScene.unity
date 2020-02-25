@@ -167,6 +167,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3455154668989580125, guid: 024d81047876dae43991781b5817dc75,
+        type: 3}
+      propertyPath: m_Name
+      value: Belt
+      objectReference: {fileID: 0}
     - target: {fileID: 3455154670700423994, guid: 024d81047876dae43991781b5817dc75,
         type: 3}
       propertyPath: m_LocalPosition.x

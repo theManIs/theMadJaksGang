@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353cc48218f27bd4aa50c6d3ba9f51be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponRange: 12
+  WeaponRange: 2
   WeaponType: 4
   isRanged: 0
   SpawnPoint: {fileID: 0}

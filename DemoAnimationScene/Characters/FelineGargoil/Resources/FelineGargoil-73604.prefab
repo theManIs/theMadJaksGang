@@ -153,19 +153,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 0
+  MaxHealth: 0
   Damage: 0
   Initiative: 0
   WeaponRange: 0
   CharacterFeatures: {fileID: 0}
-  MaxTurnPoints: 0
-  TurnPoints: 0
   InitialTurnPoints: 0
   CharacterPortrait: {fileID: 0}
-  MaxHealth: 0
+  MaxTurnPoints: 0
+  TurnPoints: 0
   ExperienceActual: 0
   ExperienceMax: 0
   WeaponProjectile: {fileID: 0}
   MoveSpeed: 2
+  AutoAttack: 
+  AbilitiesSet: []
+  AbilityToUse: 
+  WieldingWeapon: {fileID: 0}
 --- !u!114 &6544114326051276723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +184,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _iAmMoving: 0
   InfiniteMoving: 1
+  InfiniteAction: 0
+  AiImproved: 0
+  BlueRedTeam: 0
   _monoAmplifierRpg: {fileID: 0}
 --- !u!1 &6544114327162674470
 GameObject:
@@ -195,7 +202,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6544114327162765574
 Transform:
@@ -228,7 +235,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6544114327162765582
 Transform:

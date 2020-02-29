@@ -1,4 +1,5 @@
 ﻿using Assets.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.ListsOfStuff;
@@ -14,6 +15,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.UI.BriefingDisplay
         public bool NextLevelLocked = false;
         public readonly float WaiterLimit = 5f;
         public float WaiterLimitLeft = 5f;
+        private ControllerDrumSpinner _cDrumSpinner;
 
         public void SetState(SceneCanvasStates scs) => CanvasStates = scs;
 
@@ -27,10 +29,19 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.UI.BriefingDisplay
 
             if (isEndCanvas && !FindObjectOfType<EndCanvasHolder>())
                 _endCanvas = Instantiate(Resources.Load<EndCanvasHolder>(ResourcesList.EndDisplay));
+
+            _cDrumSpinner = StaticProxyRouter.GetControllerDrumSpinner();
+
+            _cDrumSpinner.EnterIdleMode();
         }
 
         private void Update()
         {
+            if (_cDrumSpinner.IdleRunning)
+                if (StaticProxyInput.Space)
+                    _cDrumSpinner.LeaveIdleMode();
+
+
             if (NextLevelLocked)
             {
                 if (WaiterLimitLeft > 0)

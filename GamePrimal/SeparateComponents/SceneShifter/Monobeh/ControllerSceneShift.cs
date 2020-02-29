@@ -77,7 +77,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh
 
         private void LoadAnyScene(string sceneName)
         {
-            StaticProxyEvent.EEndOfRound.Invoke(new EventParamsBase());
+//            StaticProxyEvent.EEndOfRound.Invoke(new EventParamsBase());
             SceneManager.LoadScene(sceneName);
         }
     }

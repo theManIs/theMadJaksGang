@@ -1,13 +1,23 @@
-﻿using Assets.TeamProjects.GamePrimal.MainScene;
+﻿using System;
+using Assets.GamePrimal.TextDamage;
+using Assets.TeamProjects.GamePrimal.MainScene;
+using Assets.TeamProjects.GamePrimal.Proxies;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Assets.GamePrimal.TextDamage
 {
     public class ControllerFloatingText
     {
+        #region Fields
+
         private static FloatingText popupTextPrefab;
         private static GameObject _canvasOne;
-        private static bool _canvasHasCreated = false;
+        private static bool _canvasHasCreated = false; 
+
+        #endregion
+
 
         public static void Initialize()
         {
@@ -16,6 +26,7 @@ namespace Assets.GamePrimal.TextDamage
             popupTextPrefab = Resources.Load<FloatingText>("PopupTextParent");
 //            _canvasOne = GameObject.Find("FlatElementsCanvas");
             _canvasOne = CreateCanvas();
+            StaticProxyEvent.EMatchHasComeToAnEnd.Event += EventDisposer;
         }
 
         private static GameObject CreateCanvas()
@@ -46,5 +57,7 @@ namespace Assets.GamePrimal.TextDamage
             instance.transform.SetParent(_canvasOne.transform, false);
             instance.SetText(text);
         }
+
+        private static void EventDisposer(EventMatchHasComeToAnEndParams acp) => _canvasHasCreated = false;
     }
 }

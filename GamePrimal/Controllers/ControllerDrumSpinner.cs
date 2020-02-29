@@ -21,6 +21,10 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         private int _frameCount = -1;
         private readonly int _frameThrottle = 25;
         private Transform _whoseTurn;
+        private int _frameShieldIdleRunning = Int32.MinValue;
+        private bool _idleRunning = false;
+
+        public bool IdleRunning => _idleRunning;
 
         public Queue<Transform> ActualDrum => new Queue<Transform>(_theDrum);
         public Queue<Transform> DrumBlank => SpinTheDrum();
@@ -54,8 +58,29 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
                     DoIMove(m.transform);
         }
 
+        public void EnterIdleMode()
+        {
+            if (_frameShieldIdleRunning > Time.frameCount - _frameThrottle && _frameShieldIdleRunning != Int32.MinValue)
+                return;
+
+            _idleRunning = true;
+            _frameShieldIdleRunning = Time.frameCount;
+        }
+
+        public void LeaveIdleMode()
+        {
+            if (_frameShieldIdleRunning > Time.frameCount - _frameThrottle && _frameShieldIdleRunning != Int32.MinValue)
+                return;
+
+            _idleRunning = false;
+            _frameShieldIdleRunning = Time.frameCount;
+        }
+
         public void UserUpdate()
         {
+            if (_idleRunning)
+                return;
+
             ResolveWhoseTurn();
 
             if (StaticProxyInput.Space)

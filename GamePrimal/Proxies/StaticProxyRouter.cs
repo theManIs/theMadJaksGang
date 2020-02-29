@@ -25,12 +25,14 @@ namespace Assets.TeamProjects.GamePrimal.Proxies
 
             _theFirstCall = false;
 
-            StaticProxyEvent.EEndOfRound.Event += TheFirstCallCameToEnd;
+            StaticProxyEvent.EMatchHasComeToAnEnd.Event += TheFirstCallCameToEnd;
+//            StaticProxyEvent.EEndOfRound.Event += TheFirstCallCameToEnd;
         }
 
         private static void TheFirstCallCameToEnd(EventParamsBase epb)
         {
-            StaticProxyEvent.EEndOfRound.Event -= TheFirstCallCameToEnd;
+            StaticProxyEvent.EMatchHasComeToAnEnd.Event -= TheFirstCallCameToEnd;
+//            StaticProxyEvent.EEndOfRound.Event -= TheFirstCallCameToEnd;
             _theFirstCall = true;
 
             _cDrum = default;

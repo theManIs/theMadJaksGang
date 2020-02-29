@@ -12,6 +12,7 @@
         public const string FreeLookCameraRig = "FreeLookCameraRig_14626";
         public const string GlobalMapCamera = "GlobalMapCamera_-32866";
         public const string StartDisplay = "StartCanvas-342144";
+        public const string EndDisplay = "EndCanvas-7740";
 
         /// <summary>
         /// Characters
@@ -28,7 +29,7 @@
         /// </summary>
         public const string PureWeaponScene = "Assets/TeamProjects/AllScenes/PureWeaponScene.unity";
         public const string AnimationDemoScene = "Assets/TeamProjects/AllScenes/AnimationDemoScene.unity";
-        public const string MapScene = "Assets/TeamProjects/AllScenes/MapScene.unity";
+        public const string MapScene = "Assets/TeamProjects/AllScenes/Map.unity";
         public const string ChurchTheFirstFloor = "Assets/TeamProjects/AllScenes/Church.unity";
 
         /// <summary>

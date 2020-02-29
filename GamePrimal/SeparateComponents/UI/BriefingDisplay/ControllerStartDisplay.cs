@@ -16,6 +16,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.UI.BriefingDisplay
         public readonly float WaiterLimit = 5f;
         public float WaiterLimitLeft = 5f;
         private ControllerDrumSpinner _cDrumSpinner;
+        private StartCanvasHoler _startCanvas;
 
         public void SetState(SceneCanvasStates scs) => CanvasStates = scs;
 
@@ -25,7 +26,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.UI.BriefingDisplay
             bool isEndCanvas = EndScene == CanvasStates || AllScenes == CanvasStates;
 
             if (isStartCanvas && !FindObjectOfType<StartCanvasHoler>()) { }
-                Instantiate(Resources.Load<StartCanvasHoler>(ResourcesList.StartDisplay));
+                _startCanvas = Instantiate(Resources.Load<StartCanvasHoler>(ResourcesList.StartDisplay));
 
             if (isEndCanvas && !FindObjectOfType<EndCanvasHolder>())
                 _endCanvas = Instantiate(Resources.Load<EndCanvasHolder>(ResourcesList.EndDisplay));
@@ -38,8 +39,11 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.UI.BriefingDisplay
         private void Update()
         {
             if (_cDrumSpinner.IdleRunning)
-                if (StaticProxyInput.Space)
+                if (StaticProxyInput.Space && !_startCanvas.gameObject.activeSelf)
                     _cDrumSpinner.LeaveIdleMode();
+
+            if (StaticProxyInput.Space)
+                _startCanvas.gameObject.SetActive(false);
 
 
             if (NextLevelLocked)

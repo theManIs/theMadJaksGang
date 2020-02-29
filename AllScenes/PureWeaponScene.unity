@@ -12676,7 +12676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CameraRig: {fileID: 4678414}
-  AllowStartScreen: 0
+  CanvasState: 3
 --- !u!64 &1180658534
 MeshCollider:
   m_ObjectHideFlags: 0

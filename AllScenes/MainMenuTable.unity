@@ -6895,6 +6895,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActualScene:
     _sceneAsset: {fileID: 0}
+  TheNextScene:
+    _sceneAsset: {fileID: 102900000, guid: 9fe03d28952c60f4382272b25e7aed4d, type: 3}
+  MapSceneField:
+    _sceneAsset: {fileID: 0}
   SManager:
     PureWeaponScene:
       _sceneAsset: {fileID: 0}
@@ -6903,6 +6907,8 @@ MonoBehaviour:
     MapScene:
       _sceneAsset: {fileID: 0}
     ChurchFirstFloor:
+      _sceneAsset: {fileID: 0}
+    TheNextScene:
       _sceneAsset: {fileID: 0}
 --- !u!4 &536991799
 Transform:

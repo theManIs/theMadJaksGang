@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Assets.TeamProjects.GamePrimal.Proxies;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh;
 using UnityEngine;
 
@@ -51,9 +53,10 @@ public class VelocityObjectTrigger : MonoBehaviour
 
     private void ShiftScene()
     {
-        ControllerSceneShift css = FindObjectOfType<ControllerSceneShift>();
-
-        if (css)
-            css.LoadChurchFirstFloorScene();
+        StaticProxyEvent.EMatchHasComeToAnEnd.Invoke(new EventMatchHasComeToAnEndParams());
+//        ControllerSceneShift css = FindObjectOfType<ControllerSceneShift>();
+//
+//        if (css)
+//            css.LoLoadChurchFirstFloorScene();
     }
 }

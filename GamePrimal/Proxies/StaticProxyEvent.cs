@@ -10,6 +10,7 @@ namespace Assets.TeamProjects.GamePrimal.Proxies
         public static EventEndOfRound EEndOfRound = new EventEndOfRound();
         public static EventTurnWasFound ETurnWasFound = new EventTurnWasFound();
         public static EventActiveAbilityChanged EActiveAbilityChanged = new EventActiveAbilityChanged();
+        public static EventMatchHasComeToAnEnd  EMatchHasComeToAnEnd = new EventMatchHasComeToAnEnd();
     }
 
     public class ControllerEvent  //todo dissolve this class

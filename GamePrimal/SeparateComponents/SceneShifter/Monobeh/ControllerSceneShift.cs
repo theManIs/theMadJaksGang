@@ -69,7 +69,13 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh
         #endregion
 
 
-        private void MatchHandler(EventMatchHasComeToAnEndParams acp) => LoadAnyScene(TheNextScene);
+        private void MatchHandler(EventMatchHasComeToAnEndParams acp)
+        {
+            if (TheNextScene != null && TheNextScene.ToString() != "")
+                LoadAnyScene(TheNextScene);
+            else if (acp.NewScene != null && acp.NewScene.ToString() != "")
+                LoadAnyScene(acp.NewScene);
+        }
 
 //        public void LoadMapScene() => LoadAnyScene(SManager.MapScene);
 //        public void LoadPureWeaponScene() => LoadAnyScene(SManager.PureWeaponScene);

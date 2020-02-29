@@ -3,9 +3,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
-#if UNITY_EDITOR
 
-#endif
+using SceneAsset = UnityEditor.SceneAsset;
+
 namespace Assets.GamePrimal.Helpers
 {
 	[Serializable]

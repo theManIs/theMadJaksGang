@@ -21,10 +21,16 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         private int _frameCount = -1;
         private readonly int _frameThrottle = 25;
         private Transform _whoseTurn;
-        private int _frameShieldIdleRunning = Int32.MinValue;
+        private int _frameShieldIdle = Int32.MinValue;
         private bool _idleRunning = false;
 
+
+        #region Properties
         public bool IdleRunning => _idleRunning;
+
+        private bool _updateIdleLocker => _frameShieldIdle > Time.frameCount - _frameThrottle && _frameShieldIdle != Int32.MinValue; 
+        #endregion
+
 
         public Queue<Transform> ActualDrum => new Queue<Transform>(_theDrum);
         public Queue<Transform> DrumBlank => SpinTheDrum();
@@ -60,25 +66,27 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
         public void EnterIdleMode()
         {
-            if (_frameShieldIdleRunning > Time.frameCount - _frameThrottle && _frameShieldIdleRunning != Int32.MinValue)
+            if (_updateIdleLocker)
                 return;
 
+            Debug.Log($"EnterIdleMode _frameShieldIdleRunning > Time.frameCount {_frameShieldIdle} {Time.frameCount}");
             _idleRunning = true;
-            _frameShieldIdleRunning = Time.frameCount;
+            _frameShieldIdle = Time.frameCount;
         }
 
         public void LeaveIdleMode()
         {
-            if (_frameShieldIdleRunning > Time.frameCount - _frameThrottle && _frameShieldIdleRunning != Int32.MinValue)
+            if (_updateIdleLocker)
                 return;
 
+            Debug.Log($"LeaveIdleMode _frameShieldIdleRunning > Time.frameCount {_frameShieldIdle} {Time.frameCount}");
             _idleRunning = false;
-            _frameShieldIdleRunning = Time.frameCount;
+            _frameShieldIdle = Time.frameCount;
         }
 
         public void UserUpdate()
         {
-            if (_idleRunning)
+            if (_idleRunning || _updateIdleLocker)
                 return;
 
             ResolveWhoseTurn();

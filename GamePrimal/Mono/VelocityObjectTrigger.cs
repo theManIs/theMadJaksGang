@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
-using Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh;
+using Assets.TeamProjects.HudInterface.MainMenu;
 using UnityEngine;
 
 public class VelocityObjectTrigger : MonoBehaviour
@@ -12,6 +11,7 @@ public class VelocityObjectTrigger : MonoBehaviour
     private bool _onLoose = false;
     private Quaternion _possibleRot;
     private CandleLightHolder[] _candleHolder;
+    private MenuBulletCollision _mbcLocalOne;
 
     void Start()
     {
@@ -30,6 +30,8 @@ public class VelocityObjectTrigger : MonoBehaviour
             foreach (MenuBulletCollision mbcPublic in _mbc)
                 if (mbcPublic.PickRightNow)
                 {
+                    _mbcLocalOne = mbcPublic;
+
                     gameObject.AddComponent<Rigidbody>();
 
                     _initPos.z += mbcPublic.Position;
@@ -48,7 +50,14 @@ public class VelocityObjectTrigger : MonoBehaviour
         foreach (CandleLightHolder candle in _candleHolder) 
             candle.gameObject.SetActive(false);
 
-        Invoke("ShiftScene", 1);
+        if (_mbcLocalOne.ButtonPurpose == MenuButtonStates.SingleGame)
+            Invoke("ShiftScene", 1);
+        else if (_mbcLocalOne.ButtonPurpose == MenuButtonStates.CoopButton)
+            Invoke("ShiftScene", 1);
+        else if (_mbcLocalOne.ButtonPurpose == MenuButtonStates.ExitButton)
+            Application.Quit();
+        else
+            Invoke("ShiftScene", 1);
     }
 
     private void ShiftScene()
@@ -57,6 +66,6 @@ public class VelocityObjectTrigger : MonoBehaviour
 //        ControllerSceneShift css = FindObjectOfType<ControllerSceneShift>();
 //
 //        if (css)
-//            css.LoLoadChurchFirstFloorScene();
+//            css.LoadSceneByIndex(1);
     }
 }

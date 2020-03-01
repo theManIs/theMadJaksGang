@@ -6849,8 +6849,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ColorInitial: {r: 1, g: 1, b: 1, a: 1}
-  ColorToward: {r: 1, g: 0.9811321, b: 0.9811321, a: 1}
+  ColorToward: {r: 0.8301887, g: 0.79102886, b: 0.79102886, a: 1}
   Position: 0
+  ButtonPurpose: 3
 --- !u!65 &528562817
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6893,23 +6894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6329fafbbea565d4095831355d2ae8f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActualScene:
-    _sceneAsset: {fileID: 0}
-  TheNextScene:
-    _sceneAsset: {fileID: 102900000, guid: 52fc1acefb785884ca381922952b4c23, type: 3}
-  MapSceneField:
-    _sceneAsset: {fileID: 0}
-  SManager:
-    PureWeaponScene:
-      _sceneAsset: {fileID: 0}
-    AnimationDemoScene:
-      _sceneAsset: {fileID: 0}
-    MapScene:
-      _sceneAsset: {fileID: 0}
-    ChurchFirstFloor:
-      _sceneAsset: {fileID: 0}
-    TheNextScene:
-      _sceneAsset: {fileID: 0}
+  NextSceneIndex: 1
 --- !u!4 &536991799
 Transform:
   m_ObjectHideFlags: 0
@@ -7314,7 +7299,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &601917506
 GameObject:
@@ -9068,7 +9053,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 57.054, y: 205.07599, z: 0}
 --- !u!114 &676599028
 MonoBehaviour:
@@ -24532,7 +24517,7 @@ RectTransform:
   m_Children:
   - {fileID: 997394085}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 270, y: 0, z: -2.5070002}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -25589,7 +25574,7 @@ PrefabInstance:
     - target: {fileID: 2834451433244580763, guid: e9ded170d640a6e4299a7ff48f700f10,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2834451433244580763, guid: e9ded170d640a6e4299a7ff48f700f10,
         type: 3}
@@ -29172,8 +29157,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ColorInitial: {r: 1, g: 1, b: 1, a: 1}
-  ColorToward: {r: 1, g: 0.9811321, b: 0.9811321, a: 1}
+  ColorToward: {r: 0.83137256, g: 0.7921569, b: 0.7921569, a: 1}
   Position: 0.155
+  ButtonPurpose: 1
 --- !u!65 &1993568877
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31703,8 +31689,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ColorInitial: {r: 1, g: 1, b: 1, a: 1}
-  ColorToward: {r: 1, g: 0.9811321, b: 0.9811321, a: 1}
+  ColorToward: {r: 0.83137256, g: 0.7921569, b: 0.7921569, a: 1}
   Position: 0.09
+  ButtonPurpose: 2
 --- !u!65 &2125774461
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -3,9 +3,9 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
+#if UNITY_EDITOR
 
-using SceneAsset = UnityEditor.SceneAsset;
-
+#endif
 namespace Assets.GamePrimal.Helpers
 {
 	[Serializable]
@@ -15,9 +15,18 @@ namespace Assets.GamePrimal.Helpers
 
         public static implicit operator string(SceneField sceneField) => sceneField._sceneAsset != null ? sceneField._sceneAsset.name : String.Empty;
 
-        public void SetFromAScene(SceneAsset sa) => _sceneAsset = sa;
-        public void SetFromScene(Scene scene) => this.SetFromPath(scene.path);
-        public void SetFromPath(string assetPath) => SetFromAScene(AssetDatabase.LoadAssetAtPath<SceneAsset>(assetPath));
+//        public void SetFromScene(Scene scene) => _sceneAsset =
+//            new Object()
+//            {
+//                name =
+//                    scene.name
+//            };
+//#if UNITY_EDITOR
+//        public void SetFromAScene(SceneAsset sa) => _sceneAsset = sa;
+//        public void SetFromPath(string assetPath) => SetFromAScene(AssetDatabase.LoadAssetAtPath<SceneAsset>(assetPath));
+//#endif
+
+
         public Object SceneAsset => _sceneAsset;
         public override string ToString() => this;
     }

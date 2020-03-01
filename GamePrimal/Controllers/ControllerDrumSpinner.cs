@@ -38,8 +38,9 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
 
         public ControllerDrumSpinner()
         {
-            InstanceId = Random.value;
-//            Debug.Log("ControllerDrumSpinner " + InstanceId);
+            InstanceId = Random.value; 
+            
+            EnterIdleMode();
         }
 
         public bool ReleaseRound()
@@ -69,7 +70,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
             if (_updateIdleLocker)
                 return;
 
-            Debug.Log($"EnterIdleMode _frameShieldIdleRunning > Time.frameCount {_frameShieldIdle} {Time.frameCount}");
+//            Debug.Log($"EnterIdleMode _frameShieldIdleRunning > Time.frameCount {_frameShieldIdle} {Time.frameCount}");
             _idleRunning = true;
             _frameShieldIdle = Time.frameCount;
         }
@@ -79,7 +80,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
             if (_updateIdleLocker)
                 return;
 
-            Debug.Log($"LeaveIdleMode _frameShieldIdleRunning > Time.frameCount {_frameShieldIdle} {Time.frameCount}");
+//            Debug.Log($"LeaveIdleMode _frameShieldIdleRunning > Time.frameCount {_frameShieldIdle} {Time.frameCount}");
             _idleRunning = false;
             _frameShieldIdle = Time.frameCount;
         }

@@ -35,8 +35,10 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.WeaponOrigins
             rb.velocity = _lastProjectile.transform.forward * ShootPower;
             _lastProjectile = null;
 
+            #if UNITY_EDITOR
             if (PauseAfterShoot)
-                EditorApplication.isPaused = true;
+                EditorApplication.isPaused = true; 
+            #endif
         }
 
         #endregion

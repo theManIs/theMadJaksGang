@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Assets.GamePrimal.Helpers;
 using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
@@ -22,18 +23,21 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh
     public class ControllerSceneShift : MonoBehaviour
     {
         #region Fields
-        public SceneField ActualScene = new SceneField();
-        public SceneField TheNextScene = new SceneField();
-        public SceneField MapSceneField = new SceneField();
+//        public SceneField ActualScene = new SceneField();
+//        public SceneField TheNextScene = new SceneField();
+        public SceneIndexerEnum NextSceneIndex = SceneIndexerEnum.None;
+//        public SceneField MapSceneField = new SceneField();
 
-        [SerializeField]
-        private SceneManagerStruct SManager = new SceneManagerStruct()
-        {
-            AnimationDemoScene = new SceneField(),
-            MapScene = new SceneField(),
-            PureWeaponScene = new SceneField(),
-            ChurchFirstFloor = new SceneField(),
-        }; 
+//        public List<string> AllScenes;
+
+//        [SerializeField]
+//        private SceneManagerStruct SManager = new SceneManagerStruct()
+//        {
+//            AnimationDemoScene = new SceneField(),
+//            MapScene = new SceneField(),
+//            PureWeaponScene = new SceneField(),
+//            ChurchFirstFloor = new SceneField(),
+//        }; 
         #endregion
 
 
@@ -47,12 +51,17 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh
         private void Start()
         {
 //            DontDestroyOnLoad(gameObject);
-            ActualScene.SetFromScene(SceneManager.GetActiveScene());
-            SManager.PureWeaponScene.SetFromPath(ResourcesList.PureWeaponScene);
-            SManager.AnimationDemoScene.SetFromPath(ResourcesList.AnimationDemoScene);
-            SManager.MapScene.SetFromPath(ResourcesList.MapScene);
-            MapSceneField.SetFromPath(ResourcesList.MapScene);
-            SManager.ChurchFirstFloor.SetFromPath(ResourcesList.ChurchTheFirstFloor);
+//            ActualScene.SetFromScene(SceneManager.GetActiveScene());
+//            SManager.PureWeaponScene.SetFromPath(ResourcesList.PureWeaponScene);
+//            SManager.AnimationDemoScene.SetFromPath(ResourcesList.AnimationDemoScene);
+//            SManager.MapScene.SetFromPath(ResourcesList.MapScene);
+//            MapSceneField.SetFromPath(ResourcesList.MapScene);
+//            SManager.ChurchFirstFloor.SetFromPath(ResourcesList.ChurchTheFirstFloor);
+
+//            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+//            {
+//                AllScenes.Add(SceneManager.GetSceneByBuildIndex(i).name);
+//            }
         }
 
         private void Update()
@@ -69,22 +78,27 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter.Monobeh
         #endregion
 
 
+        #region Methods
+
         private void MatchHandler(EventMatchHasComeToAnEndParams acp)
         {
-            if (TheNextScene != null && TheNextScene.ToString() != "")
-                LoadAnyScene(TheNextScene);
-            else if (acp.NewScene != null && acp.NewScene.ToString() != "")
-                LoadAnyScene(acp.NewScene);
+//            if (TheNextScene != null && TheNextScene.ToString() != "")
+//                LoadAnyScene(TheNextScene);
+//            else 
+            if (NextSceneIndex != SceneIndexerEnum.None)
+                LoadSceneByIndex(Convert.ToInt32(NextSceneIndex));
+            else if (acp.BuildIndex != SceneIndexerEnum.None)
+                LoadSceneByIndex(Convert.ToInt32(acp.BuildIndex));
         }
 
-//        public void LoadMapScene() => LoadAnyScene(SManager.MapScene);
-//        public void LoadPureWeaponScene() => LoadAnyScene(SManager.PureWeaponScene);
-//        public void LoadChurchFirstFloorScene() => LoadAnyScene(SManager.ChurchFirstFloor);
+        //        public void LoadMapScene() => LoadAnyScene(SManager.MapScene);
+        //        public void LoadPureWeaponScene() => LoadAnyScene(SManager.PureWeaponScene);
+        //        public void LoadChurchFirstFloorScene() => LoadAnyScene(SManager.ChurchFirstFloor);
 
-        private void LoadAnyScene(string sceneName)
-        {
-//            StaticProxyEvent.EEndOfRound.Invoke(new EventParamsBase());
-            SceneManager.LoadScene(sceneName);
-        }
+        private void LoadAnyScene(string sceneName) => SceneManager.LoadScene(sceneName);
+
+        private void LoadSceneByIndex(int index) => SceneManager.LoadScene(index); 
+
+        #endregion
     }
 }

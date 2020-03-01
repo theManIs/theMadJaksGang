@@ -34243,23 +34243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6329fafbbea565d4095831355d2ae8f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ActualScene:
-    _sceneAsset: {fileID: 0}
-  TheNextScene:
-    _sceneAsset: {fileID: 102900000, guid: f16891c0eb1874d43bc57c417cd1efeb, type: 3}
-  MapSceneField:
-    _sceneAsset: {fileID: 0}
-  SManager:
-    PureWeaponScene:
-      _sceneAsset: {fileID: 0}
-    AnimationDemoScene:
-      _sceneAsset: {fileID: 0}
-    MapScene:
-      _sceneAsset: {fileID: 0}
-    ChurchFirstFloor:
-      _sceneAsset: {fileID: 0}
-    TheNextScene:
-      _sceneAsset: {fileID: 0}
+  NextSceneIndex: 3
 --- !u!1 &982473536
 GameObject:
   m_ObjectHideFlags: 0
@@ -49038,16 +49022,17 @@ MonoBehaviour:
   m_Target: {fileID: 0}
   m_UpdateType: 0
   DistanceAgainstTarget:
-    Init: 14
-    Min: 14
+    Init: 7
+    Min: 7
     Max: 17
   TiltClampVector3:
-    Init: 35
+    Init: 45
     Min: 30
     Max: 45
   FollowTargetSpeed: 1
   CameraMovementSpeed: 0.2
   AngleRotationSpeed: 1.5
+  DoNotLooseTarget: 0
   m_TurnSmoothing: 0
   m_LockCursor: 0
   FallowThreshold: 8

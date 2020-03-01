@@ -1,4 +1,5 @@
 ﻿using Assets.GamePrimal.Helpers;
+using Assets.TeamProjects.GamePrimal.SeparateComponents.SceneShifter;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs
 {
@@ -7,6 +8,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs
     public class EventMatchHasComeToAnEndParams : EventParamsBase
     {
         public SceneField NewScene;
+        public SceneIndexerEnum BuildIndex;
     }
 
     public struct EventMatchHasComeToAnEnd

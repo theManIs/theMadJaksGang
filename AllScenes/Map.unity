@@ -2957,8 +2957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5088d4f19e79b42bfd88f0529326d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneToLoad:
-    _sceneAsset: {fileID: 102900000, guid: f6665e819566c1e4f87c9955d9d1a12a, type: 3}
+  BuildIndex: 4
 --- !u!135 &133243158
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -38973,26 +38972,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1963872337}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1970082752 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5511864417701649427, guid: 94795c1535cb55e49a7ffdb2c00d6d52,
-    type: 3}
-  m_PrefabInstance: {fileID: 5289091392902818067}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1970082753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1970082752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be5088d4f19e79b42bfd88f0529326d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SceneToLoad:
-    _sceneAsset: {fileID: 102900000, guid: 52fc1acefb785884ca381922952b4c23, type: 3}
 --- !u!1 &1979472529 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 8566154213f31bf4492a6e4ec51459cf,
@@ -39024,8 +39003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5088d4f19e79b42bfd88f0529326d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneToLoad:
-    _sceneAsset: {fileID: 102900000, guid: 9fe03d28952c60f4382272b25e7aed4d, type: 3}
+  BuildIndex: 2
 --- !u!1001 &2010376465
 PrefabInstance:
   m_ObjectHideFlags: 0

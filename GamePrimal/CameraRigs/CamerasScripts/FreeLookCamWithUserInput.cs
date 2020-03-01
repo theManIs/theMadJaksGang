@@ -23,9 +23,13 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
 
         public ClampVector3 DistanceAgainstTarget = new ClampVector3() {Min = 14, Max = 17, Init = 14};
         public ClampVector3 TiltClampVector3 = new ClampVector3() {Min = 30, Max = 45, Init = 35};
+
+        [Space]
+
         [Range(0f, 5f)] public float FollowTargetSpeed = 1f;
         [Range(0f, 1f)] public float CameraMovementSpeed = .2f;
         [Range(0f, 5f)] public float AngleRotationSpeed = 1.5f;
+        public bool DoNotLooseTarget = false;
         public float m_TurnSmoothing = 0.0f;
         public bool m_LockCursor = false;
         public int FallowThreshold = 8;
@@ -116,10 +120,28 @@ namespace Assets.TeamProjects.GamePrimal.CameraRigs.CamerasScripts
             Cursor.visible = true;
         }
 
+        private void ReleaseTargetUnconditional()
+        {
+            bool previousLock = DoNotLooseTarget;
+            DoNotLooseTarget = false;
+
+            SetTarget(null);
+
+            DoNotLooseTarget = previousLock;
+        }
+
+        public override void SetTarget(Transform newTransform)
+        {
+            if (DoNotLooseTarget && !newTransform)
+                return;
+            else
+                base.SetTarget(newTransform);
+        }
+
         protected override void FollowTarget(float deltaTime)
         {
             if (!Horizontal.Equals(0.0f) || !Vertical.Equals(0.0f))
-                SetTarget(null);
+                ReleaseTargetUnconditional();
 
             if (m_Target == null) return;
 

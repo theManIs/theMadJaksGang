@@ -1,10 +1,17 @@
-﻿using Assets.TeamProjects.GamePrimal.Controllers;
+﻿using Assets.GamePrimal.Mono;
 
 namespace Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs
 {
+    public delegate void EventEndOfRoundDelegate(EventEndOfRoundParams acp);
+    public class EventEndOfRoundParams : EventParamsBase
+    {
+        public MonoMechanicus Monomech;
+    }
+
     public struct EventEndOfRound
     {
-        public event EventParamsBaseDelegate Event;
-        public void Invoke(EventParamsBase args) => Event?.Invoke(args);
+        public event EventEndOfRoundDelegate Event;
+
+        public void Invoke(EventEndOfRoundParams args) => Event?.Invoke(args);
     }
 }

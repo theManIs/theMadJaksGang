@@ -41,12 +41,14 @@ namespace Assets.GamePrimal.Controllers
         {
             _controllerMainCamera.UserEnable();
             _cMovementCharacter.UserEnable();
+            _cDrumSpinner.UserEnable();
         }
 
         public void UserDisable()
         {
             _controllerMainCamera.UserDisable();
             _cMovementCharacter.UserDisable();
+            _cDrumSpinner.UserDisable();
         }
 
         public void Start()

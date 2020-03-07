@@ -12,7 +12,7 @@ using Random = UnityEngine.Random;
 
 namespace Assets.TeamProjects.GamePrimal.Controllers
 {
-    public class ControllerDrumSpinner
+    public class ControllerDrumSpinner : ISwitchable
     {
         public float InstanceId;
 
@@ -22,7 +22,9 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
         private readonly int _frameThrottle = 25;
         private Transform _whoseTurn;
         private int _frameShieldIdle = Int32.MinValue;
+        private int _spaceDamper = Int32.MinValue;
         private bool _idleRunning = false;
+        private MonoMechanicus _monomechInAction;
 
 
         #region Properties
@@ -93,8 +95,58 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
             ResolveWhoseTurn();
 
             if (StaticProxyInput.Space)
+                if (Time.frameCount - _frameThrottle > _spaceDamper)
+                {
+                    StaticProxyEvent.EEndOfRound.Invoke(new EventEndOfRoundParams());
+
+                    _spaceDamper = Time.frameCount;
+                }
+            
+        }
+
+        #region ISwitchable
+
+        public void UserEnable()
+        {
+            StaticProxyEvent.EEndOfRound.Event += EndOfRoundHandler;
+            StaticProxyEvent.ETurnWasFound.Event += TurnWasFoundHandler;
+        }
+
+        private void TurnWasFoundHandler(EventTurnWasFoundParams acp)
+        {
+            if (acp.TurnApplicant)
+            {
+                _monomechInAction = acp.TurnApplicant.GetComponent<MonoMechanicus>();
+                StaticProxyStateHolder.AiAction = _monomechInAction.AiImproved;
+            }
+        }
+
+        private void EndOfRoundHandler(EventEndOfRoundParams epb)
+        {
+            if (_monomechInAction && _monomechInAction.AiImproved)
+            {
+//                if (epb.Monomech == null)
+//                    Debug.Log($"epb.Monomech {epb.Monomech} Unrestricted end of round");
+
+                if (epb.Monomech != null && epb.Monomech == _monomechInAction && epb.Monomech.AiImproved)
+                {
+                    ReleaseRound();
+
+                    _monomechInAction = null;
+                }
+            }
+            else
                 ReleaseRound();
         }
+
+        public void UserDisable()
+        {
+            StaticProxyEvent.EEndOfRound.Event -= EndOfRoundHandler;
+            StaticProxyEvent.ETurnWasFound.Event -= TurnWasFoundHandler;
+        }
+
+        #endregion
+
 
         public bool DoIMove(Transform applicant)
         {
@@ -137,7 +189,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
             {
                 _theDrum = SpinTheDrum();
 
-                StaticProxyEvent.ETurnWasFound.Invoke(new EventTurnWasFoundParams());
+//                StaticProxyEvent.ETurnWasFound.Invoke(new EventTurnWasFoundParams());
             }
         }
         private void MarkThisRoundFilled(bool doIMove)

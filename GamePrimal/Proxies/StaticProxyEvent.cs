@@ -7,7 +7,7 @@ namespace Assets.TeamProjects.GamePrimal.Proxies
 {
     public class StaticProxyEvent
     {
-//        public static EventEndOfRound EEndOfRound = new EventEndOfRound();
+        public static EventEndOfRound EEndOfRound = new EventEndOfRound();
         public static EventTurnWasFound ETurnWasFound = new EventTurnWasFound();
         public static EventActiveAbilityChanged EActiveAbilityChanged = new EventActiveAbilityChanged();
         public static EventMatchHasComeToAnEnd  EMatchHasComeToAnEnd = new EventMatchHasComeToAnEnd();

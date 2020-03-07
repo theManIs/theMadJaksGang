@@ -99,7 +99,7 @@ namespace Assets.GamePrimal.Mono
 
             if (Ai.CanNotDoAnyAction())
             {
-                _cDrumSpinner.ReleaseRoundUnconditional();
+                StaticProxyEvent.EEndOfRound.Invoke(new EventEndOfRoundParams() {Monomech = this});
                 Ai.ClearControlAndTurnEnded();
             }
                 

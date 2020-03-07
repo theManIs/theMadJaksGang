@@ -4,6 +4,7 @@ using Assets.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Controllers;
 using Assets.TeamProjects.GamePrimal.Helpers.InterfaceHold;
 using Assets.TeamProjects.GamePrimal.Mono;
+using Assets.TeamProjects.GamePrimal.Navigation.HighlightFrame;
 using Assets.TeamProjects.GamePrimal.Proxies;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligence;
 using Assets.TeamProjects.GamePrimal.SeparateComponents.EventsStructs;
@@ -25,7 +26,7 @@ namespace Assets.GamePrimal.Mono
         public bool InfiniteMoving = false;
         public bool InfiniteAction = false;
         public bool AiImproved = false;
-        public bool BlueRedTeam = false;
+        public bool IsBlueTeam = false;
 
         private ControllerDrumSpinner _cDrumSpinner;
         private CharacterAnimator _characterAnimator;
@@ -40,6 +41,7 @@ namespace Assets.GamePrimal.Mono
         public MonoAmplifierRpg _monoAmplifierRpg;
         public EventHitDetected EHitDetected = new EventHitDetected();
         public IArtificial Ai = new AiFrameBuilderNullObject();
+        private AbstractHighlight _teamHighlight;
 
         public void HitDetectedHandler(AnimationEvent ae) => _characterAnimator.HitDetectedHandler();
 
@@ -87,6 +89,8 @@ namespace Assets.GamePrimal.Mono
                     WeaponType = _monoAmplifierRpg.WieldingWeapon.WeaponType,
                     NavMeshSpeed = _monoAmplifierRpg.MeshSpeed
                 });
+
+            _teamHighlight = HighlightBuilder.CreateWithParent(transform).GetRedBlueHighlight(IsBlueTeam);
         }
 
         void Update()
@@ -102,7 +106,8 @@ namespace Assets.GamePrimal.Mono
                 StaticProxyEvent.EEndOfRound.Invoke(new EventEndOfRoundParams() {Monomech = this});
                 Ai.ClearControlAndTurnEnded();
             }
-                
+            
+            _teamHighlight.FixedUpdate(transform);
         }
 
         #region Subscribers
@@ -186,5 +191,7 @@ namespace Assets.GamePrimal.Mono
                 Gizmos.DrawSphere(_navMeshAgent.destination, 1);
             }
         }
+
+        private void OnDestroy() => _teamHighlight?.FixedUpdate(null);
     }
 }

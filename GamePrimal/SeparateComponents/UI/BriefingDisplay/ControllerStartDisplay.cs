@@ -67,15 +67,15 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.UI.BriefingDisplay
                 return;
 
             bool isAllTheSame = true;
-            bool isBlueTeam = monomechs[0].BlueRedTeam;
+            bool isBlueTeam = monomechs[0].IsBlueTeam;
 
             foreach (MonoMechanicus m in monomechs)
             {
 
-                if (m.BlueRedTeam != isBlueTeam)
+                if (m.IsBlueTeam != isBlueTeam)
                     isAllTheSame = false;  
 
-                isBlueTeam = m.BlueRedTeam;
+                isBlueTeam = m.IsBlueTeam;
             }
 
             if (isAllTheSame)

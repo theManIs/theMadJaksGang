@@ -3,6 +3,8 @@
     public struct ResourcesList
     {
         public const string FrameHighlighter = "FrameHighlighter";
+        public const string BlueAura = "BlueAura_39476";
+        public const string RedAura = "RedAura_39488";
         public const string HorizontalBeacon = "Horizontal_Beacon_11894";
         public const string CheckWayPoint = "WayPointMove Variant_12046";
         public const string RegularWayPoint = "WayPointWhite_11970";

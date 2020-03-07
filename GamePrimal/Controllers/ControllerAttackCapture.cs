@@ -45,7 +45,7 @@ namespace Assets.TeamProjects.GamePrimal.Controllers
                         MonoMechanicus focusedMonomech = focused.GetComponent<MonoMechanicus>();
                         MonoMechanicus capturedMonomech = captured.GetComponent<MonoMechanicus>();
 
-                        if (focusedMonomech.BlueRedTeam == capturedMonomech.BlueRedTeam)
+                        if (focusedMonomech.IsBlueTeam == capturedMonomech.IsBlueTeam)
                             return;
 
                         AttackCaptureParams acp = new AttackCaptureParams() { Source = captured, Target = focused, HasHit = HasHit };

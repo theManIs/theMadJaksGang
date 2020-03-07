@@ -78,7 +78,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.ArtificialIntelligen
 
         private void ReleaseEnemyForThisTurn() => _pickedEnemy = null;
         private MonoMechanicus[] GetEnemies() => GetAllMonomechs()
-            .Where(c => c.BlueRedTeam != Attr.Monomech.BlueRedTeam).ToArray();
+            .Where(c => c.IsBlueTeam != Attr.Monomech.IsBlueTeam).ToArray();
 
         private SortedDictionary<float, MonoMechanicus> ResolveEnemies() =>
             GetEnemies().Aggregate(new SortedDictionary<float, MonoMechanicus>(), (carrier, monomech) =>

@@ -43,7 +43,7 @@ namespace Assets.TeamProjects.GamePrimal.SeparateComponents.MiscClasses
             float attackRange = monoRpg && monoRpg.WieldingWeapon ? monoRpg.WieldingWeapon.WeaponRange : default;
             bool isWithinRange = softFocus && hardFocus && attackRange > Vector3.Distance(softFocus.position, hardFocus.position);
 
-            if (monomechHard && monomech && monomechHard.BlueRedTeam == monomech.BlueRedTeam)
+            if (monomechHard && monomech && monomechHard.IsBlueTeam == monomech.IsBlueTeam)
                 SetAnyCursor(_allyCursor);
             else if (softFocus && hardFocus && hardFocus != softFocus && monomech && isRanged && !isWithinRange)
                 SetAnyCursor(_outOfRangeRanged);

@@ -21,14 +21,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Material.009
-  m_Shader: {fileID: 4800000, guid: 99134b1f0c27d54469a840832a28fadf, type: 3}
-  m_ShaderKeywords: EFFECT_BUMP _WINDQUALITY_BEST
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_ShaderKeywords: _SPECULAR_SETUP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: 3050
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - SHADOWCASTER
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -49,6 +51,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -90,10 +96,10 @@ Material:
     - _BillboardShadowFade: 0.5
     - _Blend: 0
     - _BumpScale: 1
-    - _Cull: 2
+    - _Cull: 0
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DstBlend: 0
+    - _DstBlend: 10
     - _EnvironmentReflections: 1
     - _GlossMapScale: 1
     - _Glossiness: 0
@@ -113,19 +119,21 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecSource: 0
     - _SpecularHighlights: 1
-    - _SrcBlend: 1
+    - _SrcBlend: 5
     - _SubsurfaceIndirect: 0.277
     - _SubsurfaceKwToggle: 0
-    - _Surface: 0
+    - _Surface: 1
+    - _TERRAIN_INSTANCED_PERPIXEL_NORMAL: 0
     - _TwoSided: 0
     - _UVSec: 0
     - _WindQuality: 4
     - _WorkflowMode: 0
-    - _ZWrite: 1
+    - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
+    - _BaseColor: {r: 0.2762549, g: 0.3018868, b: 0.2719829, a: 1}
     - _Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _HueVariationColor: {r: 1, g: 0.5, b: 0, a: 0.1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _SubsurfaceColor: {r: 1, g: 1, b: 1, a: 1}
